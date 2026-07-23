@@ -78,35 +78,182 @@ footer {
 }
 
 /* ==========================================
-   HERO SECTION
-   Styles for the homepage introduction
+   COMPONENT: HERO SECTION
+
+   Purpose:
+   Styles the homepage hero section,
+   including layout, typography, buttons
+   and profile card.
 ========================================== */
 
 .hero {
-    padding: 80px 0;
+    padding: 100px 0;
+    background: linear-gradient(to right, #f8fafc, #eef6ff);
+}
+
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: #dbeafe;
+    color: #2563eb;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 24px;
 }
 
 .hero h1 {
-    font-size: 3rem;
-    color: #111827;
+    font-size: 3.5rem;
+    line-height: 1.2;
     margin-bottom: 15px;
 }
 
-.hero h2 {
-    font-size: 1.5rem;
+.hero-name {
     color: #2563eb;
-    margin-bottom: 25px;
-    font-weight: 600;
+}
+
+.hero h2 {
+    font-size: 1.8rem;
+    color: #6b7280;
+    margin-bottom: 30px;
 }
 
 .hero p {
-    max-width: 700px;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
     color: #4b5563;
     margin-bottom: 20px;
 }
 
+.hero-intro {
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 35px 0;
+}
+
+.tech-stack span {
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    color: #2563eb;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tech-stack span:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 14px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    border: 2px solid #2563eb;
+    color: #2563eb;
+}
+
+.btn-secondary:hover {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.hero-image {
+    flex: 0 0 380px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile-placeholder {
+    width: 320px;
+    height: 320px;
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #dbeafe;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    transition: all 0.3s ease;
+}
+
+.profile-placeholder:hover {
+    transform: translateY(-8px);
+}
+
+.profile-placeholder h3 {
+    margin-top: 20px;
+    font-size: 1.6rem;
+}
+
+.profile-placeholder p {
+    margin-top: 10px;
+    color: #6b7280;
+}
+
+/* ==========================================
+   COMPONENT: PROFILE IMAGE
+
+   Purpose:
+   Styles the developer portrait displayed
+   within the Hero section.
+========================================== */
+
+.profile-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #2563eb;
+    margin-bottom: 20px;
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.20);
+}
 /* ==========================================
    BUTTONS
    Reusable button styles across the website.
@@ -228,6 +375,685 @@ footer {
     font-size: 1.3rem;
     font-weight: bold;
     color: #6b7280;
+}
+
+/* ==========================================
+   COMPONENT: STATISTICS SECTION
+
+   Purpose:
+   Styles the professional statistics cards.
+========================================== */
+
+.statistics {
+    padding: 80px 0;
+    background: #ffffff;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.stat-card {
+    background: #f8fafc;
+    padding: 40px 20px;
+    border-radius: 16px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-color: #2563eb;
+    box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15);
+}
+
+.stat-card h2 {
+    font-size: 2.5rem;
+    color: #2563eb;
+    margin-bottom: 12px;
+}
+
+.stat-card p {
+    color: #6b7280;
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   COMPONENT: ABOUT SECTION
+
+   Purpose:
+   Styles the About page including
+   layout, image and content.
+========================================== */
+
+.about {
+    padding: 100px 0;
+    background: #f8fafc;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.10);
+    transition: transform 0.3s ease;
+}
+
+.about-image img:hover {
+    transform: translateY(-8px);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-tag {
+    display: inline-block;
+    width: fit-content;
+    padding: 8px 18px;
+    margin-bottom: 20px;
+    background: #dbeafe;
+    color: #2563eb;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.about-content h2 {
+    font-size: 2.6rem;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    color: #111827;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+    color: #4b5563;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.about-content .btn-primary {
+    width: fit-content;
+    margin-top: 15px;
+}
+
+
+/* ==========================================
+   COMPONENT: SKILLS SECTION
+
+   Purpose:
+   Styles the Skills page including
+   section layout and skill cards.
+========================================== */
+
+.skills {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.skills h2 {
+    font-size: 2.7rem;
+    margin: 20px 0;
+    color: #111827;
+}
+
+.section-description {
+    max-width: 700px;
+    margin-bottom: 60px;
+    color: #6b7280;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.skill-card {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 35px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    border-color: #2563eb;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.15);
+}
+
+.skill-card h3 {
+    color: #2563eb;
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+}
+
+.skill-card p {
+    color: #4b5563;
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   COMPONENT: PROJECTS SECTION
+
+   Purpose:
+   Styles the Projects page, including
+   project cards, status badges,
+   technology tags and action buttons.
+========================================== */
+
+.projects {
+    padding: 100px 0;
+    background: #f8fafc;
+}
+
+.projects h2 {
+    font-size: 2.8rem;
+    margin: 20px 0;
+    color: #111827;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 35px;
+    margin-top: 60px;
+}
+
+.project-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: #2563eb;
+    box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15);
+}
+
+.project-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    background: #e5e7eb;
+}
+
+.project-content {
+    padding: 30px;
+}
+
+.project-content h3 {
+    font-size: 1.6rem;
+    color: #111827;
+    margin: 18px 0;
+}
+
+.project-content p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.project-tech span {
+    background: #dbeafe;
+    color: #2563eb;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.project-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.project-status {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.project-status.completed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.project-status.development {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.project-status.planned {
+    background: #e5e7eb;
+    color: #4b5563;
+}
+
+
+/* ==========================================
+   COMPONENT: SERVICES SECTION
+
+   Purpose:
+   Styles the Services page including
+   service cards and hover effects.
+========================================== */
+
+.services {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.services h2 {
+    font-size: 2.8rem;
+    margin: 20px 0;
+    color: #111827;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.service-card {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 40px 35px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: #2563eb;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.15);
+}
+
+.service-card h3 {
+    color: #2563eb;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.service-card p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin: 0;
+}
+
+
+/* ==========================================
+   COMPONENT: EXPERIENCE SECTION
+
+   Purpose:
+   Styles the professional career timeline,
+   highlighting software engineering
+   experience and project milestones.
+========================================== */
+
+.experience {
+    padding: 100px 0;
+    background: #f8fafc;
+}
+
+.experience h2 {
+    font-size: 2.8rem;
+    margin: 20px 0;
+    color: #111827;
+}
+
+.timeline {
+    position: relative;
+    margin-top: 70px;
+    padding-left: 40px;
+    border-left: 4px solid #2563eb;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 60px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -52px;
+    top: 6px;
+    width: 20px;
+    height: 20px;
+    background: #2563eb;
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+
+.timeline-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-8px);
+    border-color: #2563eb;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.15);
+}
+
+.timeline-year {
+    display: inline-block;
+    background: #dbeafe;
+    color: #2563eb;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.timeline-content h3 {
+    font-size: 1.6rem;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.timeline-content h4 {
+    font-size: 1.1rem;
+    color: #2563eb;
+    margin-bottom: 18px;
+}
+
+.timeline-content p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin: 0;
+}
+
+
+/* ==========================================
+   COMPONENT: CERTIFICATIONS SECTION
+
+   Purpose:
+   Styles the Certifications page,
+   certification cards and action buttons.
+========================================== */
+
+.certifications {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.certifications h2 {
+    font-size: 2.8rem;
+    margin: 20px 0;
+    color: #111827;
+}
+
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.certification-card {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 35px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.certification-card:hover {
+    transform: translateY(-10px);
+    border-color: #2563eb;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.15);
+}
+
+.certification-card h3 {
+    color: #111827;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.certification-card h4 {
+    color: #2563eb;
+    font-size: 1rem;
+    margin-bottom: 18px;
+}
+
+.certification-card p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+
+/* ==========================================
+   COMPONENT: BLOG SECTION
+
+   Purpose:
+   Styles the Technical Blog page,
+   including blog cards and
+   article previews.
+========================================== */
+
+.blog {
+    padding: 100px 0;
+    background: #f8fafc;
+}
+
+.blog h2 {
+    font-size: 2.8rem;
+    margin: 20px 0;
+    color: #111827;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.blog-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 35px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    border-color: #2563eb;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, 0.15);
+}
+
+.blog-card h3 {
+    color: #111827;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.blog-card p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.blog-card .btn-primary {
+    width: fit-content;
+}
+
+
+/* ==========================================
+   COMPONENT: CONTACT SECTION
+
+   Purpose:
+   Styles the Contact page including
+   contact information, contact form
+   and form controls.
+========================================== */
+
+.contact {
+    padding: 100px 0;
+    background: #ffffff;
+}
+
+.contact h2 {
+    font-size: 2.8rem;
+    margin: 20px 0;
+    color: #111827;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    margin-top: 60px;
+    align-items: start;
+}
+
+/* ==========================================
+   COMPONENT: CONTACT INFORMATION
+
+   Purpose:
+   Styles the contact details card.
+========================================== */
+
+.contact-info {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 35px;
+}
+
+.contact-info h3 {
+    color: #111827;
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.contact-info ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-info li {
+    margin-bottom: 25px;
+    color: #4b5563;
+    line-height: 1.8;
+}
+
+.contact-info strong {
+    color: #2563eb;
+}
+
+/* ==========================================
+   COMPONENT: CONTACT FORM
+
+   Purpose:
+   Styles the enquiry form and all
+   form controls.
+========================================== */
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 180px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+}
+
+.contact-form button {
+    width: fit-content;
 }
 
 
@@ -363,4 +1189,19 @@ nav .container {
 
 .nav-links a:hover {
     color: #2563eb;
+}
+
+/* ==========================================
+   COMPONENT: ACTIVE NAVIGATION LINK
+
+   Purpose:
+   Highlights the current page in
+   the navigation menu.
+========================================== */
+
+.nav-links a.active {
+    color: #2563eb;
+    font-weight: 700;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 4px;
 }

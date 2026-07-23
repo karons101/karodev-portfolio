@@ -1,25 +1,38 @@
+{{-- ==========================================
+     COMPONENT: HERO SECTION
+
+     Purpose:
+     Displays the primary introduction,
+     professional summary and call-to-actions.
+========================================== --}}
+
 <section class="hero">
 
     <div class="hero-content">
 
+        {{-- ==========================================
+             COMPONENT: HERO TEXT
+        ========================================== --}}
+
         <div class="hero-text">
 
-            <h1>Hi, I'm Oghenekaro Cletus Anakpoha</h1>
+            <span class="hero-badge">
+                🚀 Available for Freelance & Remote Opportunities
+            </span>
+
+            <h1>
+                Hi, I'm
+                <span class="hero-name">
+                    Oghenekaro Cletus 
+                </span>
+            </h1>
 
             <h2>Full-Stack Software Developer</h2>
 
-{{-- ==========================================
-     PROFESSIONAL SUMMARY
-
-     Purpose:
-     Introduces visitors to my software
-     engineering philosophy and value.
-========================================== --}}
-
-           <p class="hero-intro">
-              I build scalable, secure, and user-focused software solutions that help
-                 businesses grow through modern web technologies and clean engineering
-                   practices.
+            <p class="hero-intro">
+                I build scalable, secure, and user-focused software solutions
+                that help businesses grow through modern web technologies and
+                clean engineering practices.
             </p>
 
             <p>
@@ -28,34 +41,28 @@
             </p>
 
             <p>
-                My focus is building software that solves real business problems
-                with clean architecture, scalability and great user experience.
+                My focus is creating software that solves real business
+                problems with clean architecture, maintainability and
+                outstanding user experience.
             </p>
 
+            {{-- ==========================================
+                 COMPONENT: TECHNOLOGY STACK
+            ========================================== --}}
 
+            <div class="tech-stack">
 
-{{-- ==========================================
-     CORE TECHNOLOGIES
-========================================== --}}
+                <span>Laravel</span>
+                <span>PHP</span>
+                <span>JavaScript</span>
+                <span>MySQL</span>
+                <span>Git</span>
 
-<div class="tech-stack">
+            </div>
 
-    <span>Laravel</span>
-
-    <span>PHP</span>
-
-    <span>JavaScript</span>
-
-    <span>MySQL</span>
-
-    <span>Git</span>
-
-</div>
-
-
-{{-- ==========================================
-        CALL TO ACTION BUTTONS
-========================================== --}}
+            {{-- ==========================================
+                 COMPONENT: CALL TO ACTION
+            ========================================== --}}
 
             <div class="hero-buttons">
 
@@ -71,14 +78,29 @@
 
         </div>
 
-        <div class="hero-image">
+{{-- ==========================================
+     COMPONENT: PROFILE PHOTO
 
-            <div class="profile-placeholder">
-                Your Photo
-            </div>
+     Purpose:
+     Displays the developer's professional
+     portrait on the homepage.
+========================================== --}}
+
+     <div class="profile-placeholder">
+
+         <img
+             src="{{ asset('images/avatars/oghenekaro-anakpoha.png') }}"
+              alt="Oghenekaro Cletus Anakpoha"
+            class="profile-image">
+
+          <h3>Oghenekaro Cletus Anakpoha</h3>
+
+         <p>Full-Stack Software Engineer</p>
 
         </div>
 
-    </div>
+     </div>
+
+  </div>
 
 </section>

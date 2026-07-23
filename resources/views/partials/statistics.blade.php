@@ -1,18 +1,67 @@
-<section class="stats">
+{{-- ==========================================
+     COMPONENT: PROFESSIONAL STATISTICS
 
-      <div class="stat-card">
-        <h3>10+</h3>
-        <p>Projects Built</p>
-      </div>
+     Purpose:
+     Displays key professional achievements
+     and experience metrics.
+========================================== --}}
 
-      <div class="stat-card">
-        <h3>5+</h3>
-        <p>Technologies</p>
-      </div>
+<section class="statistics">
 
-      <div class="stat-card">
-        <h3>100%</h3>
-        <p>Commitment</p>
-      </div>
+    <div class="container">
 
-  </section>
+        <div class="stats-grid">
+
+            {{-- ==========================================
+                 COMPONENT: PROJECTS COMPLETED
+            ========================================== --}}
+
+            <div class="stat-card">
+
+                <h2>15+</h2>
+
+                <p>Projects Completed</p>
+
+            </div>
+
+            {{-- ==========================================
+                 COMPONENT: TECHNOLOGIES
+            ========================================== --}}
+
+            <div class="stat-card">
+
+                <h2>10+</h2>
+
+                <p>Technologies Used</p>
+
+            </div>
+
+            {{-- ==========================================
+                 COMPONENT: APPLICATIONS
+            ========================================== --}}
+
+            <div class="stat-card">
+
+                <h2>5+</h2>
+
+                <p>Full-Stack Applications</p>
+
+            </div>
+
+            {{-- ==========================================
+                 COMPONENT: COMMITMENT
+            ========================================== --}}
+
+            <div class="stat-card">
+
+                <h2>100%</h2>
+
+                <p>Commitment to Quality</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

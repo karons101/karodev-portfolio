@@ -17,8 +17,8 @@
              COMPONENT: NAVIGATION LINKS
 
              Purpose:
-             Groups all navigation links
-             for consistent styling.
+             Displays the main website navigation
+             and highlights the active page.
         ========================================== --}}
 
         <div class="nav-links">
@@ -33,17 +33,99 @@
                 ========================================== --}}
 
                 <li>
-                    <a href="{{ route('home') }}">Home</a>
+                    <a href="{{ route('home') }}"
+                       class="{{ request()->routeIs('home') ? 'active' : '' }}">
+                        Home
+                    </a>
                 </li>
 
-                <li><a href="{{ route('about') }}">About</a></li>
-                <li><a href="{{ route('projects') }}">Projects</a></li>
-                <li><a href="{{ route('services') }}">Services</a></li>
-                <li><a href="{{ route('skills') }}">Skills</a></li>
-                <li><a href="{{ route('experience') }}">Experience</a></li>
-                <li><a href="{{ route('certifications') }}">Certifications</a></li>
-                <li><a href="{{ route('blog') }}">Blog</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                {{-- ==========================================
+                     COMPONENT: ABOUT LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('about') }}"
+                       class="{{ request()->routeIs('about') ? 'active' : '' }}">
+                        About
+                    </a>
+                </li>
+
+                {{-- ==========================================
+                     COMPONENT: PROJECTS LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('projects') }}"
+                       class="{{ request()->routeIs('projects') ? 'active' : '' }}">
+                        Projects
+                    </a>
+                </li>
+
+                {{-- ==========================================
+                     COMPONENT: SERVICES LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('services') }}"
+                       class="{{ request()->routeIs('services') ? 'active' : '' }}">
+                        Services
+                    </a>
+                </li>
+
+                {{-- ==========================================
+                     COMPONENT: SKILLS LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('skills') }}"
+                       class="{{ request()->routeIs('skills') ? 'active' : '' }}">
+                        Skills
+                    </a>
+                </li>
+
+                {{-- ==========================================
+                     COMPONENT: EXPERIENCE LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('experience') }}"
+                       class="{{ request()->routeIs('experience') ? 'active' : '' }}">
+                        Experience
+                    </a>
+                </li>
+
+                {{-- ==========================================
+                     COMPONENT: CERTIFICATIONS LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('certifications') }}"
+                       class="{{ request()->routeIs('certifications') ? 'active' : '' }}">
+                        Certifications
+                    </a>
+                </li>
+
+                {{-- ==========================================
+                     COMPONENT: BLOG LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('blog') }}"
+                       class="{{ request()->routeIs('blog') ? 'active' : '' }}">
+                        Blog
+                    </a>
+                </li>
+
+                {{-- ==========================================
+                     COMPONENT: CONTACT LINK
+                ========================================== --}}
+
+                <li>
+                    <a href="{{ route('contact') }}"
+                       class="{{ request()->routeIs('contact') ? 'active' : '' }}">
+                        Contact
+                    </a>
+                </li>
 
             </ul>
 
