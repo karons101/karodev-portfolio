@@ -13,6 +13,24 @@
             <span>Karo</span>Dev
         </a>
 
+
+{{-- ==========================================
+     COMPONENT: MOBILE MENU TOGGLE
+
+     Purpose:
+     Displays the mobile navigation toggle.
+========================================== --}}
+
+<button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Toggle Navigation">
+
+    <i class="fa-solid fa-anchor"></i>
+
+</button>
+
+
         {{-- ==========================================
              COMPONENT: NAVIGATION LINKS
 

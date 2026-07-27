@@ -3,4 +3,15 @@
 
 <title>@yield('title', 'KaroDev Portfolio')</title>
 
+{{-- ==========================================
+     FONT AWESOME
+
+     Purpose:
+     Provides professional icons for
+     social media, navigation and UI.
+========================================== --}}
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 @vite(['resources/css/app.css', 'resources/js/app.js'])

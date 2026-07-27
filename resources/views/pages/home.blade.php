@@ -6,34 +6,25 @@
 
 <div class="container">
 
-{{-- ==========================================
-     HERO SECTION
-========================================== --}}
+    {{-- ==========================================
+         COMPONENT: HERO SECTION
 
-{{-- ==========================================
-     HERO SECTION
+         Purpose:
+         Displays the main Hero section.
+    ========================================== --}}
 
-     Purpose:
-     Loads the reusable Hero section from
-     the partials directory.
-========================================== --}}
-
-@include('partials.hero')
+    @include('partials.hero')
 
 
     {{-- ==========================================
-     HERO STATISTICS
+         COMPONENT: HERO STATISTICS
+
+         Purpose:
+         Displays animated portfolio statistics.
     ========================================== --}}
 
-   {{-- ==========================================
-     HERO STATISTICS
+    @include('partials.statistics')
 
-     Purpose:
-     Loads the reusable statistics section from
-     the partials directory.
-========================================== --}}
-
-@include('partials.statistics')
- </div>
+</div>
 
 @endsection

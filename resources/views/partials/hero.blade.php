@@ -46,19 +46,25 @@
                 outstanding user experience.
             </p>
 
-            {{-- ==========================================
-                 COMPONENT: TECHNOLOGY STACK
-            ========================================== --}}
+{{-- ==========================================
+        COMPONENT: TECHNOLOGY STACK
+========================================== --}}
 
-            <div class="tech-stack">
+        <div class="tech-stack">
 
-                <span>Laravel</span>
-                <span>PHP</span>
-                <span>JavaScript</span>
-                <span>MySQL</span>
-                <span>Git</span>
+                 <span class="float-1">⚓ Laravel</span>
 
-            </div>
+                  <span class="float-2">🐘 PHP</span>
+
+                  <span class="float-3">⚙ JavaScript</span>
+
+                  <span class="float-4">🗄 MySQL</span>
+
+                  <span class="float-5">🌱 Git</span>
+
+                  <span class="float-6">🚀 REST APIs</span>
+
+       </div>
 
             {{-- ==========================================
                  COMPONENT: CALL TO ACTION

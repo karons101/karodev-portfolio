@@ -48,7 +48,9 @@
 
                     <li>
                         <strong>Email:</strong><br>
-                        karonstical@gmail.com
+                        <a href="mailto:karonstical@gmail.com">
+                            karonstical@gmail.com
+                        </a>
                     </li>
 
                     <li>
@@ -58,43 +60,124 @@
 
                     <li>
                         <strong>Availability:</strong><br>
-                        Open for opportunities
+                        Open for Freelance, Remote and Full-Time Opportunities
                     </li>
 
                 </ul>
 
             </div>
 
-            {{-- ==========================================
-                 CONTACT FORM
-            ========================================== --}}
+<form
+    class="contact-form"
+    method="POST"
+    action="#">
 
-            <form class="contact-form">
+    @csrf
 
-                <input
-                    type="text"
-                    placeholder="Full Name">
+    {{-- ==========================================
+         FULL NAME
+    ========================================== --}}
 
-                <input
-                    type="email"
-                    placeholder="Email Address">
+    <div class="input-group">
 
-                <input
-                    type="text"
-                    placeholder="Subject">
+        <label for="contactName" class="sr-only">
+            Full Name
+        </label>
 
-                <textarea
-                    rows="6"
-                    placeholder="Tell me about your project..."></textarea>
+        <span class="input-icon">
+            ⚓
+        </span>
 
-                <button
-                    type="submit"
-                    class="btn-primary">
-                    Send Message
-                </button>
+        <input
+            type="text"
+            id="contactName"
+            name="name"
+            placeholder="Full Name"
+            autocomplete="name"
+            required>
 
-            </form>
+    </div>
 
+    {{-- ==========================================
+         EMAIL
+    ========================================== --}}
+
+    <div class="input-group">
+
+        <label for="contactEmail" class="sr-only">
+            Email Address
+        </label>
+
+        <span class="input-icon">
+            📧
+        </span>
+
+        <input
+            type="email"
+            id="contactEmail"
+            name="email"
+            placeholder="Email Address"
+            autocomplete="email"
+            required>
+
+    </div>
+
+    {{-- ==========================================
+         SUBJECT
+    ========================================== --}}
+
+    <div class="input-group">
+
+        <label for="contactSubject" class="sr-only">
+            Subject
+        </label>
+
+        <span class="input-icon">
+            🧭
+        </span>
+
+        <input
+            type="text"
+            id="contactSubject"
+            name="subject"
+            placeholder="Subject"
+            autocomplete="off"
+            required>
+
+    </div>
+
+    {{-- ==========================================
+         MESSAGE
+    ========================================== --}}
+
+    <div class="input-group textarea-group">
+
+        <label for="contactMessage" class="sr-only">
+            Project Details
+        </label>
+
+        <span class="input-icon">
+            🚢
+        </span>
+
+        <textarea
+            id="contactMessage"
+            name="message"
+            rows="6"
+            placeholder="Tell me about your project..."
+            required></textarea>
+
+          </div>
+
+                   <button
+                            type="submit"
+                       class="btn-primary">
+
+                   Send Message
+
+              </button>
+
+           </form>
         </div>
 
     </div>

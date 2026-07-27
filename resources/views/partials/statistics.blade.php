@@ -3,60 +3,112 @@
 
      Purpose:
      Displays key professional achievements
-     and experience metrics.
+     with animated counters that activate
+     when the section enters the viewport.
 ========================================== --}}
 
-<section class="statistics">
+<section class="statistics reveal">
 
     <div class="container">
 
         <div class="stats-grid">
 
             {{-- ==========================================
-                 COMPONENT: PROJECTS COMPLETED
+                 PROJECTS COMPLETED
             ========================================== --}}
 
             <div class="stat-card">
 
-                <h2>15+</h2>
+                <h2>
 
-                <p>Projects Completed</p>
+                    <span
+                        class="counter"
+                        data-target="15">
+
+                        0
+
+                    </span>+
+
+                </h2>
+
+                <p>
+                    Projects Completed
+                </p>
 
             </div>
 
+
             {{-- ==========================================
-                 COMPONENT: TECHNOLOGIES
+                 TECHNOLOGIES MASTERED
             ========================================== --}}
 
             <div class="stat-card">
 
-                <h2>10+</h2>
+                <h2>
 
-                <p>Technologies Used</p>
+                    <span
+                        class="counter"
+                        data-target="10">
+
+                        0
+
+                    </span>+
+
+                </h2>
+
+                <p>
+                    Technologies Mastered
+                </p>
 
             </div>
 
+
             {{-- ==========================================
-                 COMPONENT: APPLICATIONS
+                 FULL-STACK APPLICATIONS
             ========================================== --}}
 
             <div class="stat-card">
 
-                <h2>5+</h2>
+                <h2>
 
-                <p>Full-Stack Applications</p>
+                    <span
+                        class="counter"
+                        data-target="5">
+
+                        0
+
+                    </span>+
+
+                </h2>
+
+                <p>
+                    Full-Stack Applications
+                </p>
 
             </div>
 
+
             {{-- ==========================================
-                 COMPONENT: COMMITMENT
+                 COMMITMENT TO QUALITY
             ========================================== --}}
 
             <div class="stat-card">
 
-                <h2>100%</h2>
+                <h2>
 
-                <p>Commitment to Quality</p>
+                    <span
+                        class="counter"
+                        data-target="100">
+
+                        0
+
+                    </span>%
+
+                </h2>
+
+                <p>
+                    Commitment to Quality
+                </p>
 
             </div>
 

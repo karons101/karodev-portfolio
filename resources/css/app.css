@@ -1,7 +1,2335 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ==========================================
+   GLOBAL RESET
+
+   Purpose:
+   Provides a consistent starting point
+   across all browsers.
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:1.6;
+    color:#222;
+    background:#f8fafc;
+}
+
+/* ==========================================
+   GLOBAL CONTAINER
+
+   Purpose:
+   Controls the maximum width of all
+   website sections.
+========================================== */
+
+.container{
+    width:min(90%,1200px);
+    margin:auto;
+}
+
+/* ==========================================
+   MAIN CONTENT
+
+   Purpose:
+   Prevents content from hiding beneath
+   the fixed navigation bar.
+========================================== */
+
+main{
+    min-height:70vh;
+    padding:120px 0 60px;
+}
+
+/* ==========================================
+   PRIMARY BUTTONS
+
+   Purpose:
+   Shared button styles used throughout
+   the website.
+========================================== */
+
+.btn-primary,
+.btn-secondary{
+    display:inline-block;
+    padding:14px 30px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:700;
+    transition:all .3s ease;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:#fff;
+}
+
+.btn-primary:hover{
+    background:#1d4ed8;
+    transform:translateY(-2px);
+}
+
+.btn-secondary{
+    background:#fff;
+    color:#2563eb;
+    border:2px solid #2563eb;
+}
+
+.btn-secondary:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   NAVIGATION BAR
+
+   Purpose:
+   Displays a fixed navigation bar
+   across the top of every page.
+========================================== */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background:#fff;
+    padding:20px 0;
+    border-bottom:1px solid #e5e7eb;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+    z-index:99999;
+}
+
+nav .container{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* ==========================================
+   BRAND LOGO
+========================================== */
+
+.logo{
+    font-size:1.8rem;
+    font-weight:700;
+    text-decoration:none;
+    color:#111827;
+    transition:color .3s ease;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.logo:hover{
+    color:#2563eb;
+}
+
+.logo:hover span{
+    color:#2563eb;
+}
+
+/* ==========================================
+   NAVIGATION LINKS
+========================================== */
+
+.nav-links ul{
+    display:flex;
+    list-style:none;
+    gap:28px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#374151;
+    font-weight:600;
+    transition:color .3s ease;
+}
+
+.nav-links a:hover{
+    color:#2563eb;
+}
+
+.nav-links a.active{
+    color:#2563eb;
+    border-bottom:2px solid #2563eb;
+    padding-bottom:4px;
+}
+
+
+/* ==========================================
+   MOBILE MENU TOGGLE
+========================================== */
+
+.menu-toggle{
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    font-size:1.8rem;
+
+    color:#2563eb;
+
+    cursor:pointer;
+
+}
+
+@media (max-width:992px){
+
+    .menu-toggle{
+
+        display:block;
+
+    }
+
+    .nav-links{
+
+        position:absolute;
+
+        top:100%;
+
+        left:0;
+
+        width:100%;
+
+        background:#ffffff;
+
+        max-height:0;
+
+        overflow:hidden;
+
+        transition:max-height .35s ease;
+
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    }
+
+    .nav-links.active{
+
+        max-height:700px;
+
+    }
+
+    .nav-links ul{
+
+        flex-direction:column;
+
+        padding:20px;
+
+        gap:16px;
+
+    }
+
+}
+
+/* ==========================================
+   HERO SECTION
+
+   Purpose:
+   Displays the portfolio introduction.
+========================================== */
+
+.hero{
+    padding:100px 0;
+    background:linear-gradient(to right,#f8fafc,#eef6ff);
+}
+
+.hero-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:80px;
+}
+
+.hero-text{
+    flex:1;
+}
+
+.hero-image{
+    flex:0 0 380px;
+    display:flex;
+    justify-content:center;
+}
+
+/* ==========================================
+   HERO BADGE
+========================================== */
+
+.hero-badge{
+    display:inline-block;
+    margin-bottom:24px;
+    padding:8px 18px;
+    background:#dbeafe;
+    color:#2563eb;
+    border-radius:999px;
+    font-size:.9rem;
+    font-weight:700;
+}
+
+/* ==========================================
+   HERO TYPOGRAPHY
+========================================== */
+
+.hero h1{
+    font-size:3.5rem;
+    line-height:1.2;
+    margin-bottom:15px;
+    color:#111827;
+}
+
+.hero-name{
+    color:#2563eb;
+}
+
+.hero h2{
+    font-size:1.8rem;
+    color:#6b7280;
+    margin-bottom:30px;
+}
+
+.hero p{
+    color:#4b5563;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.hero-intro{
+    font-size:1.15rem;
+    font-weight:500;
+    max-width:650px;
+}
+
+/* ==========================================
+   HERO BUTTONS
+========================================== */
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    margin-top:35px;
+}
+
+/* ==========================================
+   TECHNOLOGY STACK
+
+   Purpose:
+   Displays floating technology badges.
+========================================== */
+
+.tech-stack{
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    margin:40px 0;
+}
+
+.tech-stack span{
+    padding:12px 20px;
+    background:#fff;
+    border:1px solid #dbeafe;
+    border-radius:999px;
+    color:#2563eb;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(37,99,235,.08);
+    transition:all .35s ease;
+}
+
+.tech-stack span:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(37,99,235,.20);
+}
+
+/* ==========================================
+   FLOATING ANIMATION
+========================================== */
+
+@keyframes floatBadge{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+.float-1{animation:floatBadge 4s ease-in-out infinite;}
+.float-2{animation:floatBadge 5s ease-in-out infinite;}
+.float-3{animation:floatBadge 4.5s ease-in-out infinite;}
+.float-4{animation:floatBadge 5.5s ease-in-out infinite;}
+.float-5{animation:floatBadge 6s ease-in-out infinite;}
+.float-6{animation:floatBadge 4.8s ease-in-out infinite;}
+
+/* ==========================================
+   HERO PROFILE CARD
+========================================== */
+
+.profile-placeholder{
+    position:relative;
+    width:360px;
+    min-height:460px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:35px;
+    overflow:hidden;
+    background:#fff;
+    border:1px solid #dbeafe;
+    border-radius:28px;
+    box-shadow:0 25px 60px rgba(0,0,0,.08);
+    transition:all .45s ease;
+}
+
+.profile-placeholder:hover{
+    transform:translateY(-10px);
+    border-color:#2563eb;
+    box-shadow:0 35px 70px rgba(37,99,235,.18);
+}
+
+.profile-placeholder h3{
+    margin-top:24px;
+    font-size:1.7rem;
+    color:#111827;
+}
+
+.profile-placeholder p{
+    margin-top:10px;
+    color:#6b7280;
+    line-height:1.7;
+}
+
+/* ==========================================
+   PROFILE IMAGE
+========================================== */
+
+.profile-image{
+    width:280px;
+    height:280px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid #2563eb;
+    box-shadow:0 20px 45px rgba(37,99,235,.25);
+    transition:all .45s ease;
+}
+
+.profile-placeholder:hover .profile-image{
+    transform:scale(1.03);
+    box-shadow:0 30px 60px rgba(37,99,235,.35);
+}
+
+
+/* ==========================================
+   COMPONENT: STATISTICS SECTION
+
+   Purpose:
+   Displays professional achievements
+   with premium statistic cards.
+========================================== */
+
+.statistics{
+    padding:80px 0;
+    background:#ffffff;
+}
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+}
+
+.stat-card{
+    background:#f8fafc;
+    padding:40px 20px;
+    text-align:center;
+    border-radius:16px;
+    border:1px solid #e5e7eb;
+    cursor:pointer;
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:0 25px 50px rgba(37,99,235,.15);
+
+}
+
+.stat-card h2{
+
+    font-size:2.6rem;
+
+    color:#2563eb;
+
+    margin-bottom:12px;
+
+}
+
+.stat-card p{
+
+    color:#6b7280;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+   COMPONENT: ABOUT SECTION
+
+   Purpose:
+   Displays biography and introduction.
+========================================== */
+
+.about{
+
+    padding:100px 0;
+
+    background:#f8fafc;
+
+}
+
+.about-grid{
+
+    display:grid;
+
+    grid-template-columns:380px 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+.about-image img{
+
+    width:100%;
+
+    border-radius:24px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.10);
+
+    transition:transform .35s ease;
+
+}
+
+.about-image img:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.about-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.section-tag{
+
+    display:inline-block;
+
+    width:fit-content;
+
+    padding:8px 18px;
+
+    margin-bottom:20px;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    border-radius:999px;
+
+    font-size:.9rem;
+
+    font-weight:700;
+
+}
+
+.about-content h2{
+
+    font-size:2.7rem;
+
+    margin-bottom:25px;
+
+    color:#111827;
+
+}
+
+.about-content p{
+
+    margin-bottom:20px;
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+    font-size:1.05rem;
+
+}
+
+.about-content .btn-primary{
+
+    width:fit-content;
+
+    margin-top:10px;
+
+}
+
+
+/* ==========================================
+   COMPONENT: SKILLS SECTION
+========================================== */
+
+.skills{
+
+    padding:100px 0;
+
+    background:#ffffff;
+
+}
+
+.skills h2{
+
+    font-size:2.7rem;
+
+    margin:20px 0;
+
+    color:#111827;
+
+}
+
+.section-description{
+
+    max-width:700px;
+
+    margin-bottom:60px;
+
+    color:#6b7280;
+
+    line-height:1.8;
+
+    font-size:1.1rem;
+
+}
+
+.skills-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+}
+
+.skill-card{
+
+    background:#f8fafc;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.skill-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:0 20px 45px rgba(37,99,235,.15);
+
+}
+
+.skill-card h3{
+
+    color:#2563eb;
+
+    margin-bottom:18px;
+
+    font-size:1.5rem;
+
+}
+
+.skill-card p{
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================
+   COMPONENT: PROJECTS SECTION
+========================================== */
+
+.projects{
+
+    padding:100px 0;
+
+    background:#f8fafc;
+
+}
+
+.projects h2{
+
+    font-size:2.8rem;
+
+    margin:20px 0;
+
+    color:#111827;
+
+}
+
+.projects-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+
+    gap:35px;
+
+    margin-top:60px;
+
+}
+
+.project-card{
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    border:1px solid #e5e7eb;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.project-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:0 25px 50px rgba(37,99,235,.15);
+
+}
+
+.project-card img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+    background:#e5e7eb;
+
+}
+
+.project-content{
+
+    padding:30px;
+
+}
+
+.project-content h3{
+
+    font-size:1.6rem;
+
+    color:#111827;
+
+    margin:18px 0;
+
+}
+
+.project-content p{
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+.project-tech{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-bottom:30px;
+
+}
+
+.project-tech span{
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}
+
+.project-buttons{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.project-status{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-size:.85rem;
+
+    font-weight:700;
+
+}
+
+.project-status.completed{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.project-status.development{
+
+    background:#fef3c7;
+
+    color:#b45309;
+
+}
+
+.project-status.planned{
+
+    background:#e5e7eb;
+
+    color:#4b5563;
+
+}
+
+
+/* ==========================================
+   COMPONENT: SERVICES SECTION
+========================================== */
+
+.services{
+
+    padding:100px 0;
+
+    background:#ffffff;
+
+}
+
+.services h2{
+
+    font-size:2.8rem;
+
+    margin:20px 0;
+
+    color:#111827;
+
+}
+
+.services-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.service-card{
+
+    background:#f8fafc;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    padding:40px 35px;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.service-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:0 20px 45px rgba(37,99,235,.15);
+
+}
+
+.service-card h3{
+
+    color:#2563eb;
+
+    font-size:1.5rem;
+
+    margin-bottom:20px;
+
+}
+
+.service-card p{
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================
+   COMPONENT: EXPERIENCE SECTION
+
+   Purpose:
+   Displays professional experience using
+   a modern vertical timeline.
+========================================== */
+
+.experience{
+
+    padding:100px 0;
+
+    background:#f8fafc;
+
+}
+
+.experience h2{
+
+    font-size:2.8rem;
+
+    margin:20px 0;
+
+    color:#111827;
+
+}
+
+.timeline{
+
+    position:relative;
+
+    margin-top:70px;
+
+    padding-left:40px;
+
+    border-left:4px solid #2563eb;
+
+}
+
+.timeline-item{
+
+    position:relative;
+
+    margin-bottom:60px;
+
+}
+
+.timeline-item:last-child{
+
+    margin-bottom:0;
+
+}
+
+.timeline-dot{
+
+    position:absolute;
+
+    left:-52px;
+
+    top:6px;
+
+    width:20px;
+
+    height:20px;
+
+    background:#2563eb;
+
+    border:4px solid #ffffff;
+
+    border-radius:50%;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+.timeline-content{
+
+    background:#ffffff;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    border:1px solid #e5e7eb;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.timeline-content:hover{
+
+    transform:translateY(-8px);
+
+    border-color:#2563eb;
+
+    box-shadow:0 20px 45px rgba(37,99,235,.15);
+
+}
+
+.timeline-year{
+
+    display:inline-block;
+
+    padding:6px 14px;
+
+    margin-bottom:18px;
+
+    background:#dbeafe;
+
+    color:#2563eb;
+
+    border-radius:999px;
+
+    font-size:.85rem;
+
+    font-weight:700;
+
+}
+
+.timeline-content h3{
+
+    margin-bottom:8px;
+
+    font-size:1.6rem;
+
+    color:#111827;
+
+}
+
+.timeline-content h4{
+
+    margin-bottom:18px;
+
+    color:#2563eb;
+
+}
+
+.timeline-content p{
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================
+   COMPONENT: CERTIFICATIONS
+========================================== */
+
+.certifications{
+
+    padding:100px 0;
+
+    background:#ffffff;
+
+}
+
+.certifications h2{
+
+    font-size:2.8rem;
+
+    margin:20px 0;
+
+    color:#111827;
+
+}
+
+.certifications-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.certification-card{
+
+    background:#f8fafc;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    border:1px solid #e5e7eb;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.certification-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:0 20px 45px rgba(37,99,235,.15);
+
+}
+
+.certification-card h3{
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+}
+
+.certification-card h4{
+
+    color:#2563eb;
+
+    margin-bottom:18px;
+
+}
+
+.certification-card p{
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   COMPONENT: BLOG
+========================================== */
+
+.blog{
+
+    padding:100px 0;
+
+    background:#f8fafc;
+
+}
+
+.blog h2{
+
+    font-size:2.8rem;
+
+    margin:20px 0;
+
+    color:#111827;
+
+}
+
+.blog-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+
+    gap:30px;
+
+    margin-top:60px;
+
+}
+
+.blog-card{
+
+    background:#ffffff;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    border:1px solid #e5e7eb;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.blog-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:0 20px 45px rgba(37,99,235,.15);
+
+}
+
+.blog-card h3{
+
+    margin-bottom:20px;
+
+    color:#111827;
+
+    line-height:1.4;
+
+}
+
+.blog-card p{
+
+    margin-bottom:25px;
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================
+   COMPONENT: CONTACT
+========================================== */
+
+.contact{
+
+    padding:100px 0;
+
+    background:#ffffff;
+
+}
+
+.contact h2{
+
+    font-size:2.8rem;
+
+    margin:20px 0;
+
+    color:#111827;
+
+}
+
+.contact-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1.3fr;
+
+    gap:60px;
+
+    margin-top:60px;
+
+    align-items:start;
+
+}
+
+
+/* ==========================================
+   CONTACT INFORMATION
+========================================== */
+
+.contact-info{
+
+    background:#f8fafc;
+
+    padding:35px;
+
+    border-radius:20px;
+
+    border:1px solid #e5e7eb;
+
+}
+
+.contact-info h3{
+
+    margin-bottom:20px;
+
+    font-size:1.7rem;
+
+    color:#111827;
+
+}
+
+.contact-info p{
+
+    margin-bottom:30px;
+
+    color:#4b5563;
+
+    line-height:1.8;
+
+}
+
+.contact-info ul{
+
+    list-style:none;
+
+}
+
+.contact-info li{
+
+    margin-bottom:25px;
+
+    line-height:1.8;
+
+}
+
+.contact-info strong{
+
+    color:#2563eb;
+
+}
+
+.contact-info a{
+
+    color:#2563eb;
+
+    text-decoration:none;
+
+}
+
+.contact-info a:hover{
+
+    text-decoration:underline;
+
+}
+
+
+/* ==========================================
+   CONTACT FORM
+========================================== */
+
+.contact-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.input-group{
+
+    position:relative;
+
+    margin-bottom:22px;
+
+}
+
+.input-icon{
+
+    position:absolute;
+
+    left:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:1.2rem;
+
+    pointer-events:none;
+
+    transition:.35s ease;
+
+}
+
+.textarea-group .input-icon{
+
+    top:28px;
+
+}
+
+.input-group input,
+.input-group textarea{
+
+    width:100%;
+
+    padding:16px 18px 16px 60px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:12px;
+
+    font-size:1rem;
+
+    font-family:inherit;
+
+    transition:
+        border-color .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.input-group textarea{
+
+    resize:vertical;
+
+    min-height:180px;
+
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.10);
+
+}
+
+.input-group:focus-within .input-icon{
+
+    transform:translateY(-50%) scale(1.15);
+
+}
+
+.contact-form button{
+
+    width:fit-content;
+
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+.sr-only{
+
+    position:absolute;
+
+    width:1px;
+
+    height:1px;
+
+    padding:0;
+
+    margin:-1px;
+
+    overflow:hidden;
+
+    clip:rect(0,0,0,0);
+
+    white-space:nowrap;
+
+    border:0;
+
+}
+
+
+/* ==========================================
+   COMPONENT: PREMIUM FOOTER
+
+   Purpose:
+   Displays branding, navigation,
+   social media and copyright.
+========================================== */
+
+footer{
+
+    background:#111827;
+
+    color:#ffffff;
+
+    padding:90px 0 35px;
+
+}
+
+
+/* ==========================================
+   FOOTER BRAND
+========================================== */
+
+.footer-brand-center{
+
+    text-align:center;
+
+    margin-bottom:45px;
+
+}
+
+.footer-brand-center h2{
+
+    font-size:2.4rem;
+
+    margin-bottom:18px;
+
+}
+
+.footer-brand-center span{
+
+    color:#2563eb;
+
+}
+
+.footer-brand-center p{
+
+    max-width:700px;
+
+    margin:auto;
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+}
+
+
+/* ==========================================
+   SOCIAL MEDIA
+========================================== */
+
+.social-connect{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+    overflow:visible;
+
+    position:relative;
+
+}
+
+.social-connect h4{
+
+    margin-bottom:25px;
+
+    color:#ffffff;
+
+}
+
+.social-icons{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:18px;
+
+    overflow:visible;
+
+}
+
+.social-icons a{
+
+    position:relative;
+
+    width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    text-decoration:none;
+
+    color:#e5e7eb;
+
+    background:#1f2937;
+
+    border:1px solid #374151;
+
+    transition:all .35s ease;
+
+    overflow:visible;
+
+}
+
+/* ==========================================
+   SOCIAL ICON TOOLTIPS
+========================================== */
+
+.social-icons a{
+    position:relative;
+}
+
+.social-icons a::after{
+
+    content:attr(data-tooltip);
+
+    position:absolute;
+
+    bottom:70px;
+
+    left:50%;
+
+    transform:translateX(-50%) translateY(10px);
+
+    background:#111827;
+
+    color:#ffffff;
+
+    padding:8px 14px;
+
+    border-radius:8px;
+
+    font-size:.85rem;
+
+    white-space:nowrap;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:all .3s ease;
+
+    pointer-events:none;
+
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+
+}
+
+.social-icons a::before{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:62px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    border:6px solid transparent;
+
+    border-top-color:#111827;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:all .3s ease;
+
+}
+
+.social-icons a:hover::after,
+.social-icons a:hover::before{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+.social-icons a:hover::after{
+
+    transform:translateX(-50%) translateY(0);
+
+}
+
+.social-icons a i{
+
+    font-size:1.35rem;
+
+}
+
+.social-icons a:hover{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    transform:translateY(-8px) scale(1.08);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.35);
+
+}
+
+
+/* ==========================================
+   FOOTER GRID
+========================================== */
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:50px;
+
+    margin-bottom:50px;
+
+}
+
+.footer-links h4,
+.footer-contact h4{
+
+    margin-bottom:20px;
+
+}
+
+.footer-links ul{
+
+    list-style:none;
+
+}
+
+.footer-links li{
+
+    margin-bottom:14px;
+
+}
+
+.footer-links a{
+
+    color:#d1d5db;
+
+    text-decoration:none;
+
+    position:relative;
+
+    transition:color .3s ease;
+
+}
+
+.footer-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-4px;
+
+    width:0;
+
+    height:2px;
+
+    background:#60a5fa;
+
+    transition:width .35s ease;
+
+}
+
+.footer-links a:hover{
+
+    color:#60a5fa;
+
+}
+
+.footer-links a:hover::after{
+
+    width:100%;
+
+}
+
+.footer-contact p{
+
+    color:#d1d5db;
+
+    line-height:1.8;
+
+    margin-bottom:15px;
+
+}
+
+
+/* ==========================================
+   COPYRIGHT
+========================================== */
+
+.footer-bottom{
+
+    border-top:1px solid #374151;
+
+    padding-top:30px;
+
+    text-align:center;
+
+}
+
+.footer-bottom p{
+
+    color:#9ca3af;
+
+    margin:6px 0;
+
+}
+
+.footer-signature{
+
+    color:#d1d5db;
+
+}
+
+.footer-signature strong{
+
+    color:#60a5fa;
+
+}
+
+
+/* ==========================================
+   WHATSAPP BUTTON
+========================================== */
+
+.whatsapp-container{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    z-index:999;
+
+}
+
+.whatsapp-button{
+
+    width:65px;
+
+    height:65px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:#ffffff;
+
+    font-size:2rem;
+
+    text-decoration:none;
+
+    box-shadow:0 15px 35px rgba(37,211,102,.35);
+
+    transition:all .35s ease;
+
+    animation:whatsappFloat 3s ease-in-out infinite;
+
+    position:relative;
+
+}
+
+.whatsapp-button:hover{
+
+    background:#20ba5a;
+
+    transform:translateY(-8px);
+
+}
+
+.whatsapp-button::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:50%;
+
+    background:rgba(37,211,102,.30);
+
+    animation:whatsappPulse 2.5s infinite;
+
+    z-index:-1;
+
+}
+
+@keyframes whatsappFloat{
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+}
+
+@keyframes whatsappPulse{
+
+    0%{
+
+        transform:scale(1);
+
+        opacity:.8;
+
+    }
+
+    100%{
+
+        transform:scale(1.8);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* ==========================================
+   WHATSAPP TOOLTIP
+========================================== */
+
+.whatsapp-tooltip{
+
+    position:absolute;
+
+    right:80px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:#111827;
+
+    color:#ffffff;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    white-space:nowrap;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.3s ease;
+
+}
+
+.whatsapp-container:hover .whatsapp-tooltip{
+
+    opacity:1;
+
+    visibility:visible;
+
+}
+
+
+/* ==========================================
+   BACK TO TOP BUTTON
+========================================== */
+
+.back-to-top{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:115px;
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    font-size:1.3rem;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(20px);
+
+    transition:all .35s ease;
+
+    z-index:998;
+
+}
+
+.back-to-top.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.back-to-top:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-8px);
+
+}
+
+
+/* ==========================================
+   SCROLL PROGRESS BAR
+========================================== */
+
+#scrollProgress{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:0;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        #16a34a,
+        #2563eb,
+        #facc15
+    );
+
+    z-index:100000;
+
+    transition:width .1s linear;
+
+}
+
+
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(70px);
+
+    transition:
+        opacity .9s ease,
+        transform .9s ease;
+
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+
+@media (max-width:992px){
+
+    .hero-content,
+    .about-grid,
+    .contact-grid{
+
+        display:flex;
+
+        flex-direction:column;
+
+        text-align:center;
+
+        gap:50px;
+
+    }
+
+    .stats-grid,
+    .skills-grid,
+    .projects-grid,
+    .services-grid,
+    .certifications-grid,
+    .blog-grid,
+    .footer-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    .stats-grid,
+    .skills-grid,
+    .projects-grid,
+    .services-grid,
+    .blog-grid,
+    .certifications-grid,
+    .footer-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .btn-primary,
+    .btn-secondary{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .whatsapp-container{
+
+        right:20px;
+
+        bottom:20px;
+
+    }
+
+    .whatsapp-button{
+
+        width:58px;
+
+        height:58px;
+
+        font-size:1.8rem;
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   GLOBAL RESET
+========================================== 
+
+*{
+
+    margin:0;
+
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+html,
+body{
+
+    overflow-x:hidden;
+
+    width:100%;
+
 }
 
 body {
@@ -11,15 +2339,42 @@ body {
     background: #f8fafc;
 }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
+.container{
+
+    width:min(90%,1200px);
+
+    margin:auto;
+
 }
 
-nav {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+nav{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    width:100%;
+
+    background:#ffffff;
+
+    border-bottom:1px solid #e5e7eb;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.06);
+
+    z-index:9999;
+
+}
+
+main{
+
+    padding:110px 0 60px;
+
+    min-height:70vh;
+
 }
 
 nav .container {
@@ -84,7 +2439,7 @@ footer {
    Styles the homepage hero section,
    including layout, typography, buttons
    and profile card.
-========================================== */
+========================================== 
 
 .hero {
     padding: 100px 0;
@@ -141,11 +2496,112 @@ footer {
     font-weight: 500;
 }
 
-.tech-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 35px 0;
+/* ==========================================
+   COMPONENT: FLOATING TECHNOLOGY STACK
+========================================== 
+
+.tech-stack{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:16px;
+
+    margin:40px 0;
+
+}
+
+.tech-stack span{
+
+    padding:12px 20px;
+
+    background:#ffffff;
+
+    border:1px solid #dbeafe;
+
+    border-radius:999px;
+
+    color:#2563eb;
+
+    font-weight:700;
+
+    box-shadow:0 8px 20px rgba(37,99,235,.08);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+}
+
+.tech-stack span:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 18px 35px rgba(37,99,235,.20);
+
+}
+
+/* ==========================================
+   FLOATING ANIMATIONS
+========================================== 
+
+@keyframes floatBadge{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+.float-1{
+
+    animation:floatBadge 4s ease-in-out infinite;
+
+}
+
+.float-2{
+
+    animation:floatBadge 5s ease-in-out infinite;
+
+}
+
+.float-3{
+
+    animation:floatBadge 4.5s ease-in-out infinite;
+
+}
+
+.float-4{
+
+    animation:floatBadge 5.5s ease-in-out infinite;
+
+}
+
+.float-5{
+
+    animation:floatBadge 6s ease-in-out infinite;
+
+}
+
+.float-6{
+
+    animation:floatBadge 4.8s ease-in-out infinite;
+
 }
 
 .tech-stack span {
@@ -205,36 +2661,100 @@ footer {
     justify-content: center;
 }
 
-.profile-placeholder {
-    width: 320px;
-    height: 320px;
-    background: #ffffff;
-    border-radius: 24px;
-    border: 1px solid #dbeafe;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+/* ==========================================
+   COMPONENT: HERO PROFILE CARD
+========================================== 
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.profile-placeholder{
 
-    text-align: center;
+    width:360px;
 
-    transition: all 0.3s ease;
+    min-height:460px;
+
+    background:#ffffff;
+
+    border-radius:28px;
+
+    border:1px solid #dbeafe;
+
+    box-shadow:0 25px 60px rgba(0,0,0,.08);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    padding:35px;
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease,
+        border-color .45s ease;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+.profile-placeholder::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(37,99,235,.05),
+            transparent,
+            rgba(22,163,74,.05)
+        );
+
+    pointer-events:none;
+
+}
+
+.profile-placeholder:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#2563eb;
+
+    box-shadow:
+        0 35px 70px rgba(37,99,235,.18);
+
 }
 
 .profile-placeholder:hover {
     transform: translateY(-8px);
 }
 
-.profile-placeholder h3 {
-    margin-top: 20px;
-    font-size: 1.6rem;
+.profile-placeholder h3{
+
+    margin-top:24px;
+
+    font-size:1.7rem;
+
+    color:#111827;
+
 }
 
-.profile-placeholder p {
-    margin-top: 10px;
-    color: #6b7280;
+.profile-placeholder p{
+
+    margin-top:10px;
+
+    color:#6b7280;
+
+    line-height:1.7;
+
 }
 
 /* ==========================================
@@ -243,21 +2763,41 @@ footer {
    Purpose:
    Styles the developer portrait displayed
    within the Hero section.
-========================================== */
+========================================== 
 
-.profile-image {
-    width: 300px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid #2563eb;
-    margin-bottom: 20px;
-    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.20);
+.profile-image{
+
+    width:280px;
+
+    height:280px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:6px solid #2563eb;
+
+    box-shadow:
+        0 20px 45px rgba(37,99,235,.25);
+
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease;
+
+}
+
+.profile-placeholder:hover .profile-image{
+
+    transform:scale(1.03);
+
+    box-shadow:
+        0 30px 60px rgba(37,99,235,.35);
+
 }
 /* ==========================================
    BUTTONS
    Reusable button styles across the website.
-========================================== */
+========================================== 
 
 .btn-primary {
     display: inline-block;
@@ -277,7 +2817,7 @@ footer {
 
 /* ==========================================
    HERO BUTTONS
-========================================== */
+========================================== 
 
 .hero-buttons {
     display: flex;
@@ -287,7 +2827,7 @@ footer {
 
 /* ==========================================
    SECONDARY BUTTON
-========================================== */
+========================================== 
 
 .btn-secondary {
     display: inline-block;
@@ -308,7 +2848,7 @@ footer {
 
 /* ==========================================
    HERO STATISTICS
-========================================== */
+========================================== 
 
 .stats {
     display: flex;
@@ -341,7 +2881,7 @@ footer {
 
 /* ==========================================
    HERO LAYOUT
-========================================== */
+========================================== 
 
 .hero-content {
     display: flex;
@@ -362,7 +2902,7 @@ footer {
 
 /* ==========================================
    PROFILE PLACEHOLDER
-========================================== */
+========================================== 
 
 .profile-placeholder {
     width: 320px;
@@ -382,7 +2922,7 @@ footer {
 
    Purpose:
    Styles the professional statistics cards.
-========================================== */
+========================================== 
 
 .statistics {
     padding: 80px 0;
@@ -432,7 +2972,7 @@ footer {
    Purpose:
    Styles the About page including
    layout, image and content.
-========================================== */
+========================================== 
 
 .about {
     padding: 100px 0;
@@ -500,7 +3040,7 @@ footer {
    Purpose:
    Styles the Skills page including
    section layout and skill cards.
-========================================== */
+========================================== 
 
 .skills {
     padding: 100px 0;
@@ -563,7 +3103,7 @@ footer {
    Styles the Projects page, including
    project cards, status badges,
    technology tags and action buttons.
-========================================== */
+========================================== 
 
 .projects {
     padding: 100px 0;
@@ -732,7 +3272,7 @@ footer {
    Styles the professional career timeline,
    highlighting software engineering
    experience and project milestones.
-========================================== */
+========================================== 
 
 .experience {
     padding: 100px 0;
@@ -826,7 +3366,7 @@ footer {
    Purpose:
    Styles the Certifications page,
    certification cards and action buttons.
-========================================== */
+========================================== 
 
 .certifications {
     padding: 100px 0;
@@ -889,7 +3429,7 @@ footer {
    Styles the Technical Blog page,
    including blog cards and
    article previews.
-========================================== */
+========================================== 
 
 .blog {
     padding: 100px 0;
@@ -951,7 +3491,7 @@ footer {
    Styles the Contact page including
    contact information, contact form
    and form controls.
-========================================== */
+========================================== 
 
 .contact {
     padding: 100px 0;
@@ -977,7 +3517,7 @@ footer {
 
    Purpose:
    Styles the contact details card.
-========================================== */
+========================================== 
 
 .contact-info {
     background: #f8fafc;
@@ -1020,7 +3560,7 @@ footer {
    Purpose:
    Styles the enquiry form and all
    form controls.
-========================================== */
+========================================== 
 
 .contact-form {
     display: flex;
@@ -1058,8 +3598,474 @@ footer {
 
 
 /* ==========================================
+   COMPONENT: FOOTER
+
+   Purpose:
+   Styles the premium footer including
+   branding, social icons, navigation,
+   resources and copyright.
+========================================== 
+
+footer{
+    background:#111827;
+    color:#fff;
+    padding:90px 0 35px;
+}
+
+/* ==========================================
+   FOOTER BRAND
+========================================== 
+
+.footer-brand-center{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.footer-brand-center h2{
+    font-size:2.4rem;
+    margin-bottom:18px;
+}
+
+.footer-brand-center span{
+    color:#2563eb;
+}
+
+.footer-brand-center p{
+    max-width:700px;
+    margin:auto;
+    color:#cbd5e1;
+    line-height:1.8;
+}
+
+/* ==========================================
+   SOCIAL CONNECT
+========================================== 
+
+.social-connect{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.social-connect h4{
+    margin-bottom:25px;
+    font-size:1.15rem;
+    letter-spacing:1px;
+    color:#ffffff;
+}
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.social-icons a{
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-decoration:none;
+
+    color:#e5e7eb;
+
+    border:1px solid #374151;
+
+    background:#1f2937;
+
+    transition:all .35s ease;
+}
+
+.social-icons a i{
+
+    font-size:1.35rem;
+
+    transition:all .35s ease;
+}
+
+/* ==========================================
+   PREMIUM HOVER EFFECT
+========================================== 
+
+.social-icons a:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    transform:translateY(-8px) scale(1.08);
+
+    box-shadow:0 15px 30px rgba(37,99,235,.35);
+}
+
+.social-icons a:hover i{
+
+    transform:rotate(10deg);
+}
+
+/* ==========================================
+   FOOTER GRID
+========================================== 
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:50px;
+
+    margin-bottom:55px;
+}
+
+.footer-links h4,
+.footer-contact h4{
+
+    margin-bottom:20px;
+
+    color:#ffffff;
+}
+
+.footer-links ul{
+
+    list-style:none;
+
+    margin:0;
+
+    padding:0;
+}
+
+.footer-links li{
+
+    margin-bottom:14px;
+}
+
+.footer-links a{
+
+    position:relative;
+
+    text-decoration:none;
+
+    color:#d1d5db;
+
+    transition:color .30s ease;
+}
+
+/* ==========================================
+   ANIMATED UNDERLINE
+========================================== 
+
+.footer-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    bottom:-4px;
+
+    width:0;
+
+    height:2px;
+
+    background:#60a5fa;
+
+    transition:width .35s ease;
+}
+
+.footer-links a:hover{
+
+    color:#60a5fa;
+}
+
+.footer-links a:hover::after{
+
+    width:100%;
+}
+
+/* ==========================================
+   CONTACT
+========================================== 
+
+.footer-contact p{
+
+    color:#d1d5db;
+
+    margin-bottom:15px;
+
+    line-height:1.8;
+}
+
+/* ==========================================
+   COPYRIGHT
+========================================== 
+
+.footer-bottom{
+
+    border-top:1px solid #374151;
+
+    text-align:center;
+
+    padding-top:30px;
+}
+
+.footer-bottom p{
+
+    color:#9ca3af;
+
+    margin:6px 0;
+}
+
+.footer-signature{
+
+    color:#d1d5db;
+
+    letter-spacing:.6px;
+}
+
+.footer-signature strong{
+
+    color:#60a5fa;
+}
+
+
+/* ==========================================
+   COMPONENT: FLOATING WHATSAPP BUTTON
+
+   Purpose:
+   Displays a floating WhatsApp button
+   fixed to the bottom-right corner.
+========================================== 
+
+.whatsapp-button{
+
+    position:relative;
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    color:#ffffff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+    font-size:2rem;
+
+    box-shadow:0 15px 35px rgba(37,211,102,.35);
+
+    transition:all .35s ease;
+
+    animation:whatsappFloat 3s ease-in-out infinite;
+
+    overflow:visible;
+
+}
+/* ==========================================
+   HOVER EFFECT
+========================================== 
+
+.whatsapp-button:hover{
+
+    transform:translateY(-8px) scale(1.08);
+
+    background:#20ba5a;
+
+    box-shadow:0 20px 45px rgba(37,211,102,.55);
+
+}
+
+/* ==========================================
+   FLOATING ANIMATION
+========================================== 
+
+@keyframes whatsappFloat{
+
+    0%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+    100%{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   MOBILE ADJUSTMENT
+========================================== 
+
+@media (max-width:768px){
+
+    .whatsapp-button{
+
+        width:58px;
+
+        height:58px;
+
+        right:20px;
+
+        bottom:20px;
+
+        font-size:1.8rem;
+
+    }
+
+    nav{
+
+    padding:15px 0;
+
+  }
+
+   main{
+
+    padding-top:90px;
+
+  }
+
+}
+
+/* ==========================================
+   COMPONENT: WHATSAPP TOOLTIP
+========================================== 
+
+.whatsapp-container{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:30px;
+
+    z-index:999;
+
+}
+
+.whatsapp-tooltip{
+
+    position:absolute;
+
+    right:80px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    background:#111827;
+
+    color:#ffffff;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    font-size:.9rem;
+
+    white-space:nowrap;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:all .30s ease;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.whatsapp-container:hover .whatsapp-tooltip{
+
+    opacity:1;
+
+    visibility:visible;
+
+    right:90px;
+
+}
+
+/* ==========================================
+   WHATSAPP PULSE RING
+========================================== 
+
+.whatsapp-button::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+
+    height:100%;
+
+    border-radius:50%;
+
+    background:rgba(37,211,102,.35);
+
+    animation:whatsappPulse 2.5s infinite;
+
+    z-index:-1;
+
+}
+
+@keyframes whatsappPulse{
+
+    0%{
+
+        transform:scale(1);
+
+        opacity:.8;
+
+    }
+
+    70%{
+
+        transform:scale(1.8);
+
+        opacity:0;
+
+    }
+
+    100%{
+
+        transform:scale(1.8);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* ==========================================
    TECHNOLOGY STACK
-========================================== */
+========================================== 
 
 .tech-stack {
     display: flex;
@@ -1081,7 +4087,7 @@ footer {
 
 /* ==========================================
    TRANSITIONS & HOVER EFFECTS
-========================================== */
+========================================== 
 
 nav a,
 .btn-primary,
@@ -1118,7 +4124,7 @@ nav a:hover {
    Purpose:
    Styles the introductory statement displayed
    beneath the professional title.
-========================================== */
+========================================== 
 
 .hero-intro {
     font-size: 1.15rem;
@@ -1135,7 +4141,7 @@ nav a:hover {
    Purpose:
    Styles the portfolio brand displayed
    in the navigation bar.
-========================================== */
+========================================== 
 
 .logo {
     font-size: 1.8rem;
@@ -1154,7 +4160,7 @@ nav a:hover {
 
    Purpose:
    Styles the main website navigation bar.
-========================================== */
+========================================== 
 
 nav {
     background: #ffffff;
@@ -1197,7 +4203,7 @@ nav .container {
    Purpose:
    Highlights the current page in
    the navigation menu.
-========================================== */
+========================================== 
 
 .nav-links a.active {
     color: #2563eb;
@@ -1205,3 +4211,584 @@ nav .container {
     border-bottom: 2px solid #2563eb;
     padding-bottom: 4px;
 }
+
+
+
+
+
+
+
+
+
+
+/* ==========================================
+   COMPONENT: RESPONSIVE NAVIGATION
+
+   Purpose:
+   Styles the navigation for tablets
+   and mobile devices.
+========================================== 
+
+/* Hide menu toggle on desktop 
+
+.menu-toggle{
+
+    display:none;
+
+    background:none;
+
+    border:none;
+
+    color:#2563eb;
+
+    font-size:1.8rem;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+}
+
+.menu-toggle:hover{
+
+    color:#1d4ed8;
+
+    transform:rotate(-10deg) scale(1.1);
+
+}
+
+/* ==========================================
+   ACTIVE MENU TOGGLE
+========================================== */
+
+.menu-toggle.active{
+
+    transform:rotate(180deg);
+
+    color:#16a34a;
+
+}
+
+/* ==========================================
+   TABLET & MOBILE
+========================================== 
+
+@media (max-width:992px){
+
+    nav .container{
+
+        position:relative;
+
+    }
+
+    .menu-toggle{
+
+        display:block;
+
+    }
+
+    .nav-links{
+
+        position:absolute;
+
+        top:100%;
+
+        left:0;
+
+        width:100%;
+
+        background:#ffffff;
+
+        border-radius:0 0 16px 16px;
+
+        box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+        overflow:hidden;
+
+        max-height:0;
+
+        transition:max-height .35s ease;
+
+        z-index:999;
+
+    }
+
+    .nav-links.active{
+
+        max-height:700px;
+
+    }
+
+    .nav-links ul{
+
+        flex-direction:column;
+
+        padding:20px;
+
+        gap:18px;
+
+    }
+
+    .nav-links li{
+
+        width:100%;
+
+    }
+
+    .nav-links a{
+
+        display:block;
+
+        padding:10px 0;
+
+    }
+
+}
+
+
+/* ==========================================
+   COMPONENT: BACK TO TOP BUTTON
+
+   Purpose:
+   Displays a floating button that
+   scrolls users smoothly to the top.
+========================================== 
+
+.back-to-top{
+
+    position:fixed;
+
+    right:30px;
+
+    bottom:115px;
+
+    width:60px;
+
+    height:60px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+    font-size:1.3rem;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(20px);
+
+    transition:all .35s ease;
+
+    z-index:998;
+
+}
+
+/* ==========================================
+   SHOW BUTTON
+========================================== 
+
+.back-to-top.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+/* ==========================================
+   HOVER EFFECT
+========================================== 
+
+.back-to-top:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 40px rgba(37,99,235,.45);
+
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   Phase 2 - Responsive Layout
+========================================== */
+
+/* ==========================================
+   LARGE TABLETS
+==========================================
+
+@media (max-width: 992px) {
+
+    .hero-content,
+    .about-grid,
+    .contact-grid {
+
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+
+    }
+
+    .hero-text,
+    .about-content {
+
+        align-items: center;
+
+    }
+
+    .hero-image {
+
+        flex: none;
+
+    }
+
+    .profile-image {
+
+        width: 280px;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+
+    }
+
+    .stats-grid,
+    .skills-grid,
+    .footer-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+    .projects-grid,
+    .services-grid,
+    .blog-grid,
+    .certifications-grid {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE DEVICES
+========================================== 
+
+@media (max-width:768px){
+
+    .hero{
+
+        padding:70px 0;
+
+    }
+
+    .hero h1{
+
+        font-size:2.6rem;
+
+    }
+
+    .hero h2{
+
+        font-size:1.3rem;
+
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        width:100%;
+
+    }
+
+    .btn-primary,
+    .btn-secondary{
+
+        width:100%;
+
+        text-align:center;
+
+    }
+
+    .stats-grid,
+    .skills-grid,
+    .projects-grid,
+    .services-grid,
+    .blog-grid,
+    .certifications-grid,
+    .footer-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .project-card img{
+
+        height:200px;
+
+    }
+
+    .timeline{
+
+        padding-left:25px;
+
+    }
+
+    .timeline-dot{
+
+        left:-38px;
+
+    }
+
+}
+
+
+/* ==========================================
+   FINAL NAVBAR CONTROL
+========================================== 
+
+nav{
+
+    position:fixed !important;
+
+    top:0 !important;
+
+    left:0 !important;
+
+    width:100% !important;
+
+    z-index:99999 !important;
+
+    background:#ffffff !important;
+
+    padding:20px 0;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+
+}
+
+
+/* Prevent content hiding behind fixed navbar */
+
+main{
+
+    padding-top:120px !important;
+
+}
+
+
+/* ==========================================
+   COMPONENT: SCROLL PROGRESS BAR
+
+   Purpose:
+   Displays the user's reading progress
+   across the page.
+========================================== 
+
+#scrollProgress{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:0%;
+
+    height:4px;
+
+    background:linear-gradient(
+        90deg,
+        #16a34a,
+        #2563eb,
+        #facc15
+    );
+
+    z-index:100000;
+
+    transition:width .12s linear;
+
+    box-shadow:0 3px 12px rgba(37,99,235,.35);
+
+}
+
+
+/* ==========================================
+   ACCESSIBILITY
+
+   Purpose:
+   Hides labels visually while keeping
+   them available to screen readers.
+========================================== 
+
+.sr-only{
+
+    position:absolute;
+
+    width:1px;
+
+    height:1px;
+
+    padding:0;
+
+    margin:-1px;
+
+    overflow:hidden;
+
+    clip:rect(0,0,0,0);
+
+    white-space:nowrap;
+
+    border:0;
+
+}
+
+
+/* ==========================================
+   CONTACT READY ANIMATION
+========================================== 
+
+.contact-form input:first-of-type{
+
+    animation:readyGlow 2s ease;
+
+}
+
+@keyframes readyGlow{
+
+    0%{
+
+        box-shadow:0 0 0 rgba(37,99,235,0);
+
+    }
+
+    30%{
+
+        box-shadow:0 0 20px rgba(37,99,235,.35);
+
+    }
+
+    60%{
+
+        box-shadow:0 0 30px rgba(37,99,235,.25);
+
+    }
+
+    100%{
+
+        box-shadow:0 0 0 rgba(37,99,235,0);
+
+    }
+
+}
+
+
+/* ==========================================
+   PREMIUM CONTACT INPUTS
+========================================== 
+
+.input-group{
+
+    position:relative;
+
+    margin-bottom:22px;
+
+}
+
+.input-icon{
+
+    position:absolute;
+
+    left:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:1.2rem;
+
+    transition:.35s ease;
+
+    pointer-events:none;
+
+}
+
+.textarea-group .input-icon{
+
+    top:30px;
+
+}
+
+.input-group input,
+.input-group textarea{
+
+    width:100%;
+
+    padding:16px 18px 16px 60px;
+
+}
+
+.input-group:focus-within .input-icon{
+
+    transform:translateY(-50%) scale(1.15);
+
+}
+
+.input-group:first-child:focus-within .input-icon{
+
+    content:"";
+
+}
+
+
+/* ==========================================
+   COMPONENT: SCROLL REVEAL ANIMATION
+
+   Purpose:
+   Smoothly reveals page sections as
+   users scroll through the website.
+========================================== 
+
+.reveal{
+
+    opacity:0;
+
+    transform:translateY(70px);
+
+    transition:
+
+        opacity .9s ease,
+
+        transform .9s ease;
+
+}
+
+.reveal.active{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}*/
