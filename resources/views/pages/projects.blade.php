@@ -8,10 +8,10 @@
      COMPONENT: PROJECTS SECTION
 
      Purpose:
-     Showcases featured software projects,
-     demonstrating technical expertise,
-     problem-solving ability and software
-     engineering experience.
+     Showcases enterprise-grade software
+     solutions demonstrating full-stack
+     development, software engineering
+     and business problem-solving skills.
 ========================================== --}}
 
 <section class="projects">
@@ -22,18 +22,18 @@
             My Portfolio
         </span>
 
-        <h2>Featured Software Projects</h2>
+        <h2>Featured Software Solutions</h2>
 
         <p class="section-description">
-            A growing collection of software applications designed and developed
-            to solve real-world business challenges using modern technologies,
-            clean architecture and scalable engineering practices.
+            A growing portfolio of modern software applications designed to
+            solve real-world business challenges through scalable architecture,
+            intuitive user experiences and robust engineering practices.
         </p>
 
         <div class="projects-grid">
 
             {{-- ==========================================
-                 COMPONENT: PROJECT CARD
+                 FEATURED PROJECT
                  NovaCare Medical Centre
             ========================================== --}}
 
@@ -46,31 +46,43 @@
                 <div class="project-content">
 
                     <span class="project-status completed">
-                        ✓ Completed
+                        ⭐ Featured Project
                     </span>
 
                     <h3>NovaCare Medical Centre</h3>
 
                     <p>
-                        A modern medical centre website designed to provide
-                        healthcare information, services, appointment booking
-                        and a professional online presence.
+                        A modern healthcare website developed to strengthen the
+                        digital presence of a medical practice through service
+                        presentation, appointment enquiries, responsive design
+                        and an intuitive user experience.
                     </p>
 
                     <div class="project-tech">
-                        <span>HTML</span>
-                        <span>CSS</span>
+
+                        <span>HTML5</span>
+                        <span>CSS3</span>
                         <span>JavaScript</span>
+                        <span>Responsive Design</span>
+
                     </div>
 
                     <div class="project-buttons">
 
-                        <a href="#" class="btn-primary">
+                        <a href="https://clinichospital.netlify.app/"
+                             target="_blank"
+                             class="btn-primary">
+
                             Live Demo
+
                         </a>
 
-                        <a href="#" class="btn-secondary">
-                            View Details
+                       
+                        <a href="{{ route('projects.novacare') }}"
+                            class="btn-secondary">
+
+                                   View Case Study
+
                         </a>
 
                     </div>
@@ -80,7 +92,7 @@
             </article>
 
             {{-- ==========================================
-                 COMPONENT: PROJECT CARD
+                 PROJECT
                  CourierXpress
             ========================================== --}}
 
@@ -93,33 +105,43 @@
                 <div class="project-content">
 
                     <span class="project-status development">
-                        🚧 In Development
+                        🚧 In Active Development
                     </span>
 
                     <h3>CourierXpress</h3>
 
                     <p>
-                        A Laravel-powered courier and logistics management
-                        platform for shipment tracking, dispatch management
-                        and delivery operations.
+                        A full-featured courier and logistics management
+                        platform built with Laravel to streamline shipment
+                        tracking, customer management, dispatch operations,
+                        delivery workflows and business reporting.
                     </p>
 
                     <div class="project-tech">
+
                         <span>Laravel</span>
                         <span>PHP</span>
                         <span>MySQL</span>
+                        <span>Bootstrap</span>
+
                     </div>
 
                     <div class="project-buttons">
 
-                        <a href="#" class="btn-primary">
-                            Live Demo
+                        <a href="https://business-landing-kit.vercel.app/"
+                           target="_blank"
+                           class="btn-primary disabled"
+                           aria-disabled="true">
+
+                            Live Demo Soon
+
                         </a>
 
-                        <a href="https://gitlab.com/karons1/courier-service"
-                           target="_blank"
+                        <a href="{{ route('projects.courierxpress') }}"
                            class="btn-secondary">
-                            Source Code
+
+                            View Case Study
+
                         </a>
 
                     </div>
@@ -128,8 +150,11 @@
 
             </article>
 
+
+
+
             {{-- ==========================================
-                 COMPONENT: PROJECT CARD
+                 PROJECT
                  Yellow Sail
             ========================================== --}}
 
@@ -142,35 +167,42 @@
                 <div class="project-content">
 
                     <span class="project-status development">
-                        🚧 In Development
+                        🚧 In Active Development
                     </span>
 
                     <h3>Yellow Sail</h3>
 
                     <p>
-                        A modern music and video streaming web application
-                        built to provide multimedia entertainment with an
-                        engaging user experience.
+                        A modern multimedia streaming platform designed for
+                        music and video delivery with user authentication,
+                        playlists, media management and a responsive user
+                        experience powered by modern web technologies.
                     </p>
 
                     <div class="project-tech">
+
                         <span>React</span>
                         <span>Firebase</span>
                         <span>JavaScript</span>
+                        <span>Cloud Hosting</span>
+
                     </div>
 
                     <div class="project-buttons">
 
-                        <a href="https://yellowsail-app.web.app"
+                        <a href="https://yellowsail.web.app/"
                            target="_blank"
                            class="btn-primary">
+
                             Live Demo
+
                         </a>
 
-                        <a href="https://github.com/karons101/yellow-sail"
-                           target="_blank"
+                       <a href="{{ route('projects.yellow-sail') }}"
                            class="btn-secondary">
-                            Source Code
+
+                               View Case Study
+
                         </a>
 
                     </div>
@@ -180,34 +212,50 @@
             </article>
 
             {{-- ==========================================
-                 COMPONENT: PROJECT CARD
-                 Logistics Management System
+                 PROJECT
+                 Logistics ERP System
             ========================================== --}}
 
             <article class="project-card">
 
                 <img
                     src="{{ asset('images/projects/logistics-management-system.png') }}"
-                    alt="Logistics Management System">
+                    alt="Logistics ERP System">
 
                 <div class="project-content">
 
                     <span class="project-status planned">
-                        📋 Planned
+                        📐 Design Phase
                     </span>
 
-                    <h3>Logistics Management System</h3>
+                    <h3>Logistics ERP System</h3>
 
                     <p>
-                        A comprehensive logistics platform for fleet
-                        management, order tracking, warehouse operations
-                        and business reporting.
+                        A complete enterprise logistics solution for fleet
+                        management, warehouse operations, inventory control,
+                        shipment tracking, invoicing, analytics and executive
+                        reporting for logistics companies.
                     </p>
 
                     <div class="project-tech">
+
                         <span>Laravel</span>
                         <span>PHP</span>
                         <span>MySQL</span>
+                        <span>REST API</span>
+
+                    </div>
+
+                    <div class="project-buttons">
+
+                        <a href="#"
+                           class="btn-primary disabled"
+                           aria-disabled="true">
+
+                            Coming Soon
+
+                        </a>
+
                     </div>
 
                 </div>
@@ -215,34 +263,50 @@
             </article>
 
             {{-- ==========================================
-                 COMPONENT: PROJECT CARD
-                 Hotel & Restaurant Management
+                 PROJECT
+                 Hotel & Hospitality Management Suite
             ========================================== --}}
 
             <article class="project-card">
 
                 <img
                     src="{{ asset('images/projects/hotel-restaurant-management.png') }}"
-                    alt="Hotel & Restaurant Management">
+                    alt="Hotel & Hospitality Management Suite">
 
                 <div class="project-content">
 
                     <span class="project-status planned">
-                        📋 Planned
+                        📐 Design Phase
                     </span>
 
-                    <h3>Hotel & Restaurant Management</h3>
+                    <h3>Hotel & Hospitality Management Suite</h3>
 
                     <p>
-                        An integrated management solution for reservations,
-                        restaurant operations, inventory, billing and customer
-                        management.
+                        A complete hospitality platform supporting hotel
+                        reservations, restaurant management, customer
+                        relationship management, billing, inventory and
+                        operational reporting.
                     </p>
 
                     <div class="project-tech">
+
                         <span>Laravel</span>
                         <span>PHP</span>
                         <span>MySQL</span>
+                        <span>Bootstrap</span>
+
+                    </div>
+
+                    <div class="project-buttons">
+
+                        <a href="#"
+                           class="btn-primary disabled"
+                           aria-disabled="true">
+
+                            Coming Soon
+
+                        </a>
+
                     </div>
 
                 </div>
@@ -250,34 +314,50 @@
             </article>
 
             {{-- ==========================================
-                 COMPONENT: PROJECT CARD
-                 School Administration System
+                 PROJECT
+                 Smart School ERP
             ========================================== --}}
 
             <article class="project-card">
 
                 <img
                     src="{{ asset('images/projects/school-management-system.png') }}"
-                    alt="School Administration System">
+                    alt="Smart School ERP">
 
                 <div class="project-content">
 
                     <span class="project-status planned">
-                        📋 Planned
+                        📐 Design Phase
                     </span>
 
-                    <h3>School Administration System</h3>
+                    <h3>Smart School ERP</h3>
 
                     <p>
-                        A complete school management platform for students,
-                        teachers, examinations, attendance, finance and
-                        administration.
+                        A modern education management platform supporting
+                        admissions, student records, attendance, examinations,
+                        finance, staff management, parent communication and
+                        academic reporting from a unified dashboard.
                     </p>
 
                     <div class="project-tech">
+
                         <span>Laravel</span>
                         <span>PHP</span>
                         <span>MySQL</span>
+                        <span>REST API</span>
+
+                    </div>
+
+                    <div class="project-buttons">
+
+                        <a href="#"
+                           class="btn-primary disabled"
+                           aria-disabled="true">
+
+                            Coming Soon
+
+                        </a>
+
                     </div>
 
                 </div>

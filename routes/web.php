@@ -19,3 +19,12 @@ Route::view('/certifications', 'pages.certifications')->name('certifications');
 Route::view('/blog', 'pages.blog')->name('blog');
 
 Route::view('/contact', 'pages.contact')->name('contact');
+
+Route::view('/projects/novacare', 'projects.novacare')
+    ->name('projects.novacare');
+
+Route::view('/projects/courierxpress', 'projects.courierxpress')
+    ->name('projects.courierxpress');
+
+Route::view('/projects/yellow-sail', 'projects.yellow-sail')
+    ->name('projects.yellow-sail');
