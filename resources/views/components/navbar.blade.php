@@ -1,54 +1,37 @@
 <nav>
+
     <div class="container">
 
         {{-- ==========================================
-             COMPONENT: BRAND LOGO
-
-             Purpose:
-             Displays the website brand and
-             links back to the homepage.
+             BRAND LOGO
         ========================================== --}}
 
         <a href="{{ route('home') }}" class="logo">
+
             <span>Karo</span>Dev
+
         </a>
 
+        {{-- ==========================================
+             MOBILE MENU TOGGLE
+        ========================================== --}}
 
-{{-- ==========================================
-     COMPONENT: MOBILE MENU TOGGLE
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle Navigation">
 
-     Purpose:
-     Displays the mobile navigation toggle.
-========================================== --}}
+            <i class="fa-solid fa-anchor"></i>
 
-<button
-    class="menu-toggle"
-    id="menuToggle"
-    aria-label="Toggle Navigation">
-
-    <i class="fa-solid fa-anchor"></i>
-
-</button>
-
+        </button>
 
         {{-- ==========================================
-             COMPONENT: NAVIGATION LINKS
-
-             Purpose:
-             Displays the main website navigation
-             and highlights the active page.
+             NAVIGATION LINKS
         ========================================== --}}
 
         <div class="nav-links">
 
             <ul>
-
-                {{-- ==========================================
-                     COMPONENT: HOME LINK
-
-                     Purpose:
-                     Navigates users to the homepage.
-                ========================================== --}}
 
                 <li>
                     <a href="{{ route('home') }}"
@@ -57,20 +40,12 @@
                     </a>
                 </li>
 
-                {{-- ==========================================
-                     COMPONENT: ABOUT LINK
-                ========================================== --}}
-
                 <li>
                     <a href="{{ route('about') }}"
                        class="{{ request()->routeIs('about') ? 'active' : '' }}">
                         About
                     </a>
                 </li>
-
-                {{-- ==========================================
-                     COMPONENT: PROJECTS LINK
-                ========================================== --}}
 
                 <li>
                     <a href="{{ route('projects') }}"
@@ -79,20 +54,12 @@
                     </a>
                 </li>
 
-                {{-- ==========================================
-                     COMPONENT: SERVICES LINK
-                ========================================== --}}
-
                 <li>
                     <a href="{{ route('services') }}"
                        class="{{ request()->routeIs('services') ? 'active' : '' }}">
                         Services
                     </a>
                 </li>
-
-                {{-- ==========================================
-                     COMPONENT: SKILLS LINK
-                ========================================== --}}
 
                 <li>
                     <a href="{{ route('skills') }}"
@@ -101,20 +68,12 @@
                     </a>
                 </li>
 
-                {{-- ==========================================
-                     COMPONENT: EXPERIENCE LINK
-                ========================================== --}}
-
                 <li>
                     <a href="{{ route('experience') }}"
                        class="{{ request()->routeIs('experience') ? 'active' : '' }}">
                         Experience
                     </a>
                 </li>
-
-                {{-- ==========================================
-                     COMPONENT: CERTIFICATIONS LINK
-                ========================================== --}}
 
                 <li>
                     <a href="{{ route('certifications') }}"
@@ -123,20 +82,12 @@
                     </a>
                 </li>
 
-                {{-- ==========================================
-                     COMPONENT: BLOG LINK
-                ========================================== --}}
-
                 <li>
                     <a href="{{ route('blog') }}"
                        class="{{ request()->routeIs('blog') ? 'active' : '' }}">
                         Blog
                     </a>
                 </li>
-
-                {{-- ==========================================
-                     COMPONENT: CONTACT LINK
-                ========================================== --}}
 
                 <li>
                     <a href="{{ route('contact') }}"
@@ -147,7 +98,22 @@
 
             </ul>
 
+            {{-- ==========================================
+                 DOWNLOAD CV BUTTON
+            ========================================== --}}
+
+            <a href="{{ asset('documents/Oghenekaro-Cletus-Anakpoha-CV.pdf') }}"
+               target="_blank"
+               class="btn-primary nav-cv-btn">
+
+                <i class="fa-solid fa-download"></i>
+
+                Download CV
+
+            </a>
+
         </div>
 
     </div>
+
 </nav>

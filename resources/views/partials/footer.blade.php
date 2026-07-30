@@ -47,14 +47,15 @@
 
                 </a>
 
-                <a href="https://www.linkedin.com/"
-                   target="_blank"
-                   data-tooltip="LinkedIn"
-                   aria-label="LinkedIn">
+                <a href="https://gitlab.com/karons1"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                        title="GitLab"
+                        aria-label="GitLab">
 
-                    <i class="fa-brands fa-linkedin"></i>
+                       <i class="fa-brands fa-gitlab"></i>
 
-                </a>
+                 </a>
 
                 <a href="https://x.com/"
                    target="_blank"

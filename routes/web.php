@@ -1,6 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ProjectController;
+
+/*
+|--------------------------------------------------------------------------
+| PUBLIC PORTFOLIO ROUTES
+|--------------------------------------------------------------------------
+*/
 
 Route::view('/', 'pages.home')->name('home');
 
@@ -20,6 +28,12 @@ Route::view('/blog', 'pages.blog')->name('blog');
 
 Route::view('/contact', 'pages.contact')->name('contact');
 
+/*
+|--------------------------------------------------------------------------
+| PROJECT CASE STUDIES
+|--------------------------------------------------------------------------
+*/
+
 Route::view('/projects/novacare', 'projects.novacare')
     ->name('projects.novacare');
 
@@ -28,3 +42,54 @@ Route::view('/projects/courierxpress', 'projects.courierxpress')
 
 Route::view('/projects/yellow-sail', 'projects.yellow-sail')
     ->name('projects.yellow-sail');
+
+/*
+|--------------------------------------------------------------------------
+| USER DASHBOARD
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| PROFILE
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| ADMIN ROUTES
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'admin'])
+    ->prefix('admin')
+    ->group(function () {
+
+        Route::resource('projects', ProjectController::class);
+
+    });
+
+/*
+|--------------------------------------------------------------------------
+| AUTH ROUTES
+|--------------------------------------------------------------------------
+*/
+
+require __DIR__.'/auth.php';

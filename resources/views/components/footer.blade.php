@@ -28,63 +28,97 @@
 
         </div>
 
-        {{-- ==========================================
-             SOCIAL CONNECT BAR
-        ========================================== --}}
+{{-- ==========================================
+     SOCIAL CONNECT BAR
+========================================== --}}
 
-        <div class="social-connect">
+<div class="social-connect">
 
-            <h4>Connect With Me</h4>
+    <h4>Connect With Me</h4>
 
-            <div class="social-icons">
+    <div class="social-icons">
 
-                <a href="https://github.com/karons101"
-                   target="_blank"
-                   aria-label="GitHub">
+        {{-- GitHub --}}
 
-                    <i class="fa-brands fa-github"></i>
+        <a href="https://github.com/karons101"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="GitHub"
+           aria-label="GitHub"
+           data-tooltip="GitHub">
 
-                </a>
+            <i class="fa-brands fa-github"></i>
 
-                <a href="https://gitlab.com/karons1"
-                   target="_blank"
-                   aria-label="GitLab">
+        </a>
 
-                    <i class="fa-brands fa-gitlab"></i>
+        {{-- GitLab --}}
 
-                </a>
+        <a href="https://gitlab.com/karons1"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="GitLab"
+           aria-label="GitLab"
+           data-tooltip="GitLab">
 
-                <a href="#"
-                   aria-label="Facebook">
+            <i class="fa-brands fa-gitlab"></i>
 
-                    <i class="fa-brands fa-facebook-f"></i>
+        </a>
 
-                </a>
+        {{-- Telegram --}}
 
-                <a href="#"
-                   aria-label="X">
+        <a href="https://t.me/karons101"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Telegram"
+           aria-label="Telegram"
+           data-tooltip="Telegram">
 
-                    <i class="fa-brands fa-x-twitter"></i>
+            <i class="fa-brands fa-telegram"></i>
 
-                </a>
+        </a>
 
-                <a href="#"
-                   aria-label="Dev.to">
+        {{-- Facebook --}}
 
-                    <i class="fa-brands fa-dev"></i>
+        <a href="https://facebook.com/oghenekaro.anakpoha"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Facebook"
+           aria-label="Facebook"
+           data-tooltip="Facebook">
 
-                </a>
+            <i class="fa-brands fa-facebook-f"></i>
 
-                <a href="#"
-                   aria-label="Hashnode">
+        </a>
 
-                    <i class="fa-brands fa-hashnode"></i>
+        {{-- X (Twitter) --}}
 
-                </a>
+        <a href="https://x.com/karonstical"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="X (Twitter)"
+           aria-label="X (Twitter)"
+           data-tooltip="X">
 
-            </div>
+            <i class="fa-brands fa-x-twitter"></i>
 
-        </div>
+        </a>
+
+        {{-- WhatsApp --}}
+
+        <a href="https://wa.me/2348131154753"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="WhatsApp"
+           aria-label="WhatsApp"
+           data-tooltip="WhatsApp">
+
+            <i class="fa-brands fa-whatsapp"></i>
+
+        </a>
+
+    </div>
+
+</div>
 
         {{-- ==========================================
              FOOTER GRID
@@ -192,3 +226,30 @@
     </div>
 
 </footer>
+
+
+{{-- ==========================================
+     FLOATING WHATSAPP BUTTON
+========================================== --}}
+
+<a href="https://wa.me/2348131154753"
+   class="whatsapp-float"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Chat on WhatsApp">
+
+    <i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+{{-- ==========================================
+     BACK TO TOP BUTTON
+========================================== --}}
+
+<button id="backToTop"
+        class="back-to-top"
+        aria-label="Back to Top">
+
+    <i class="fa-solid fa-arrow-up"></i>
+
+</button>

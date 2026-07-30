@@ -1,16 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.portfolio')
 
 @section('title', 'Contact')
 
 @section('content')
 
 {{-- ==========================================
-     COMPONENT: CONTACT SECTION
-
-     Purpose:
-     Provides visitors with multiple ways
-     to contact the developer and submit
-     project enquiries.
+     CONTACT SECTION
 ========================================== --}}
 
 <section class="contact">
@@ -24,9 +19,9 @@
         <h2>Let's Build Something Great Together</h2>
 
         <p class="section-description">
-            Whether you're looking to build a new application, improve an
-            existing system or discuss a software project, I'd be happy
-            to hear from you.
+            Whether you're looking to build a new application,
+            improve an existing system or discuss a software
+            project, I'd be happy to hear from you.
         </p>
 
         <div class="contact-grid">
@@ -40,14 +35,15 @@
                 <h3>Get In Touch</h3>
 
                 <p>
-                    I'm available for freelance projects, full-time
-                    opportunities and software consulting.
+                    I'm available for freelance projects,
+                    full-time opportunities and software consulting.
                 </p>
 
                 <ul>
 
                     <li>
                         <strong>Email:</strong><br>
+
                         <a href="mailto:karonstical@gmail.com">
                             karonstical@gmail.com
                         </a>
@@ -55,129 +51,223 @@
 
                     <li>
                         <strong>Location:</strong><br>
+
                         Delta State, Nigeria
                     </li>
 
                     <li>
                         <strong>Availability:</strong><br>
+
                         Open for Freelance, Remote and Full-Time Opportunities
+                    </li>
+
+                    <li>
+                        <strong>Response Time:</strong><br>
+
+                        Usually within 24 Hours
                     </li>
 
                 </ul>
 
+                {{-- ==========================================
+                     HIRE ME
+                ========================================== --}}
+
+                <div class="contact-cta">
+
+                    <h3>Available for New Projects</h3>
+
+                    <p>
+                        Looking for a Laravel Full-Stack Developer
+                        to build your next software solution?
+                        Let's discuss your project.
+                    </p>
+
+                </div>
+
+                {{-- ==========================================
+                     SOCIAL LINKS
+                ========================================== --}}
+
+                <div class="contact-social">
+
+                    <h4>Connect With Me</h4>
+
+                    <div class="social-icons">
+
+        {{-- GitHub --}}
+
+          <a href="https://github.com/karons101"
+             target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub"
+           aria-label="GitHub"
+           data-tooltip="GitHub">
+
+         <i class="fa-brands fa-github"></i>
+
+         </a>
+
+          {{-- Telegram --}}
+
+          <a href="https://t.me/karons101"
+                   target="_blank"
+                  rel="noopener noreferrer"
+               title="Telegram"
+               aria-label="Telegram"
+               data-tooltip="Telegram">
+
+                 <i class="fa-brands fa-telegram"></i>
+
+             </a>
+
+              {{-- X (Twitter) --}}
+
+                   <a href="https://x.com/@karonstical"
+                 target="_blank"
+                     rel="noopener noreferrer"
+                title="X (Twitter)"
+                       aria-label="X (Twitter)"
+                       data-tooltip="X">
+
+                   <i class="fa-brands fa-x-twitter"></i>
+
+              </a>
+
+            {{-- Facebook --}}
+
+              <a href="https://facebook.com/oghenekaro.anakpoha"
+                     target="_blank"
+                    rel="noopener noreferrer"
+                    title="Facebook"
+                   aria-label="Facebook"
+                   data-tooltip="Facebook">
+
+                    <i class="fa-brands fa-facebook-f"></i>
+
+              </a>
+
+               {{-- Email --}}
+
+               <a href="mailto:karonstical@gmail.com"
+                  title="Email"
+                  aria-label="Email"
+                  data-tooltip="Email">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+               </a>
+
+              {{-- WhatsApp --}}
+
+                    <a href="https://wa.me/2348131154753"
+                      target="_blank"
+                          rel="noopener noreferrer"
+                       title="WhatsApp"
+                          aria-label="WhatsApp"
+                          data-tooltip="WhatsApp">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                    </a>
+
+                 </div>
+
+                </div>
+
             </div>
 
-<form
-    class="contact-form"
-    method="POST"
-    action="#">
+            {{-- ==========================================
+                 CONTACT FORM
+            ========================================== --}}
 
-    @csrf
+            <form
+                class="contact-form"
+                method="POST"
+                action="#">
 
-    {{-- ==========================================
-         FULL NAME
-    ========================================== --}}
+                @csrf
 
-    <div class="input-group">
+                <div class="input-group">
 
-        <label for="contactName" class="sr-only">
-            Full Name
-        </label>
+                    <label for="contactName" class="sr-only">
+                        Full Name
+                    </label>
 
-        <span class="input-icon">
-            ⚓
-        </span>
+                    <span class="input-icon">⚓</span>
 
-        <input
-            type="text"
-            id="contactName"
-            name="name"
-            placeholder="Full Name"
-            autocomplete="name"
-            required>
+                    <input
+                        type="text"
+                        id="contactName"
+                        name="name"
+                        placeholder="Full Name"
+                        autocomplete="name"
+                        required>
 
-    </div>
+                </div>
 
-    {{-- ==========================================
-         EMAIL
-    ========================================== --}}
+                <div class="input-group">
 
-    <div class="input-group">
+                    <label for="contactEmail" class="sr-only">
+                        Email Address
+                    </label>
 
-        <label for="contactEmail" class="sr-only">
-            Email Address
-        </label>
+                    <span class="input-icon">📧</span>
 
-        <span class="input-icon">
-            📧
-        </span>
+                    <input
+                        type="email"
+                        id="contactEmail"
+                        name="email"
+                        placeholder="Email Address"
+                        autocomplete="email"
+                        required>
 
-        <input
-            type="email"
-            id="contactEmail"
-            name="email"
-            placeholder="Email Address"
-            autocomplete="email"
-            required>
+                </div>
 
-    </div>
+                <div class="input-group">
 
-    {{-- ==========================================
-         SUBJECT
-    ========================================== --}}
+                    <label for="contactSubject" class="sr-only">
+                        Subject
+                    </label>
 
-    <div class="input-group">
+                    <span class="input-icon">🧭</span>
 
-        <label for="contactSubject" class="sr-only">
-            Subject
-        </label>
+                    <input
+                        type="text"
+                        id="contactSubject"
+                        name="subject"
+                        placeholder="Subject"
+                        required>
 
-        <span class="input-icon">
-            🧭
-        </span>
+                </div>
 
-        <input
-            type="text"
-            id="contactSubject"
-            name="subject"
-            placeholder="Subject"
-            autocomplete="off"
-            required>
+                <div class="input-group textarea-group">
 
-    </div>
+                    <label for="contactMessage" class="sr-only">
+                        Project Details
+                    </label>
 
-    {{-- ==========================================
-         MESSAGE
-    ========================================== --}}
+                    <span class="input-icon">🚢</span>
 
-    <div class="input-group textarea-group">
+                    <textarea
+                        id="contactMessage"
+                        name="message"
+                        rows="6"
+                        placeholder="Tell me about your project..."
+                        required></textarea>
 
-        <label for="contactMessage" class="sr-only">
-            Project Details
-        </label>
+                </div>
 
-        <span class="input-icon">
-            🚢
-        </span>
+                <button
+                    type="submit"
+                    class="btn-primary">
 
-        <textarea
-            id="contactMessage"
-            name="message"
-            rows="6"
-            placeholder="Tell me about your project..."
-            required></textarea>
+                    Send Message
 
-          </div>
+                </button>
 
-                   <button
-                            type="submit"
-                       class="btn-primary">
+            </form>
 
-                   Send Message
-
-              </button>
-
-           </form>
         </div>
 
     </div>
