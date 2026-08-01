@@ -1,21 +1,22 @@
 {{-- ==========================================================
-     PAGE: CREATE PROJECT
+     PAGE: EDIT PROJECT
 
      File:
-     resources/views/admin/projects/create.blade.php
+     resources/views/admin/projects/edit.blade.php
 
      Purpose:
-     Displays the form used to create a new portfolio
+     Displays the form used to edit an existing portfolio
      project inside the KaroDev Admin CMS.
 
      Responsibilities:
-     • Collect project information
-     • Upload project image
-     • Mark project as featured
-     • Submit project for saving
+     • Edit project information
+     • Update project links
+     • Replace project image
+     • Update descriptions
+     • Toggle Featured status
+     • Save changes
 
      Future Improvements:
-     • Validation Errors
      • Image Preview
      • Auto Slug Generator
      • Rich Text Editor
@@ -24,7 +25,7 @@
 
 <x-app-layout>
 
-    {{-- =========================================================
+    {{-- ==========================================================
          PAGE HEADER
     ========================================================== --}}
 
@@ -32,7 +33,7 @@
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
-            Add New Project
+            Edit Project
 
         </h2>
 
@@ -40,7 +41,7 @@
 
 
 
-    {{-- =========================================================
+    {{-- ==========================================================
          MAIN PAGE CONTENT
     ========================================================== --}}
 
@@ -48,27 +49,27 @@
 
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
 
-            {{-- ==========================================================
-                 COMPONENT: ADMIN CARD
-            ========================================================== --}}
+            {{-- ======================================================
+                 ADMIN CARD COMPONENT
+            ======================================================= --}}
 
             <x-admin.card>
 
-                {{-- =====================================================
+                {{-- ==================================================
                      PAGE TITLE
-                ====================================================== --}}
+                =================================================== --}}
 
                 <div class="border-b p-6">
 
                     <h1 class="text-3xl font-bold text-slate-800">
 
-                        Create Project
+                        Edit Project
 
                     </h1>
 
                     <p class="mt-2 text-slate-600">
 
-                        Add a new portfolio project.
+                        Update an existing portfolio project.
 
                     </p>
 
@@ -76,23 +77,31 @@
 
 
 
-                {{-- =====================================================
-                     PROJECT FORM
-                ====================================================== --}}
+                {{-- ==================================================
+                     EDIT PROJECT FORM
 
-                <form action="{{ route('projects.store') }}"
-                      method="POST"
-                      enctype="multipart/form-data"
-                      class="p-8 space-y-10">
+                     Route:
+                     projects.update
+
+                     HTTP Method:
+                     PUT
+                =================================================== --}}
+
+                <form
+                    action="{{ route('projects.update', $project) }}"
+                    method="POST"
+                    enctype="multipart/form-data"
+                    class="p-8 space-y-10">
 
                     @csrf
+                    @method('PUT')
 
 
 
-                    {{-- =================================================
+                    {{-- ==================================================
                          SECTION 1
                          PROJECT INFORMATION
-                    ================================================== --}}
+                    =================================================== --}}
 
                     <div>
 
@@ -117,16 +126,22 @@
                                 <input
                                     type="text"
                                     name="title"
-                                    value="{{ old('title') }}"
+                                    value="{{ old('title', $project->title) }}"
                                     class="w-full border rounded-lg p-3">
 
-                                    @error('title')
+                                @error('title')
+
                                     <p class="mt-2 text-sm text-red-600">
-                                     {{ $message }}
+
+                                        {{ $message }}
+
                                     </p>
-                                    @enderror
+
+                                @enderror
 
                             </div>
+
+
 
                             {{-- Slug --}}
 
@@ -141,21 +156,22 @@
                                 <input
                                     type="text"
                                     name="slug"
-                                    value="{{ old('slug') }}"
+                                    value="{{ old('slug', $project->slug) }}"
                                     class="w-full border rounded-lg p-3">
 
-                                   {{-- Validation Error --}}
-                                    @error('slug')
+                                @error('slug')
 
                                     <p class="mt-2 text-sm text-red-600">
 
-                                      {{ $message }}
+                                        {{ $message }}
 
                                     </p>
 
-                                    @enderror
+                                @enderror
 
                             </div>
+
+
 
                             {{-- Technology Stack --}}
 
@@ -170,21 +186,22 @@
                                 <input
                                     type="text"
                                     name="technology"
-                                    value="{{ old('technology') }}"
+                                    value="{{ old('technology', $project->technology) }}"
                                     class="w-full border rounded-lg p-3">
 
-                                    {{-- Validation Error --}}
-                                    @error('technology')
+                                @error('technology')
 
                                     <p class="mt-2 text-sm text-red-600">
 
-                                    {{ $message }}
+                                        {{ $message }}
 
                                     </p>
 
-                                    @enderror
+                                @enderror
 
                             </div>
+
+
 
                             {{-- Category --}}
 
@@ -197,21 +214,20 @@
                                 </label>
 
                                 <input
-                                     type="text"
-                                     name="category"
-                                     value="{{ old('category') }}"
-                                     class="w-full border rounded-lg p-3">
+                                    type="text"
+                                    name="category"
+                                    value="{{ old('category', $project->category) }}"
+                                    class="w-full border rounded-lg p-3">
 
-                                    {{-- Validation Error --}}
-                                    @error('category')
+                                @error('category')
 
                                     <p class="mt-2 text-sm text-red-600">
 
-                                    {{ $message }}
+                                        {{ $message }}
 
                                     </p>
 
-                                    @enderror
+                                @enderror
 
                             </div>
 
@@ -221,10 +237,10 @@
 
 
 
-                    {{-- =================================================
+                    {{-- ==================================================
                          SECTION 2
                          PROJECT LINKS
-                    ================================================== --}}
+                    =================================================== --}}
 
                     <div>
 
@@ -247,22 +263,24 @@
                                 </label>
 
                                 <input
-                                     type="url"
-                                     name="github_url"
-                                     value="{{ old('github_url') }}"
-                                     class="w-full border rounded-lg p-3">
+                                    type="url"
+                                    name="github_url"
+                                    value="{{ old('github_url', $project->github_url) }}"
+                                    class="w-full border rounded-lg p-3">
 
-                                     {{-- Validation Error --}}
-                                      @error('github_url')
+                                @error('github_url')
 
                                     <p class="mt-2 text-sm text-red-600">
 
-                                     {{ $message }}
+                                        {{ $message }}
 
-                                     </p>
+                                    </p>
 
-                                     @enderror
+                                @enderror
+
                             </div>
+
+
 
                             {{-- Live Demo URL --}}
 
@@ -275,21 +293,20 @@
                                 </label>
 
                                 <input
-                                       type="url"
-                                       name="live_demo_url"
-                                       value="{{ old('live_demo_url') }}"
-                                       class="w-full border rounded-lg p-3">
+                                    type="url"
+                                    name="live_demo_url"
+                                    value="{{ old('live_demo_url', $project->live_demo_url) }}"
+                                    class="w-full border rounded-lg p-3">
 
-                                       {{-- Validation Error --}}
-                                       @error('live_demo_url')
+                                @error('live_demo_url')
 
-                                       <p class="mt-2 text-sm text-red-600">
+                                    <p class="mt-2 text-sm text-red-600">
 
                                         {{ $message }}
 
-                                        </p>
+                                    </p>
 
-                                       @enderror
+                                @enderror
 
                             </div>
 
@@ -297,12 +314,10 @@
 
                     </div>
 
-
-
-                    {{-- =================================================
+                        {{-- ==================================================
                          SECTION 3
                          PROJECT DESCRIPTION
-                    ================================================== --}}
+                    =================================================== --}}
 
                     <div>
 
@@ -325,22 +340,23 @@
                                 </label>
 
                                 <textarea
-                                        name="short_description"
-                                        rows="3"
-                       class="w-full border rounded-lg p-3">{{ old('short_description') }}</textarea>
+                                    name="short_description"
+                                    rows="3"
+                                    class="w-full border rounded-lg p-3">{{ old('short_description', $project->short_description) }}</textarea>
 
-                                      {{-- Validation Error --}}
-                                      @error('short_description')
+                                @error('short_description')
 
-                                   <p class="mt-2 text-sm text-red-600">
+                                    <p class="mt-2 text-sm text-red-600">
 
-                                       {{ $message }}
+                                        {{ $message }}
 
-                                   </p>
+                                    </p>
 
-                                   @enderror
+                                @enderror
 
                             </div>
+
+
 
                             {{-- Full Description --}}
 
@@ -353,20 +369,19 @@
                                 </label>
 
                                 <textarea
-                                        name="description"
-                                        rows="8"
-                              class="w-full border rounded-lg p-3">{{ old('description') }}</textarea>
+                                    name="description"
+                                    rows="8"
+                                    class="w-full border rounded-lg p-3">{{ old('description', $project->description) }}</textarea>
 
-                                      {{-- Validation Error --}}
-                                       @error('description')
+                                @error('description')
 
                                     <p class="mt-2 text-sm text-red-600">
 
-                                       {{ $message }}
+                                        {{ $message }}
 
                                     </p>
 
-                                   @enderror
+                                @enderror
 
                             </div>
 
@@ -376,42 +391,66 @@
 
 
 
-                    {{-- =================================================
+                    {{-- ==================================================
                          SECTION 4
-                         MEDIA
-                    ================================================== --}}
+                         PROJECT IMAGE
+                    =================================================== --}}
 
                     <div>
 
                         <h2 class="text-xl font-semibold text-slate-800 mb-6">
 
-                            Media
+                            Project Image
 
                         </h2>
+
+                        {{-- Current Image --}}
+
+                        @if ($project->image)
+
+                            <div class="mb-6">
+
+                                <p class="font-semibold mb-3">
+
+                                    Current Image
+
+                                </p>
+
+                                <img
+                                    src="{{ asset('storage/' . $project->image) }}"
+                                    alt="{{ $project->title }}"
+                                    class="w-64 rounded-lg border shadow">
+
+                            </div>
+
+                        @endif
+
+
+
+                        {{-- Upload New Image --}}
 
                         <div>
 
                             <label class="block mb-2 font-semibold">
 
-                                Project Image
+                                Replace Image
 
                             </label>
 
                             <input
-                                  type="file"
-                                   name="image"
-                                   class="w-full">
+                                type="file"
+                                name="image"
+                                class="w-full">
 
-                                {{-- Validation Error --}}
-                                      @error('image')
+                            @error('image')
 
-                                 <p class="mt-2 text-sm text-red-600">
+                                <p class="mt-2 text-sm text-red-600">
 
-                                 {{ $message }}
+                                    {{ $message }}
 
-                                 </p>
+                                </p>
 
-                                @enderror
+                            @enderror
 
                         </div>
 
@@ -419,10 +458,10 @@
 
 
 
-                    {{-- =================================================
+                    {{-- ==================================================
                          SECTION 5
                          OPTIONS
-                    ================================================== --}}
+                    =================================================== --}}
 
                     <div>
 
@@ -435,11 +474,11 @@
                         <label class="inline-flex items-center gap-3">
 
                             <input
-                                  type="checkbox"
-                                  name="featured"
-                                  value="1"
-                                {{ old('featured') ? 'checked' : '' }}>
-                                   
+                                type="checkbox"
+                                name="featured"
+                                value="1"
+                                {{ old('featured', $project->featured) ? 'checked' : '' }}>
+
                             <span>
 
                                 Feature this project on the homepage
@@ -452,10 +491,10 @@
 
 
 
-                    {{-- =================================================
+                    {{-- ==================================================
                          SECTION 6
                          ACTION BUTTONS
-                    ================================================== --}}
+                    =================================================== --}}
 
                     <div class="flex items-center gap-4 pt-4">
 
@@ -463,12 +502,13 @@
                             type="submit"
                             class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
 
-                            Save Project
+                            Update Project
 
                         </button>
 
-                        <a href="{{ route('projects.index') }}"
-                           class="px-8 py-3 bg-slate-200 text-slate-800 rounded-lg hover:bg-slate-300 transition">
+                        <a
+                            href="{{ route('projects.index') }}"
+                            class="px-8 py-3 bg-slate-200 text-slate-800 rounded-lg hover:bg-slate-300 transition">
 
                             Cancel
 

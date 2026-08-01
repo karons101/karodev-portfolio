@@ -1,9 +1,33 @@
+{{-- ==========================================================
+     PAGE: PROJECT MANAGEMENT
+
+     File:
+     resources/views/admin/projects/index.blade.php
+
+     Purpose:
+     Displays every portfolio project stored in the
+     database.
+
+     Responsibilities:
+     • List all projects
+     • Display project information
+     • Navigate to Create Project page
+     • Provide Edit/Delete actions
+
+     CRUD Progress:
+     ✔ Create
+     ✔ Read
+     ⏳ Update (Coming Soon)
+     ⏳ Delete (Coming Soon)
+
+========================================================== --}}
+
 <x-app-layout>
 
     {{-- =========================================================
-         PAGE HEADER
-         ---------------------------------------------------------
-         Displays the page title.
+         DASHBOARD PAGE HEADER
+
+         Appears inside the authenticated dashboard layout.
     ========================================================== --}}
 
     <x-slot name="header">
@@ -19,7 +43,7 @@
 
 
     {{-- =========================================================
-         MAIN PAGE CONTENT
+         MAIN PAGE CONTAINER
     ========================================================== --}}
 
     <div class="py-12">
@@ -29,26 +53,30 @@
             {{-- ==========================================================
                  COMPONENT: ADMIN CARD
 
-                 Purpose:
-                 Reusable container used throughout the Admin CMS.
-
-                 Benefits:
-                 • Eliminates repeated HTML.
-                 • Provides one central place for styling.
-                 • Makes future design updates much easier.
-
-                 Component File:
+                 File:
                  resources/views/components/admin/card.blade.php
 
+                 Purpose:
+                 Reusable white container used across the
+                 Admin CMS.
+
+                 Benefits:
+                 • Consistent design
+                 • Less repeated HTML
+                 • Easier future maintenance
             ========================================================== --}}
 
             <x-admin.card>
 
-                {{-- =============================================
-                     PAGE HEADER
-                ============================================== --}}
+                {{-- =====================================================
+                     PAGE TITLE + CREATE BUTTON
+                ====================================================== --}}
 
                 <div class="flex items-center justify-between p-6 border-b">
+
+                    {{-- ===============================================
+                         PAGE DESCRIPTION
+                    ================================================ --}}
 
                     <div>
 
@@ -66,9 +94,14 @@
 
                     </div>
 
-                    {{-- =========================================
+
+
+                    {{-- ===============================================
                          ADD PROJECT BUTTON
-                    ========================================== --}}
+
+                         Takes the administrator to the
+                         Create Project page.
+                    ================================================ --}}
 
                     <a href="{{ route('projects.create') }}"
                        class="px-5 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
@@ -81,13 +114,17 @@
 
 
 
-                {{-- =============================================
+                {{-- =====================================================
                      PROJECT TABLE
-                ============================================== --}}
+                ====================================================== --}}
 
                 <div class="overflow-x-auto">
 
                     <table class="min-w-full">
+
+                        {{-- =============================================
+                             TABLE HEADINGS
+                        ============================================== --}}
 
                         <thead class="bg-slate-100">
 
@@ -121,22 +158,140 @@
 
                         </thead>
 
+
+
+                        {{-- =============================================
+                             TABLE BODY
+
+                             Displays all projects retrieved
+                             from the ProjectController.
+                        ============================================== --}}
+
                         <tbody>
 
-                            {{-- =====================================
-                                 TEMPORARY PLACEHOLDER
-                            ====================================== --}}
+                            {{-- ==========================================
+                                 LOOP THROUGH ALL PROJECTS
 
-                            <tr>
+                                 If projects exist:
+                                 Display each project.
 
-                                <td colspan="4"
-                                    class="text-center py-12 text-slate-500">
+                                 Otherwise:
+                                 Display "No projects found."
+                            =========================================== --}}
 
-                                    No projects found.
+                            @forelse ($projects as $project)
 
-                                </td>
+                                <tr class="border-b hover:bg-slate-50 transition">
 
-                            </tr>
+                                    {{-- ===============================
+                                         PROJECT TITLE
+                                    ================================ --}}
+
+                                    <td class="px-6 py-4 font-semibold text-slate-800">
+
+                                        {{ $project->title }}
+
+                                    </td>
+
+
+
+                                    {{-- ===============================
+                                         TECHNOLOGY STACK
+                                    ================================ --}}
+
+                                    <td class="px-6 py-4">
+
+                                        {{ $project->technology }}
+
+                                    </td>
+
+
+
+                                    {{-- ===============================
+                                         PROJECT STATUS
+
+                                         Featured Project?
+                                    ================================ --}}
+
+                                    <td class="px-6 py-4 text-center">
+
+                                        @if ($project->featured)
+
+                                            <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
+
+                                                Featured
+
+                                            </span>
+
+                                        @else
+
+                                            <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">
+
+                                                Normal
+
+                                            </span>
+
+                                        @endif
+
+                                    </td>
+
+
+
+                                    {{-- ===============================
+                                         ACTION BUTTONS
+
+                                         NOTE:
+                                         We'll connect these routes
+                                         in upcoming lessons.
+                                    ================================ --}}
+
+                                    <td class="px-6 py-4 text-center">
+
+                                        <a href="#"
+                                           class="text-blue-600 hover:underline">
+
+                                            Edit
+
+                                        </a>
+
+                                        <span class="mx-2">
+
+                                            |
+
+                                        </span>
+
+                                        <a href="#"
+                                           class="text-red-600 hover:underline">
+
+                                            Delete
+
+                                        </a>
+
+                                    </td>
+
+                                </tr>
+
+                            @empty
+
+                                {{-- =====================================
+                                     EMPTY STATE
+
+                                     Displayed when there are
+                                     no projects stored.
+                                ====================================== --}}
+
+                                <tr>
+
+                                    <td colspan="4"
+                                        class="text-center py-12 text-slate-500">
+
+                                        No projects found.
+
+                                    </td>
+
+                                </tr>
+
+                            @endforelse
 
                         </tbody>
 

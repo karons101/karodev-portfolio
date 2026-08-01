@@ -7,46 +7,49 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * ==========================================================
+     * RUN THE MIGRATION
+     * ----------------------------------------------------------
+     * Creates the projects table for the KaroDev Portfolio CMS.
+     * ==========================================================
      */
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
 
-        $table->id();
+            $table->id();
 
-        $table->string('title');
+            $table->string('title');
 
-        $table->string('slug')->unique();
+            $table->string('slug')->unique();
 
-        $table->text('description');
+            $table->string('technology');
 
-        $table->string('image')->nullable();
+            $table->string('category');
 
-        $table->string('category');
+            $table->string('github_url')->nullable();
 
-        $table->string('technologies');
+            $table->string('live_demo_url')->nullable();
 
-        $table->enum('status', [
-            'Completed',
-            'In Development',
-            'Planned'
-        ]);
+            $table->text('short_description');
 
-        $table->string('live_url')->nullable();
+            $table->longText('description');
 
-        $table->string('github_url')->nullable();
+            $table->string('image')->nullable();
 
-        $table->boolean('featured')->default(false);
+            $table->boolean('featured')->default(false);
 
-        $table->timestamps();
+            $table->timestamps();
 
-    
         });
     }
 
     /**
-     * Reverse the migrations.
+     * ==========================================================
+     * ROLLBACK THE MIGRATION
+     * ----------------------------------------------------------
+     * Deletes the projects table.
+     * ==========================================================
      */
     public function down(): void
     {

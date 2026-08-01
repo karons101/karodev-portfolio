@@ -69,9 +69,20 @@
 
                             </h3>
 
-                            <p class="text-4xl font-bold mt-3">
+                            {{-- ==========================================================
+                                    LIVE PROJECT COUNT
 
-                                0
+                                       Purpose:
+                                     Displays the total number of projects stored
+                                           in the database.
+
+                                            Source: routes/web.php
+
+                                    ========================================================== --}}
+
+                             <p class="text-4xl font-bold mt-3">
+
+                                    {{ $projectCount }}
 
                             </p>
 
@@ -88,11 +99,15 @@
 
                             </h3>
 
-                            <p class="text-4xl font-bold mt-3">
+                            {{-- ==========================================================
+                                                LIVE SKILL COUNT
+                               ========================================================== --}}
 
-                                0
+                                        <p class="text-4xl font-bold mt-3">
 
-                            </p>
+                                                  {{ $skillCount }}
+
+                                        </p>
 
                         </div>
 
@@ -107,11 +122,15 @@
 
                             </h3>
 
-                            <p class="text-4xl font-bold mt-3">
+                            {{-- ==========================================================
+                                                       LIVE BLOG COUNT
+                                 ========================================================== --}}
 
-                                0
+                              <p class="text-4xl font-bold mt-3">
 
-                            </p>
+                                     {{ $blogCount }}
+
+                             </p>
 
                         </div>
 
@@ -126,11 +145,15 @@
 
                             </h3>
 
-                            <p class="text-4xl font-bold mt-3">
+                            {{-- ==========================================================
+                                                       LIVE MESSAGE COUNT
+                                 ========================================================== --}}
 
-                                0
+                              <p class="text-4xl font-bold mt-3">
 
-                            </p>
+                                     {{ $messageCount }}
+
+                             </p>
 
                         </div>
 

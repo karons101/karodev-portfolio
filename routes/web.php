@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Models\Project;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,12 +49,80 @@ Route::view('/projects/yellow-sail', 'projects.yellow-sail')
 |--------------------------------------------------------------------------
 | USER DASHBOARD
 |--------------------------------------------------------------------------
+|
+| Purpose:
+| Displays the KaroDev Admin Dashboard with
+| live statistics retrieved from the database.
+|
+| Statistics Currently Displayed:
+| • Total Projects
+| • Total Skills
+| • Total Blog Posts
+| • Total Contact Messages
+|
+| Future Statistics:
+| • Featured Projects
+| • Total Certifications
+| • Total Experience Records
+| • Recent Messages
+| • Recent Blog Posts
+|
 */
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
+    /*
+|--------------------------------------------------------------------------
+| Retrieve Dashboard Statistics
+|--------------------------------------------------------------------------
+|
+| At this stage of development, only the Projects
+| module has been completed.
+|
+| The remaining modules will be connected later
+| as they are built.
+|
+*/
+
+            $projectCount = Project::count();
+
+/*
+|--------------------------------------------------------------------------
+| Temporary Placeholder Values
+|--------------------------------------------------------------------------
+|
+| These values will become dynamic once the
+| corresponding CMS modules are completed.
+|
+*/
+
+           $skillCount = 0;
+
+           $blogCount = 0;
+
+           $messageCount = 0;
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Send Statistics to Dashboard View
+    |--------------------------------------------------------------------------
+    */
+
+    return view('dashboard', compact(
+
+        'projectCount',
+
+        'skillCount',
+
+        'blogCount',
+
+        'messageCount'
+
+    ));
+
+})->middleware(['auth', 'verified'])->name('dashboard');
 /*
 |--------------------------------------------------------------------------
 | PROFILE
