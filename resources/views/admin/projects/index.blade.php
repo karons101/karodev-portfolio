@@ -10,6 +10,7 @@ database.
 
 Responsibilities:
 • List all projects
+• Display project images
 • Display project information
 • Navigate to Create Project page
 • Provide Edit/Delete actions
@@ -26,8 +27,6 @@ CRUD Progress:
 
     {{-- =========================================================
     DASHBOARD PAGE HEADER
-
-    Appears inside the authenticated dashboard layout.
     ========================================================== --}}
 
     <x-slot name="header">
@@ -40,43 +39,21 @@ CRUD Progress:
 
     </x-slot>
 
-
-
     {{-- =========================================================
-    MAIN PAGE CONTAINER
+    MAIN PAGE
     ========================================================== --}}
 
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            {{-- ==========================================================
-            COMPONENT: ADMIN CARD
-
-            File:
-            resources/views/components/admin/card.blade.php
-
-            Purpose:
-            Reusable white container used across the
-            Admin CMS.
-
-            Benefits:
-            • Consistent design
-            • Less repeated HTML
-            • Easier future maintenance
-            ========================================================== --}}
-
             <x-admin.card>
 
                 {{-- =====================================================
-                PAGE TITLE + CREATE BUTTON
+                PAGE TITLE
                 ====================================================== --}}
 
                 <div class="flex items-center justify-between p-6 border-b">
-
-                    {{-- ===============================================
-                    PAGE DESCRIPTION
-                    ================================================ --}}
 
                     <div>
 
@@ -94,15 +71,6 @@ CRUD Progress:
 
                     </div>
 
-
-
-                    {{-- ===============================================
-                    ADD PROJECT BUTTON
-
-                    Takes the administrator to the
-                    Create Project page.
-                    ================================================ --}}
-
                     <a href="{{ route('projects.create') }}"
                         class="px-5 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
 
@@ -112,8 +80,6 @@ CRUD Progress:
 
                 </div>
 
-
-
                 {{-- =====================================================
                 PROJECT TABLE
                 ====================================================== --}}
@@ -122,13 +88,15 @@ CRUD Progress:
 
                     <table class="min-w-full">
 
-                        {{-- =============================================
-                        TABLE HEADINGS
-                        ============================================== --}}
-
                         <thead class="bg-slate-100">
 
                             <tr>
+
+                                <th class="px-6 py-4 text-center">
+
+                                    Image
+
+                                </th>
 
                                 <th class="px-6 py-4 text-left">
 
@@ -158,34 +126,53 @@ CRUD Progress:
 
                         </thead>
 
-
-
-                        {{-- =============================================
-                        TABLE BODY
-
-                        Displays all projects retrieved
-                        from the ProjectController.
-                        ============================================== --}}
-
                         <tbody>
-
-                            {{-- ==========================================
-                            LOOP THROUGH ALL PROJECTS
-
-                            If projects exist:
-                            Display each project.
-
-                            Otherwise:
-                            Display "No projects found."
-                            =========================================== --}}
 
                             @forelse ($projects as $project)
 
                                 <tr class="border-b hover:bg-slate-50 transition">
 
-                                    {{-- ===============================
+                                    {{-- ==========================================================
+                                    PROJECT IMAGE
+
+                                    Purpose:
+                                    Displays the project's thumbnail image.
+
+                                    Logic:
+                                    • If an image exists:
+                                    Display the uploaded image.
+
+                                    • Otherwise:
+                                    Display "No Image".
+
+                                    Images are loaded from Laravel's
+                                    public storage directory.
+                                    ========================================================== --}}
+
+                                    <td class="px-6 py-4 text-center">
+
+                                        @if ($project->image)
+
+                                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                                                class="w-16 h-16 object-cover rounded-lg border mx-auto">
+
+                                        @else
+
+                                            <span class="text-slate-400 text-sm">
+
+                                                No Image
+
+                                            </span>
+
+                                        @endif
+
+                                    </td>
+
+
+
+                                    {{-- ==========================================================
                                     PROJECT TITLE
-                                    ================================ --}}
+                                    ========================================================== --}}
 
                                     <td class="px-6 py-4 font-semibold text-slate-800">
 
@@ -195,9 +182,9 @@ CRUD Progress:
 
 
 
-                                    {{-- ===============================
+                                    {{-- ==========================================================
                                     TECHNOLOGY STACK
-                                    ================================ --}}
+                                    ========================================================== --}}
 
                                     <td class="px-6 py-4">
 
@@ -207,11 +194,22 @@ CRUD Progress:
 
 
 
-                                    {{-- ===============================
+                                    {{-- ==========================================================
                                     PROJECT STATUS
 
-                                    Featured Project?
-                                    ================================ --}}
+                                    Purpose:
+                                    Indicates whether this project is featured.
+
+                                    • Featured = Green badge
+                                    • Normal = Gray badge
+
+                                    Future:
+                                    • Draft
+                                    • Archived
+                                    • Hidden
+                                    • Completed
+                                    • In Progress
+                                    ========================================================== --}}
 
                                     <td class="px-6 py-4 text-center">
 
@@ -239,10 +237,6 @@ CRUD Progress:
 
                                     {{-- ==========================================================
                                     ACTION BUTTONS
-
-                                    Purpose:
-                                    Provides quick access to edit or delete a project.
-
                                     ========================================================== --}}
 
                                     <td class="px-6 py-4">
@@ -257,6 +251,7 @@ CRUD Progress:
                                                 Edit
 
                                             </a>
+
 
 
                                             {{-- Delete Project --}}
@@ -286,7 +281,7 @@ CRUD Progress:
 
                                 <tr>
 
-                                    <td colspan="4" class="px-6 py-12 text-center text-slate-500">
+                                    <td colspan="5" class="px-6 py-12 text-center text-slate-500">
 
                                         No projects found.
 
