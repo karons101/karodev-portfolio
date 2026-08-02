@@ -28,6 +28,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Support\Facades\Storage;
 
@@ -67,106 +68,106 @@ class ProjectController extends Controller
 
 
 
-/* ==========================================================
-   STORE NEW PROJECT
+    /* ==========================================================
+       STORE NEW PROJECT
 
-   Purpose:
-   Validates incoming data,
-   uploads the project image,
-   creates a new project record,
-   and redirects back to the
-   Projects page.
-
-
-
-       Workflow:
-
-       Create Project Form
-                │
-                ▼
-       StoreProjectRequest validates data
-                │
-                ▼
-       Controller receives validated data
-                │
-                ▼
-       Project Model
-                │
-                ▼
-       Database
-
-       NOTE:
-       We are only testing validation for now.
-
-       Database saving will be added
-       in the next lesson.
-========================================================== */
-
-public function store(StoreProjectRequest $request)
-{
-
-    /*
-    |--------------------------------------------------------------------------
-    | STEP 1
-    |--------------------------------------------------------------------------
-    |
-    | Retrieve all validated data.
-    |
-    */
-
-    $validated = $request->validated();
+       Purpose:
+       Validates incoming data,
+       uploads the project image,
+       creates a new project record,
+       and redirects back to the
+       Projects page.
 
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | STEP 2
-    |--------------------------------------------------------------------------
-    |
-    | Upload the project image if
-    | the user selected one.
-    |
-    */
+           Workflow:
 
-    if ($request->hasFile('image')) {
+           Create Project Form
+                    │
+                    ▼
+           StoreProjectRequest validates data
+                    │
+                    ▼
+           Controller receives validated data
+                    │
+                    ▼
+           Project Model
+                    │
+                    ▼
+           Database
 
-        $validated['image'] = $request
-            ->file('image')
-            ->store('projects', 'public');
+           NOTE:
+           We are only testing validation for now.
+
+           Database saving will be added
+           in the next lesson.
+    ========================================================== */
+
+    public function store(StoreProjectRequest $request)
+    {
+
+        /*
+        |--------------------------------------------------------------------------
+        | STEP 1
+        |--------------------------------------------------------------------------
+        |
+        | Retrieve all validated data.
+        |
+        */
+
+        $validated = $request->validated();
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | STEP 2
+        |--------------------------------------------------------------------------
+        |
+        | Upload the project image if
+        | the user selected one.
+        |
+        */
+
+        if ($request->hasFile('image')) {
+
+            $validated['image'] = $request
+                ->file('image')
+                ->store('projects', 'public');
+
+        }
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | STEP 3
+        |--------------------------------------------------------------------------
+        |
+        | Save the project into
+        | the database.
+        |
+        */
+
+        Project::create($validated);
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | STEP 4
+        |--------------------------------------------------------------------------
+        |
+        | Redirect back to the Projects
+        | page with a success message.
+        |
+        */
+
+        return redirect()
+            ->route('projects.index')
+            ->with('success', 'Project created successfully!');
 
     }
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | STEP 3
-    |--------------------------------------------------------------------------
-    |
-    | Save the project into
-    | the database.
-    |
-    */
-
-    Project::create($validated);
-
-
-
-    /*
-    |--------------------------------------------------------------------------
-    | STEP 4
-    |--------------------------------------------------------------------------
-    |
-    | Redirect back to the Projects
-    | page with a success message.
-    |
-    */
-
-    return redirect()
-        ->route('projects.index')
-        ->with('success', 'Project created successfully!');
-
-}
 
 
     /* ==========================================================
@@ -209,35 +210,136 @@ public function store(StoreProjectRequest $request)
        Implementation will be added later.
     ========================================================== */
 
-    public function update(StoreProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
 
-        //
-        // We'll build this together later.
-        //
+        /*
+|--------------------------------------------------------------------------
+| STEP 1
+|--------------------------------------------------------------------------
+|
+| Retrieve all validated data.
+|
+*/
+
+        $validated = $request->validated();
+
+
+
+        /*
+|--------------------------------------------------------------------------
+| STEP 2
+|--------------------------------------------------------------------------
+|
+| Upload a new project image.
+|
+| If the project already has an image,
+| remove the old image from storage first
+| to avoid leaving unused files behind.
+|
+*/
+
+        if ($request->hasFile('image')) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | Delete Existing Image
+            |--------------------------------------------------------------------------
+            */
+
+            if ($project->image && Storage::disk('public')->exists($project->image)) {
+
+                Storage::disk('public')->delete($project->image);
+
+            }
+
+            /*
+            |--------------------------------------------------------------------------
+            | Store New Image
+            |--------------------------------------------------------------------------
+            */
+
+            $validated['image'] = $request
+                ->file('image')
+                ->store('projects', 'public');
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | STEP 3
+        |--------------------------------------------------------------------------
+        |
+        | Update the project.
+        |
+        */
+
+        $project->update($validated);
+
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | STEP 4
+        |--------------------------------------------------------------------------
+        |
+        | Redirect back to the
+        | Projects page.
+        |
+        */
+
+        return redirect()
+            ->route('projects.index')
+            ->with('success', 'Project updated successfully!');
 
     }
 
 
 
-    /* ==========================================================
-       DELETE PROJECT
+/* ==========================================================
+   DELETE PROJECT
 
-       Purpose:
-       Removes a project
-       from the database.
+   Purpose:
+   Removes a project from the database.
 
-       NOTE:
-       Implementation will be added later.
-    ========================================================== */
+   Workflow:
+   • Delete the project's image (if it exists)
+   • Delete the database record
+   • Redirect back to the Projects page
+========================================================== */
 
-    public function destroy(Project $project)
-    {
+public function destroy(Project $project)
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Delete Project Image
+    |--------------------------------------------------------------------------
+    |
+    | Remove the project's image from storage if it exists.
+    |
+    */
 
-        //
-        // We'll build this together later.
-        //
-
+    if ($project->image && Storage::disk('public')->exists($project->image)) {
+        Storage::disk('public')->delete($project->image);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Delete Project Record
+    |--------------------------------------------------------------------------
+    */
+
+    $project->delete();
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redirect Back
+    |--------------------------------------------------------------------------
+    */
+
+    return redirect()
+        ->route('projects.index')
+        ->with('success', 'Project deleted successfully!');
+    }
 }

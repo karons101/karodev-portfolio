@@ -1,32 +1,32 @@
 {{-- ==========================================================
-     PAGE: EDIT PROJECT
+PAGE: EDIT PROJECT
 
-     File:
-     resources/views/admin/projects/edit.blade.php
+File:
+resources/views/admin/projects/edit.blade.php
 
-     Purpose:
-     Displays the form used to edit an existing portfolio
-     project inside the KaroDev Admin CMS.
+Purpose:
+Displays the form used to edit an existing portfolio
+project inside the KaroDev Admin CMS.
 
-     Responsibilities:
-     • Edit project information
-     • Update project links
-     • Replace project image
-     • Update descriptions
-     • Toggle Featured status
-     • Save changes
+Responsibilities:
+• Edit project information
+• Update project links
+• Replace project image
+• Update descriptions
+• Toggle Featured status
+• Save changes
 
-     Future Improvements:
-     • Image Preview
-     • Auto Slug Generator
-     • Rich Text Editor
-     • Multiple Image Upload
+Future Improvements:
+• Image Preview
+• Auto Slug Generator
+• Rich Text Editor
+• Multiple Image Upload
 ========================================================== --}}
 
 <x-app-layout>
 
     {{-- ==========================================================
-         PAGE HEADER
+    PAGE HEADER
     ========================================================== --}}
 
     <x-slot name="header">
@@ -42,7 +42,7 @@
 
 
     {{-- ==========================================================
-         MAIN PAGE CONTENT
+    MAIN PAGE CONTENT
     ========================================================== --}}
 
     <div class="py-12">
@@ -50,13 +50,13 @@
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
 
             {{-- ======================================================
-                 ADMIN CARD COMPONENT
+            ADMIN CARD COMPONENT
             ======================================================= --}}
 
             <x-admin.card>
 
                 {{-- ==================================================
-                     PAGE TITLE
+                PAGE TITLE
                 =================================================== --}}
 
                 <div class="border-b p-6">
@@ -78,19 +78,16 @@
 
 
                 {{-- ==================================================
-                     EDIT PROJECT FORM
+                EDIT PROJECT FORM
 
-                     Route:
-                     projects.update
+                Route:
+                projects.update
 
-                     HTTP Method:
-                     PUT
+                HTTP Method:
+                PUT
                 =================================================== --}}
 
-                <form
-                    action="{{ route('projects.update', $project) }}"
-                    method="POST"
-                    enctype="multipart/form-data"
+                <form action="{{ route('projects.update', $project) }}" method="POST" enctype="multipart/form-data"
                     class="p-8 space-y-10">
 
                     @csrf
@@ -99,8 +96,8 @@
 
 
                     {{-- ==================================================
-                         SECTION 1
-                         PROJECT INFORMATION
+                    SECTION 1
+                    PROJECT INFORMATION
                     =================================================== --}}
 
                     <div>
@@ -123,10 +120,7 @@
 
                                 </label>
 
-                                <input
-                                    type="text"
-                                    name="title"
-                                    value="{{ old('title', $project->title) }}"
+                                <input type="text" name="title" value="{{ old('title', $project->title) }}"
                                     class="w-full border rounded-lg p-3">
 
                                 @error('title')
@@ -153,10 +147,7 @@
 
                                 </label>
 
-                                <input
-                                    type="text"
-                                    name="slug"
-                                    value="{{ old('slug', $project->slug) }}"
+                                <input type="text" name="slug" value="{{ old('slug', $project->slug) }}"
                                     class="w-full border rounded-lg p-3">
 
                                 @error('slug')
@@ -183,9 +174,7 @@
 
                                 </label>
 
-                                <input
-                                    type="text"
-                                    name="technology"
+                                <input type="text" name="technology"
                                     value="{{ old('technology', $project->technology) }}"
                                     class="w-full border rounded-lg p-3">
 
@@ -213,10 +202,7 @@
 
                                 </label>
 
-                                <input
-                                    type="text"
-                                    name="category"
-                                    value="{{ old('category', $project->category) }}"
+                                <input type="text" name="category" value="{{ old('category', $project->category) }}"
                                     class="w-full border rounded-lg p-3">
 
                                 @error('category')
@@ -238,8 +224,8 @@
 
 
                     {{-- ==================================================
-                         SECTION 2
-                         PROJECT LINKS
+                    SECTION 2
+                    PROJECT LINKS
                     =================================================== --}}
 
                     <div>
@@ -262,9 +248,7 @@
 
                                 </label>
 
-                                <input
-                                    type="url"
-                                    name="github_url"
+                                <input type="url" name="github_url"
                                     value="{{ old('github_url', $project->github_url) }}"
                                     class="w-full border rounded-lg p-3">
 
@@ -292,9 +276,7 @@
 
                                 </label>
 
-                                <input
-                                    type="url"
-                                    name="live_demo_url"
+                                <input type="url" name="live_demo_url"
                                     value="{{ old('live_demo_url', $project->live_demo_url) }}"
                                     class="w-full border rounded-lg p-3">
 
@@ -314,9 +296,9 @@
 
                     </div>
 
-                        {{-- ==================================================
-                         SECTION 3
-                         PROJECT DESCRIPTION
+                    {{-- ==================================================
+                    SECTION 3
+                    PROJECT DESCRIPTION
                     =================================================== --}}
 
                     <div>
@@ -339,9 +321,7 @@
 
                                 </label>
 
-                                <textarea
-                                    name="short_description"
-                                    rows="3"
+                                <textarea name="short_description" rows="3"
                                     class="w-full border rounded-lg p-3">{{ old('short_description', $project->short_description) }}</textarea>
 
                                 @error('short_description')
@@ -368,9 +348,7 @@
 
                                 </label>
 
-                                <textarea
-                                    name="description"
-                                    rows="8"
+                                <textarea name="description" rows="8"
                                     class="w-full border rounded-lg p-3">{{ old('description', $project->description) }}</textarea>
 
                                 @error('description')
@@ -392,8 +370,8 @@
 
 
                     {{-- ==================================================
-                         SECTION 4
-                         PROJECT IMAGE
+                    SECTION 4
+                    PROJECT IMAGE
                     =================================================== --}}
 
                     <div>
@@ -404,7 +382,16 @@
 
                         </h2>
 
-                        {{-- Current Image --}}
+                        {{-- ==========================================================
+                        CURRENT PROJECT IMAGE
+
+                        Purpose:
+                        Displays the image currently stored in the database.
+
+                        NOTE:
+                        HTML file inputs cannot display previously uploaded files,
+                        so we show the current image separately.
+                        ========================================================== --}}
 
                         @if ($project->image)
 
@@ -416,10 +403,8 @@
 
                                 </p>
 
-                                <img
-                                    src="{{ asset('storage/' . $project->image) }}"
-                                    alt="{{ $project->title }}"
-                                    class="w-64 rounded-lg border shadow">
+                                <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                                    class="w-64 rounded-lg border shadow rounded-lg">
 
                             </div>
 
@@ -427,7 +412,9 @@
 
 
 
-                        {{-- Upload New Image --}}
+                        {{-- ==========================================================
+                        REPLACE IMAGE
+                        ========================================================== --}}
 
                         <div>
 
@@ -437,10 +424,7 @@
 
                             </label>
 
-                            <input
-                                type="file"
-                                name="image"
-                                class="w-full">
+                            <input type="file" name="image" class="w-full">
 
                             @error('image')
 
@@ -459,8 +443,8 @@
 
 
                     {{-- ==================================================
-                         SECTION 5
-                         OPTIONS
+                    SECTION 5
+                    OPTIONS
                     =================================================== --}}
 
                     <div>
@@ -473,11 +457,7 @@
 
                         <label class="inline-flex items-center gap-3">
 
-                            <input
-                                type="checkbox"
-                                name="featured"
-                                value="1"
-                                {{ old('featured', $project->featured) ? 'checked' : '' }}>
+                            <input type="checkbox" name="featured" value="1" {{ old('featured', $project->featured) ? 'checked' : '' }}>
 
                             <span>
 
@@ -492,22 +472,20 @@
 
 
                     {{-- ==================================================
-                         SECTION 6
-                         ACTION BUTTONS
+                    SECTION 6
+                    ACTION BUTTONS
                     =================================================== --}}
 
                     <div class="flex items-center gap-4 pt-4">
 
-                        <button
-                            type="submit"
+                        <button type="submit"
                             class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
 
                             Update Project
 
                         </button>
 
-                        <a
-                            href="{{ route('projects.index') }}"
+                        <a href="{{ route('projects.index') }}"
                             class="px-8 py-3 bg-slate-200 text-slate-800 rounded-lg hover:bg-slate-300 transition">
 
                             Cancel
