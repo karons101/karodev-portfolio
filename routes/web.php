@@ -3,8 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
-use App\Models\Project;
+use App\Http\Controllers\Admin\BlogPostController;
+use App\Http\Controllers\Admin\SkillController;
 
+use App\Models\Project;
+use App\Models\BlogPost;
+use App\Models\Skill;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,63 +54,35 @@ Route::view('/projects/yellow-sail', 'projects.yellow-sail')
 | USER DASHBOARD
 |--------------------------------------------------------------------------
 |
-| Purpose:
-| Displays the KaroDev Admin Dashboard with
-| live statistics retrieved from the database.
-|
-| Statistics Currently Displayed:
-| • Total Projects
-| • Total Skills
-| • Total Blog Posts
-| • Total Contact Messages
-|
-| Future Statistics:
-| • Featured Projects
-| • Total Certifications
-| • Total Experience Records
-| • Recent Messages
-| • Recent Blog Posts
+| Displays live CMS statistics.
 |
 */
 
 Route::get('/dashboard', function () {
 
     /*
-|--------------------------------------------------------------------------
-| Retrieve Dashboard Statistics
-|--------------------------------------------------------------------------
-|
-| At this stage of development, only the Projects
-| module has been completed.
-|
-| The remaining modules will be connected later
-| as they are built.
-|
-*/
+    |--------------------------------------------------------------------------
+    | Dashboard Statistics
+    |--------------------------------------------------------------------------
+    */
 
-            $projectCount = Project::count();
+    $projectCount = Project::count();
 
-/*
-|--------------------------------------------------------------------------
-| Temporary Placeholder Values
-|--------------------------------------------------------------------------
-|
-| These values will become dynamic once the
-| corresponding CMS modules are completed.
-|
-*/
+    $skillCount = Skill::count();
 
-           $skillCount = 0;
-
-           $blogCount = 0;
-
-           $messageCount = 0;
-
-
+    $blogCount = BlogPost::count();
 
     /*
     |--------------------------------------------------------------------------
-    | Send Statistics to Dashboard View
+    | Future Modules
+    |--------------------------------------------------------------------------
+    */
+
+    $messageCount = 0;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Dashboard View
     |--------------------------------------------------------------------------
     */
 
@@ -123,6 +99,7 @@ Route::get('/dashboard', function () {
     ));
 
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 /*
 |--------------------------------------------------------------------------
 | PROFILE
@@ -152,7 +129,29 @@ Route::middleware(['auth', 'admin'])
     ->prefix('admin')
     ->group(function () {
 
+        /*
+        |--------------------------------------------------------------------------
+        | Projects CMS
+        |--------------------------------------------------------------------------
+        */
+
         Route::resource('projects', ProjectController::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Blog CMS
+        |--------------------------------------------------------------------------
+        */
+
+        Route::resource('blog-posts', BlogPostController::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Skills CMS
+        |--------------------------------------------------------------------------
+        */
+
+        Route::resource('skills', SkillController::class);
 
     });
 
@@ -162,4 +161,4 @@ Route::middleware(['auth', 'admin'])
 |--------------------------------------------------------------------------
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

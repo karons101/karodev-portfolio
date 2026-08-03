@@ -37,20 +37,67 @@ class ProjectController extends Controller
 {
 
     /* ==========================================================
-       DISPLAY ALL PROJECTS
+   DISPLAY ALL PROJECTS
 
-       Purpose:
-       Retrieves every project from the database
-       and displays them in the Projects page.
-    ========================================================== */
+   Purpose:
+   Retrieves projects from the database.
+
+   Features:
+   • Search by title
+   • Search by technology
+   • Search by category
+   • Latest projects first
+   • Pagination (10 projects per page)
+========================================================== */
 
     public function index()
     {
-        $projects = Project::latest()->get();
+        /*
+        |--------------------------------------------------------------------------
+        | Search Keyword
+        |--------------------------------------------------------------------------
+        |
+        | Retrieve the user's search keyword from
+        | the URL query string.
+        |
+        */
+
+        $search = request('search');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Build Project Query
+        |--------------------------------------------------------------------------
+        |
+        | Search multiple project fields if a
+        | search keyword is provided.
+        |
+        */
+
+        $projects = Project::query()
+
+            ->when($search, function ($query, $search) {
+
+                $query->where('title', 'like', "%{$search}%")
+                    ->orWhere('technology', 'like', "%{$search}%")
+                    ->orWhere('category', 'like', "%{$search}%");
+
+            })
+
+            ->latest()
+
+            ->paginate(10)
+
+            ->withQueryString();
+
+        /*
+        |--------------------------------------------------------------------------
+        | Return View
+        |--------------------------------------------------------------------------
+        */
 
         return view('admin.projects.index', compact('projects'));
     }
-
 
 
     /* ==========================================================
@@ -297,49 +344,49 @@ class ProjectController extends Controller
 
 
 
-/* ==========================================================
-   DELETE PROJECT
+    /* ==========================================================
+       DELETE PROJECT
 
-   Purpose:
-   Removes a project from the database.
+       Purpose:
+       Removes a project from the database.
 
-   Workflow:
-   • Delete the project's image (if it exists)
-   • Delete the database record
-   • Redirect back to the Projects page
-========================================================== */
+       Workflow:
+       • Delete the project's image (if it exists)
+       • Delete the database record
+       • Redirect back to the Projects page
+    ========================================================== */
 
-public function destroy(Project $project)
-{
-    /*
-    |--------------------------------------------------------------------------
-    | Delete Project Image
-    |--------------------------------------------------------------------------
-    |
-    | Remove the project's image from storage if it exists.
-    |
-    */
+    public function destroy(Project $project)
+    {
+        /*
+        |--------------------------------------------------------------------------
+        | Delete Project Image
+        |--------------------------------------------------------------------------
+        |
+        | Remove the project's image from storage if it exists.
+        |
+        */
 
-    if ($project->image && Storage::disk('public')->exists($project->image)) {
-        Storage::disk('public')->delete($project->image);
-    }
+        if ($project->image && Storage::disk('public')->exists($project->image)) {
+            Storage::disk('public')->delete($project->image);
+        }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Delete Project Record
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Delete Project Record
+        |--------------------------------------------------------------------------
+        */
 
-    $project->delete();
+        $project->delete();
 
-    /*
-    |--------------------------------------------------------------------------
-    | Redirect Back
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | Redirect Back
+        |--------------------------------------------------------------------------
+        */
 
-    return redirect()
-        ->route('projects.index')
-        ->with('success', 'Project deleted successfully!');
+        return redirect()
+            ->route('projects.index')
+            ->with('success', 'Project deleted successfully!');
     }
 }

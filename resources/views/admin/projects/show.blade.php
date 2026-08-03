@@ -14,10 +14,16 @@ Responsibilities:
 • Display project links
 • Display project descriptions
 • Display featured status
+• Display timestamps
+• Provide administrator actions
 
 ========================================================== --}}
 
 <x-app-layout>
+
+    {{-- ======================================================
+    DASHBOARD HEADER
+    ======================================================= --}}
 
     <x-slot name="header">
 
@@ -29,15 +35,25 @@ Responsibilities:
 
     </x-slot>
 
+
+
+    {{-- ======================================================
+    MAIN PAGE
+    ======================================================= --}}
+
     <div class="py-12">
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
 
+            {{-- ==================================================
+            ADMIN CARD
+            =================================================== --}}
+
             <x-admin.card>
 
-                {{-- ======================================================
-                     PAGE HEADER
-                ======================================================= --}}
+                {{-- ==================================================
+                PAGE HEADER
+                =================================================== --}}
 
                 <div class="border-b p-6">
 
@@ -55,11 +71,21 @@ Responsibilities:
 
                 </div>
 
-                <div class="p-8 space-y-8">
 
-                    {{-- ==========================================================
-                         PROJECT IMAGE
-                    ========================================================== --}}
+
+                {{-- ==================================================
+                PAGE CONTENT
+                =================================================== --}}
+
+                <div class="p-8 space-y-10">
+
+
+
+                    {{-- ==================================================
+                    PROJECT IMAGE
+
+                    Displays the project's uploaded image.
+                    =================================================== --}}
 
                     @if ($project->image)
 
@@ -76,11 +102,15 @@ Responsibilities:
 
 
 
-                    {{-- ==========================================================
-                         PROJECT INFORMATION
-                    ========================================================== --}}
+                    {{-- ==================================================
+                    PROJECT INFORMATION
+                    =================================================== --}}
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                        {{-- ==========================================
+                        TECHNOLOGY
+                        =========================================== --}}
 
                         <div>
 
@@ -97,6 +127,12 @@ Responsibilities:
                             </p>
 
                         </div>
+
+
+
+                        {{-- ==========================================
+                        CATEGORY
+                        =========================================== --}}
 
                         <div>
 
@@ -117,12 +153,23 @@ Responsibilities:
                     </div>
 
 
+                                        {{-- ==================================================
+                    PROJECT LINKS
 
-                    {{-- ==========================================================
-                         PROJECT LINKS
-                    ========================================================== --}}
+                    Purpose:
+                    Displays external links associated with this
+                    project.
+
+                    Displays:
+                    • GitHub Repository
+                    • Live Demo
+                    =================================================== --}}
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                        {{-- ==========================================
+                        GITHUB REPOSITORY
+                        =========================================== --}}
 
                         <div>
 
@@ -132,16 +179,34 @@ Responsibilities:
 
                             </h3>
 
-                            <a
-                                href="{{ $project->github_url }}"
-                                target="_blank"
-                                class="text-blue-600 hover:underline break-all">
+                            @if ($project->github_url)
 
-                                {{ $project->github_url }}
+                                <a
+                                    href="{{ $project->github_url }}"
+                                    target="_blank"
+                                    class="mt-2 inline-block text-blue-600 hover:underline break-all">
 
-                            </a>
+                                    {{ $project->github_url }}
+
+                                </a>
+
+                            @else
+
+                                <p class="mt-2 text-slate-400">
+
+                                    No GitHub repository available.
+
+                                </p>
+
+                            @endif
 
                         </div>
+
+
+
+                        {{-- ==========================================
+                        LIVE DEMO
+                        =========================================== --}}
 
                         <div>
 
@@ -151,14 +216,26 @@ Responsibilities:
 
                             </h3>
 
-                            <a
-                                href="{{ $project->live_demo_url }}"
-                                target="_blank"
-                                class="text-blue-600 hover:underline break-all">
+                            @if ($project->live_demo_url)
 
-                                {{ $project->live_demo_url }}
+                                <a
+                                    href="{{ $project->live_demo_url }}"
+                                    target="_blank"
+                                    class="mt-2 inline-block text-blue-600 hover:underline break-all">
 
-                            </a>
+                                    {{ $project->live_demo_url }}
+
+                                </a>
+
+                            @else
+
+                                <p class="mt-2 text-slate-400">
+
+                                    No live demo available.
+
+                                </p>
+
+                            @endif
 
                         </div>
 
@@ -166,41 +243,193 @@ Responsibilities:
 
 
 
-                    {{-- ==========================================================
-                         PROJECT DESCRIPTION
+                    {{-- ==================================================
+                    PROJECT DESCRIPTION
+
+                    Purpose:
+                    Displays both the short summary and the
+                    detailed description of the project.
+                    =================================================== --}}
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                        {{-- ==========================================
+                        SHORT DESCRIPTION
+                        =========================================== --}}
+
+                        <div>
+
+                            <h3 class="text-lg font-semibold text-slate-800 mb-4">
+
+                                Short Description
+
+                            </h3>
+
+                            <p class="text-slate-700 leading-relaxed">
+
+                                {{ $project->short_description }}
+
+                            </p>
+
+                        </div>
+
+
+
+                        {{-- ==========================================
+                        FULL DESCRIPTION
+                        =========================================== --}}
+
+                        <div>
+
+                            <h3 class="text-lg font-semibold text-slate-800 mb-4">
+
+                                Full Description
+
+                            </h3>
+
+                            <div class="prose max-w-none text-slate-700">
+
+                                {{ $project->description }}
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    {{-- ==================================================
+                    PROJECT STATUS
+
+                    Purpose:
+                    Indicates whether this project is marked
+                    as a Featured Project.
+                    =================================================== --}}
+
+                    <div>
+
+                        <h3 class="text-lg font-semibold text-slate-800 mb-4">
+
+                            Featured Status
+
+                        </h3>
+
+                        @if ($project->featured)
+
+                            <span
+                                class="inline-flex px-4 py-2 rounded-full bg-green-100 text-green-700 font-medium">
+
+                                ★ Featured Project
+
+                            </span>
+
+                        @else
+
+                            <span
+                                class="inline-flex px-4 py-2 rounded-full bg-gray-100 text-gray-700 font-medium">
+
+                                Normal Project
+
+                            </span>
+
+                        @endif
+
+                    </div>
+
+
+
+                    {{-- ==================================================
+                    PROJECT TIMESTAMPS
+
+                    Purpose:
+                    Displays when the project was created and
+                    when it was last updated.
+                    =================================================== --}}
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                        <div>
+
+                            <h3 class="text-lg font-semibold text-slate-800">
+
+                                Created
+
+                            </h3>
+
+                            <p class="mt-2 text-slate-600">
+
+                                {{ $project->created_at->format('F d, Y \a\t h:i A') }}
+
+                            </p>
+
+                        </div>
+
+
+
+                        <div>
+
+                            <h3 class="text-lg font-semibold text-slate-800">
+
+                                Last Updated
+
+                            </h3>
+
+                            <p class="mt-2 text-slate-600">
+
+                                {{ $project->updated_at->format('F d, Y \a\t h:i A') }}
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                                        {{-- ==========================================================
+                    PAGE ACTIONS
+
+                    Purpose:
+                    Provides quick actions for administrators.
+
+                    Available Actions:
+                    • Return to the Projects page
+                    • Edit the current project
+
+                    Future Improvements:
+                    • Duplicate Project
+                    • Archive Project
+                    • Delete Project
+                    • Preview Public Portfolio Page
                     ========================================================== --}}
 
-                    <div>
+                    <div class="flex items-center justify-between border-t pt-8">
 
-                        <h3 class="text-lg font-semibold text-slate-800 mb-4">
+                        {{-- ======================================================
+                        BACK TO PROJECTS
+                        ======================================================= --}}
 
-                            Short Description
+                        <a
+                            href="{{ route('projects.index') }}"
+                            class="inline-flex items-center px-5 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">
 
-                        </h3>
+                            ← Back to Projects
 
-                        <p class="text-slate-700 leading-relaxed">
-
-                            {{ $project->short_description }}
-
-                        </p>
-
-                    </div>
+                        </a>
 
 
 
-                    <div>
+                        {{-- ======================================================
+                        EDIT PROJECT
+                        ======================================================= --}}
 
-                        <h3 class="text-lg font-semibold text-slate-800 mb-4">
+                        <a
+                            href="{{ route('projects.edit', $project) }}"
+                            class="inline-flex items-center px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
 
-                            Full Description
+                            Edit Project
 
-                        </h3>
-
-                        <div class="prose max-w-none text-slate-700">
-
-                            {{ $project->description }}
-
-                        </div>
+                        </a>
 
                     </div>
 

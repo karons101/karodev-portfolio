@@ -1,19 +1,20 @@
 {{-- ==========================================================
-PAGE: PROJECT MANAGEMENT
+PAGE: BLOG MANAGEMENT
 
 File:
-resources/views/admin/projects/index.blade.php
+resources/views/admin/blog/index.blade.php
 
 Purpose:
-Displays every portfolio project stored in the
-database.
+Displays every blog post stored in the database.
 
 Responsibilities:
-• List all projects
-• Display project images
-• Display project information
-• Navigate to Create Project page
-• Provide Edit/Delete actions
+• List all blog posts
+• Search blog posts
+• Display featured images
+• Display categories
+• Display publication status
+• Navigate to Create Blog page
+• View/Edit/Delete blog posts
 
 CRUD Progress:
 ✔ Create
@@ -26,18 +27,20 @@ CRUD Progress:
 <x-app-layout>
 
     {{-- =========================================================
-    DASHBOARD PAGE HEADER
+    DASHBOARD HEADER
     ========================================================== --}}
 
     <x-slot name="header">
 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
 
-            Project Management
+            Blog Management
 
         </h2>
 
     </x-slot>
+
+
 
     {{-- =========================================================
     MAIN PAGE
@@ -50,7 +53,7 @@ CRUD Progress:
             <x-admin.card>
 
                 {{-- =====================================================
-                PAGE TITLE
+                PAGE HEADER
                 ====================================================== --}}
 
                 <div class="flex items-center justify-between p-6 border-b">
@@ -59,22 +62,23 @@ CRUD Progress:
 
                         <h1 class="text-3xl font-bold text-slate-800">
 
-                            Projects
+                            Blog Posts
 
                         </h1>
 
                         <p class="mt-2 text-slate-600">
 
-                            Manage your portfolio projects.
+                            Manage all articles published on your portfolio.
 
                         </p>
 
                     </div>
 
-                    <a href="{{ route('projects.create') }}"
+                    <a
+                        href="{{ route('blog-posts.create') }}"
                         class="px-5 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
 
-                        + Add New Project
+                        + New Blog Post
 
                     </a>
 
@@ -82,53 +86,49 @@ CRUD Progress:
 
 
 
+                {{-- =====================================================
+                FLASH MESSAGES
+                ====================================================== --}}
 
-                {{-- ==========================================================
-                SEARCH PROJECTS
+                <x-flash-message />
 
-                Purpose:
-                Allows administrators to quickly search projects.
 
-                Search Fields:
-                • Project Title
-                • Technology
-                • Category
 
-                The search keyword is preserved while navigating
-                through paginated pages.
-                ========================================================== --}}
+                {{-- =====================================================
+                SEARCH BAR
+                ====================================================== --}}
 
-                <div class="p-6 border-b bg-white">
+                <div class="p-6 border-b">
 
-                    <form action="{{ route('projects.index') }}" method="GET" class="flex flex-col md:flex-row gap-4">
+                    <form
+                        action="{{ route('blog-posts.index') }}"
+                        method="GET">
 
-                        {{-- Search Input --}}
+                        <div class="flex gap-4">
 
-                        <input type="text" name="search" value="{{ request('search') }}"
-                            placeholder="Search by title, technology or category..."
-                            class="w-full md:flex-1 rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
+                            <input
 
-                        {{-- Search Button --}}
+                                type="text"
 
-                        <button type="submit"
-                            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                                name="search"
 
-                            Search
+                                value="{{ request('search') }}"
 
-                        </button>
+                                placeholder="Search by title, category or tags..."
 
-                        {{-- Clear Search Button --}}
+                                class="w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
 
-                        @if(request('search'))
+                            <button
 
-                            <a href="{{ route('projects.index') }}"
-                                class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition text-center">
+                                type="submit"
 
-                                Clear
+                                class="px-6 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition">
 
-                            </a>
+                                Search
 
-                        @endif
+                            </button>
+
+                        </div>
 
                     </form>
 
@@ -136,9 +136,8 @@ CRUD Progress:
 
 
 
-
                 {{-- =====================================================
-                PROJECT TABLE
+                BLOG TABLE
                 ====================================================== --}}
 
                 <div class="overflow-x-auto">
@@ -163,13 +162,19 @@ CRUD Progress:
 
                                 <th class="px-6 py-4 text-left">
 
-                                    Technology
+                                    Category
 
                                 </th>
 
                                 <th class="px-6 py-4 text-center">
 
-                                    Status
+                                    Published
+
+                                </th>
+
+                                <th class="px-6 py-4 text-center">
+
+                                    Featured
 
                                 </th>
 
@@ -185,32 +190,20 @@ CRUD Progress:
 
                         <tbody>
 
-                            @forelse ($projects as $project)
+                            @forelse ($blogPosts as $blogPost)
 
                                 <tr class="border-b hover:bg-slate-50 transition">
-
                                     {{-- ==========================================================
-                                    PROJECT IMAGE
-
-                                    Purpose:
-                                    Displays the project's thumbnail image.
-
-                                    Logic:
-                                    • If an image exists:
-                                    Display the uploaded image.
-
-                                    • Otherwise:
-                                    Display "No Image".
-
-                                    Images are loaded from Laravel's
-                                    public storage directory.
+                                    FEATURED IMAGE
                                     ========================================================== --}}
 
                                     <td class="px-6 py-4 text-center">
 
-                                        @if ($project->image)
+                                        @if ($blogPost->featured_image)
 
-                                            <img src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+                                            <img
+                                                src="{{ asset('storage/' . $blogPost->featured_image) }}"
+                                                alt="{{ $blogPost->title }}"
                                                 class="w-16 h-16 object-cover rounded-lg border mx-auto">
 
                                         @else
@@ -228,51 +221,66 @@ CRUD Progress:
 
 
                                     {{-- ==========================================================
-                                    PROJECT TITLE
+                                    BLOG TITLE
                                     ========================================================== --}}
 
                                     <td class="px-6 py-4 font-semibold text-slate-800">
 
-                                        {{ $project->title }}
+                                        {{ $blogPost->title }}
 
                                     </td>
 
 
 
                                     {{-- ==========================================================
-                                    TECHNOLOGY STACK
+                                    CATEGORY
                                     ========================================================== --}}
 
                                     <td class="px-6 py-4">
 
-                                        {{ $project->technology }}
+                                        {{ $blogPost->category }}
 
                                     </td>
 
 
 
                                     {{-- ==========================================================
-                                    PROJECT STATUS
-
-                                    Purpose:
-                                    Indicates whether this project is featured.
-
-                                    • Featured = Green badge
-                                    • Normal = Gray badge
-
-                                    Future:
-                                    • Draft
-                                    • Archived
-                                    • Hidden
-                                    • Completed
-                                    • In Progress
+                                    PUBLICATION STATUS
                                     ========================================================== --}}
 
                                     <td class="px-6 py-4 text-center">
 
-                                        @if ($project->featured)
+                                        @if ($blogPost->published)
 
                                             <span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
+
+                                                Published
+
+                                            </span>
+
+                                        @else
+
+                                            <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm">
+
+                                                Draft
+
+                                            </span>
+
+                                        @endif
+
+                                    </td>
+
+
+
+                                    {{-- ==========================================================
+                                    FEATURED STATUS
+                                    ========================================================== --}}
+
+                                    <td class="px-6 py-4 text-center">
+
+                                        @if ($blogPost->featured)
+
+                                            <span class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm">
 
                                                 Featured
 
@@ -300,38 +308,40 @@ CRUD Progress:
 
                                         <div class="flex items-center justify-center gap-4">
 
+                                            {{-- View Blog Post --}}
 
-                                            {{-- View Project --}}
-
-                                            <a href="{{ route('projects.show', $project) }}"
+                                            <a
+                                                href="{{ route('blog-posts.show', $blogPost) }}"
                                                 class="text-green-600 hover:text-green-800 font-medium">
 
                                                 View
 
                                             </a>
 
+                                            {{-- Edit Blog Post --}}
 
-                                            {{-- Edit Project --}}
-
-                                            <a href="{{ route('projects.edit', $project) }}"
+                                            <a
+                                                href="{{ route('blog-posts.edit', $blogPost) }}"
                                                 class="text-blue-600 hover:text-blue-800 font-medium">
 
                                                 Edit
 
                                             </a>
 
+                                            {{-- Delete Blog Post --}}
 
-
-                                            {{-- Delete Project --}}
-
-                                            <form action="{{ route('projects.destroy', $project) }}" method="POST"
+                                            <form
+                                                action="{{ route('blog-posts.destroy', $blogPost) }}"
+                                                method="POST"
                                                 class="inline">
 
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <button type="submit" class="text-red-600 hover:text-red-800 font-medium"
-                                                    onclick="return confirm('Are you sure you want to delete this project?')">
+                                                <button
+                                                    type="submit"
+                                                    onclick="return confirm('Are you sure you want to delete this blog post?')"
+                                                    class="text-red-600 hover:text-red-800 font-medium">
 
                                                     Delete
 
@@ -349,9 +359,9 @@ CRUD Progress:
 
                                 <tr>
 
-                                    <td colspan="5" class="px-6 py-12 text-center text-slate-500">
+                                    <td colspan="6" class="px-6 py-12 text-center text-slate-500">
 
-                                        No projects found.
+                                        No blog posts found.
 
                                     </td>
 
@@ -366,29 +376,16 @@ CRUD Progress:
                 </div>
 
 
-                {{-- ==========================================================
-                PROJECT PAGINATION
 
-                Purpose:
-                Displays professional Laravel pagination links.
+                {{-- =====================================================
+                PAGINATION
+                ====================================================== --}}
 
-                Features:
-                • Previous / Next navigation
-                • Page numbers
-                • Preserves search results
-                • Responsive layout
+                <div class="p-6">
 
-                ========================================================== --}}
+                    {{ $blogPosts->links() }}
 
-                @if ($projects->hasPages())
-
-                    <div class="px-6 py-6 border-t bg-white">
-
-                        {{ $projects->links() }}
-
-                    </div>
-
-                @endif
+                </div>
 
             </x-admin.card>
 
