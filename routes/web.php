@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SkillController;
 use App\Models\Project;
 use App\Models\BlogPost;
 use App\Models\Skill;
+use App\Http\Controllers\Admin\ExperienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,6 +153,14 @@ Route::middleware(['auth', 'admin'])
         */
 
         Route::resource('skills', SkillController::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Experience CMS
+        |--------------------------------------------------------------------------
+        */
+
+        Route::resource('experiences', ExperienceController::class);
 
     });
 
