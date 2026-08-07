@@ -34,6 +34,83 @@ inside the Admin Dashboard.
 
             <x-admin.flash-message />
 
+
+            {{-- ==========================================================
+            EXPERIENCE STATISTICS
+            ========================================================== --}}
+
+            <div class="grid grid-cols-1 gap-6 mb-6 md:grid-cols-2 xl:grid-cols-4">
+
+                {{-- Total Experiences --}}
+                <div class="rounded-xl bg-white p-6 shadow-sm">
+
+                    <p class="text-sm font-medium text-slate-500">
+
+                        Total Experiences
+
+                    </p>
+
+                    <h3 class="mt-2 text-3xl font-bold text-slate-800">
+
+                        {{ $experiences->total() }}
+
+                    </h3>
+
+                </div>
+
+                {{-- Current Positions --}}
+                <div class="rounded-xl bg-white p-6 shadow-sm">
+
+                    <p class="text-sm font-medium text-slate-500">
+
+                        Current Positions
+
+                    </p>
+
+                    <h3 class="mt-2 text-3xl font-bold text-green-600">
+
+                        {{ \App\Models\Experience::where('currently_working', true)->count() }}
+
+                    </h3>
+
+                </div>
+
+                {{-- Featured --}}
+                <div class="rounded-xl bg-white p-6 shadow-sm">
+
+                    <p class="text-sm font-medium text-slate-500">
+
+                        Featured
+
+                    </p>
+
+                    <h3 class="mt-2 text-3xl font-bold text-blue-600">
+
+                        {{ \App\Models\Experience::where('featured', true)->count() }}
+
+                    </h3>
+
+                </div>
+
+                {{-- Previous Positions --}}
+                <div class="rounded-xl bg-white p-6 shadow-sm">
+
+                    <p class="text-sm font-medium text-slate-500">
+
+                        Previous Positions
+
+                    </p>
+
+                    <h3 class="mt-2 text-3xl font-bold text-orange-600">
+
+                        {{ \App\Models\Experience::where('currently_working', false)->count() }}
+
+                    </h3>
+
+                </div>
+
+            </div>
+
             <x-admin.card>
 
                 <div class="p-6 border-b">
@@ -56,27 +133,51 @@ inside the Admin Dashboard.
                             <tr>
 
                                 <th class="px-6 py-3 text-left">
+
                                     Company
+
                                 </th>
 
                                 <th class="px-6 py-3 text-left">
+
                                     Position
+
                                 </th>
 
                                 <th class="px-6 py-3 text-left">
-                                    Employment
+
+                                    Location
+
                                 </th>
 
                                 <th class="px-6 py-3 text-left">
-                                    Period
+
+                                    Work Mode
+
                                 </th>
 
                                 <th class="px-6 py-3 text-left">
+
+                                    Status
+
+                                </th>
+
+                                <th class="px-6 py-3 text-left">
+
                                     Featured
+
+                                </th>
+
+                                <th class="px-6 py-3 text-left">
+
+                                    Sort
+
                                 </th>
 
                                 <th class="px-6 py-3 text-right">
+
                                     Actions
+
                                 </th>
 
                             </tr>
@@ -84,58 +185,120 @@ inside the Admin Dashboard.
                         </thead>
 
                         <tbody class="divide-y divide-gray-200">
+
                             @forelse ($experiences as $experience)
 
-                                <tr>
+                                <tr class="hover:bg-slate-50 transition">
 
-                                    <td class="px-6 py-4 font-medium text-slate-800">
+                                    {{-- Company --}}
+                                    <td class="px-6 py-4">
 
-                                        {{ $experience->company }}
+                                        <div class="font-semibold text-slate-800">
+
+                                            {{ $experience->company }}
+
+                                        </div>
 
                                     </td>
 
-                                    <td class="px-6 py-4 text-slate-700">
+                                    {{-- Position --}}
+                                    <td class="px-6 py-4">
 
-                                        {{ $experience->position }}
+                                        <div class="font-medium text-slate-700">
+
+                                            {{ $experience->position }}
+
+                                        </div>
+
+                                        <div class="text-sm text-slate-500">
+
+                                            {{ $experience->employment_type }}
+
+                                        </div>
 
                                     </td>
 
+                                    {{-- Location --}}
                                     <td class="px-6 py-4 text-slate-600">
 
-                                        {{ $experience->employment_type }}
+                                        {{ $experience->city ?: '-' }}
+
+                                        @if($experience->city && $experience->country)
+
+                                            ,
+
+                                        @endif
+
+                                        {{ $experience->country ?: '' }}
 
                                     </td>
 
-                                    <td class="px-6 py-4 text-slate-600">
+                                    {{-- Work Mode --}}
+                                    <td class="px-6 py-4">
 
-                                        {{ \Carbon\Carbon::parse($experience->start_date)->format('M Y') }}
+                                        @if($experience->work_mode == 'Remote')
 
-                                        -
+                                            <span
+                                                class="inline-flex rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
 
-                                        @if ($experience->currently_working)
+                                                Remote
 
-                                            <span class="font-semibold text-green-600">
+                                            </span>
 
-                                                Present
+                                        @elseif($experience->work_mode == 'Hybrid')
+
+                                            <span
+                                                class="inline-flex rounded-full bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-700">
+
+                                                Hybrid
 
                                             </span>
 
                                         @else
 
-                                            {{ optional($experience->end_date)
-                                                ? \Carbon\Carbon::parse($experience->end_date)->format('M Y')
-                                                : '-' }}
+                                            <span
+                                                class="inline-flex rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700">
+
+                                                On-site
+
+                                            </span>
 
                                         @endif
 
                                     </td>
 
+                                    {{-- Status --}}
                                     <td class="px-6 py-4">
 
-                                        @if ($experience->featured)
+                                        @if($experience->currently_working)
 
                                             <span
-                                                class="inline-flex px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
+                                                class="inline-flex rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
+
+                                                Current
+
+                                            </span>
+
+                                        @else
+
+                                            <span
+                                                class="inline-flex rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
+
+                                                Past
+
+                                            </span>
+
+                                        @endif
+
+                                    </td>
+
+                                    {{-- Featured --}}
+                                    <td class="px-6 py-4">
+
+                                        @if($experience->featured)
+
+                                            <span
+                                                class="inline-flex rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
 
                                                 ★ Featured
 
@@ -143,9 +306,9 @@ inside the Admin Dashboard.
 
                                         @else
 
-                                            <span class="inline-flex px-3 py-1 rounded-full bg-gray-100 text-gray-600 text-sm">
+                                            <span class="text-slate-400">
 
-                                                Normal
+                                                —
 
                                             </span>
 
@@ -153,19 +316,27 @@ inside the Admin Dashboard.
 
                                     </td>
 
+                                    {{-- Sort Order --}}
+                                    <td class="px-6 py-4 text-slate-600">
+
+                                        {{ $experience->sort_order }}
+
+                                    </td>
+
+                                    {{-- Actions --}}
                                     <td class="px-6 py-4">
 
                                         <div class="flex justify-end gap-2">
 
                                             <a href="{{ route('experiences.show', $experience) }}"
-                                                class="px-3 py-2 bg-slate-700 hover:bg-slate-800 text-white rounded-lg">
+                                                class="rounded-lg bg-slate-700 px-3 py-2 text-white hover:bg-slate-800">
 
                                                 View
 
                                             </a>
 
                                             <a href="{{ route('experiences.edit', $experience) }}"
-                                                class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
+                                                class="rounded-lg bg-blue-600 px-3 py-2 text-white hover:bg-blue-700">
 
                                                 Edit
 
@@ -178,7 +349,7 @@ inside the Admin Dashboard.
                                                 @method('DELETE')
 
                                                 <button type="submit"
-                                                    class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg">
+                                                    class="rounded-lg bg-red-600 px-3 py-2 text-white hover:bg-red-700">
 
                                                     Delete
 
@@ -196,7 +367,7 @@ inside the Admin Dashboard.
 
                                 <tr>
 
-                                    <td colspan="6" class="px-6 py-10 text-center text-slate-500">
+                                    <td colspan="8" class="px-6 py-10 text-center text-slate-500">
 
                                         No experience records found.
 

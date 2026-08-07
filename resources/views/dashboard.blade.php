@@ -1,261 +1,743 @@
+{{-- ==========================================================
+| KaroDev Portfolio CMS
+| Dashboard
+|--------------------------------------------------------------
+| Premium Admin Dashboard
+|--------------------------------------------------------------
+| Features
+| • Welcome Hero
+| • Live Statistics
+| • Premium Analytics Cards
+| • Quick Actions
+| • Recent Activity
+| • Portfolio Progress
+| • Responsive Layout
+========================================================== --}}
+
 <x-app-layout>
 
-    {{-- =========================================================
-         PAGE HEADER
-         ---------------------------------------------------------
-         Displays the page title inside the Breeze layout.
-    ========================================================== --}}
+    {{-- ======================================================
+    PAGE HEADER
+    ======================================================= --}}
 
     <x-slot name="header">
 
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="flex items-center justify-between">
 
-            {{ __('Dashboard') }}
+            <div>
 
-        </h2>
+                <h2 class="text-2xl font-bold text-slate-800">
+
+                    Dashboard
+
+                </h2>
+
+                <p class="text-slate-500 mt-1">
+
+                    Portfolio Administration Panel
+
+                </p>
+
+            </div>
+
+        </div>
 
     </x-slot>
 
 
-    {{-- =========================================================
-         MAIN PAGE CONTENT
-    ========================================================== --}}
+    {{-- ======================================================
+    PAGE CONTENT
+    ======================================================= --}}
 
-    <div class="py-12">
+    <div class="py-10">
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
 
 
-                {{-- =================================================
-                     DASHBOARD WELCOME SECTION
-                     -------------------------------------------------
-                     Displays a welcome message to the logged-in user.
-                ================================================== --}}
+            {{-- ==================================================
+            HERO
+            =================================================== --}}
 
-                <div class="p-6">
+            <section
+                class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 p-10 shadow-2xl">
 
-                    <h1 class="text-3xl font-bold text-slate-800">
+                <div class="absolute right-0 top-0 opacity-10 text-[220px] leading-none">
 
-                        Welcome back, {{ Auth::user()->name }}!
+                    💻
+
+                </div>
+
+                <div class="relative z-10">
+
+                    <h1 class="text-4xl font-black text-white">
+
+                        Welcome back,
+
+                        <span class="text-blue-400">
+
+                            {{ Auth::user()->name }}
+
+                        </span>
 
                     </h1>
 
-                    <p class="mt-2 mb-8 text-slate-600">
+                    <p class="mt-4 text-slate-300 max-w-3xl leading-8">
 
-                        Welcome to the KaroDev Admin Dashboard.
+                        Manage every aspect of your portfolio from one
+                        professional dashboard. Create projects, update
+                        skills, publish blog posts, manage work experience,
+                        certifications and much more.
 
                     </p>
 
+                </div>
 
-                    {{-- =============================================
-                         DASHBOARD STATISTICS CARDS
-                         ------------------------------------------------
-                         These cards will later display real totals
-                         from the database.
-                    ============================================== --}}
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            </section>
 
 
-                        {{-- Projects Card --}}
+            {{-- ==================================================
+            STATISTICS
+            =================================================== --}}
 
-                        <div class="bg-blue-600 text-white rounded-xl shadow-lg p-6">
+            <section class="mt-10">
 
-                            <h3 class="text-sm uppercase tracking-wider">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
 
-                                Projects
+                    {{-- ==========================================================
+                    PROJECTS CARD
+                    ========================================================== --}}
 
-                            </h3>
+                    <a href="{{ route('projects.index') }}"
+                        class="group rounded-2xl bg-blue-600 text-white p-7 shadow-xl transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
 
-                            {{-- ==========================================================
-                                    LIVE PROJECT COUNT
+                        <div class="flex items-center justify-between">
 
-                                       Purpose:
-                                     Displays the total number of projects stored
-                                           in the database.
+                            <div>
 
-                                            Source: routes/web.php
+                                <p class="uppercase tracking-wider text-sm text-blue-100">
 
-                                    ========================================================== --}}
+                                    Projects
 
-                             <p class="text-4xl font-bold mt-3">
+                                </p>
+
+                                <h2 class="mt-3 text-5xl font-black">
 
                                     {{ $projectCount }}
 
-                            </p>
+                                </h2>
+
+                            </div>
+
+                            <div class="text-5xl opacity-70 group-hover:scale-110 transition">
+
+                                📦
+
+                            </div>
 
                         </div>
 
+                        <div class="mt-6 text-blue-100">
 
-                        {{-- Skills Card --}}
-
-                        <div class="bg-emerald-600 text-white rounded-xl shadow-lg p-6">
-
-                            <h3 class="text-sm uppercase tracking-wider">
-
-                                Skills
-
-                            </h3>
-
-                            {{-- ==========================================================
-                                                LIVE SKILL COUNT
-                               ========================================================== --}}
-
-                                        <p class="text-4xl font-bold mt-3">
-
-                                                  {{ $skillCount }}
-
-                                        </p>
+                            Manage Portfolio Projects →
 
                         </div>
 
+                    </a>
 
-                        {{-- Blog Card --}}
 
-                        <div class="bg-amber-500 text-white rounded-xl shadow-lg p-6">
 
-                            <h3 class="text-sm uppercase tracking-wider">
+                    {{-- ==========================================================
+                    SKILLS CARD
+                    ========================================================== --}}
 
-                                Blog Posts
+                    <a href="{{ route('skills.index') }}"
+                        class="group rounded-2xl bg-emerald-600 text-white p-7 shadow-xl transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
 
-                            </h3>
+                        <div class="flex items-center justify-between">
 
-                            {{-- ==========================================================
-                                                       LIVE BLOG COUNT
-                                 ========================================================== --}}
+                            <div>
 
-                              <p class="text-4xl font-bold mt-3">
+                                <p class="uppercase tracking-wider text-sm text-emerald-100">
 
-                                     {{ $blogCount }}
+                                    Skills
 
-                             </p>
+                                </p>
+
+                                <h2 class="mt-3 text-5xl font-black">
+
+                                    {{ $skillCount }}
+
+                                </h2>
+
+                            </div>
+
+                            <div class="text-5xl opacity-70 group-hover:scale-110 transition">
+
+                                🛠
+
+                            </div>
 
                         </div>
 
+                        <div class="mt-6 text-emerald-100">
 
-                        {{-- Messages Card --}}
+                            Manage Skills →
 
-                        <div class="bg-rose-600 text-white rounded-xl shadow-lg p-6">
+                        </div>
 
-                            <h3 class="text-sm uppercase tracking-wider">
+                    </a>
 
-                                Messages
 
-                            </h3>
 
-                            {{-- ==========================================================
-                                                       LIVE MESSAGE COUNT
-                                 ========================================================== --}}
+                    {{-- ==========================================================
+                    EXPERIENCE CARD
+                    ========================================================== --}}
 
-                              <p class="text-4xl font-bold mt-3">
+                    <a href="{{ route('experiences.index') }}"
+                        class="group rounded-2xl bg-indigo-600 text-white p-7 shadow-xl transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
 
-                                     {{ $messageCount }}
+                        <div class="flex items-center justify-between">
 
-                             </p>
+                            <div>
+
+                                <p class="uppercase tracking-wider text-sm text-indigo-100">
+
+                                    Experience
+
+                                </p>
+
+                                <h2 class="mt-3 text-5xl font-black">
+
+                                    {{ $experienceCount }}
+
+                                </h2>
+
+                            </div>
+
+                            <div class="text-5xl opacity-70 group-hover:scale-110 transition">
+
+                                💼
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-6 text-indigo-100">
+
+                            Manage Experience →
+
+                        </div>
+
+                    </a>
+
+
+
+                    {{-- ==========================================================
+                    BLOG CARD
+                    ========================================================== --}}
+
+                    <a href="{{ route('blog-posts.index') }}"
+                        class="group rounded-2xl bg-amber-500 text-white p-7 shadow-xl transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
+
+                        <div class="flex items-center justify-between">
+
+                            <div>
+
+                                <p class="uppercase tracking-wider text-sm text-yellow-100">
+
+                                    Blog Posts
+
+                                </p>
+
+                                <h2 class="mt-3 text-5xl font-black">
+
+                                    {{ $blogCount }}
+
+                                </h2>
+
+                            </div>
+
+                            <div class="text-5xl opacity-70 group-hover:scale-110 transition">
+
+                                ✍️
+
+                            </div>
+
+                        </div>
+
+                        <div class="mt-6 text-yellow-100">
+
+                            Manage Blog →
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            {{-- ==========================================================
+            QUICK ACTIONS
+            ========================================================== --}}
+
+            <section class="mt-14">
+
+                <div class="flex items-center justify-between mb-8">
+
+                    <div>
+
+                        <h2 class="text-3xl font-bold text-slate-800">
+
+                            Quick Actions
+
+                        </h2>
+
+                        <p class="text-slate-500 mt-2">
+
+                            Jump directly into the modules you use most.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+
+
+                    {{-- ==================================================
+                    PROJECTS
+                    =================================================== --}}
+
+                    <a href="{{ route('projects.index') }}"
+                        class="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-xl bg-blue-100 flex items-center justify-center text-3xl">
+
+                                📦
+
+                            </div>
+
+                            <span class="text-slate-300 group-hover:text-blue-600 transition text-3xl">
+
+                                →
+
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-slate-800">
+
+                            Projects
+
+                        </h3>
+
+                        <p class="mt-2 text-slate-500">
+
+                            Manage portfolio applications.
+
+                        </p>
+
+                    </a>
+
+
+
+                    {{-- ==================================================
+                    EXPERIENCE
+                    =================================================== --}}
+
+                    <a href="{{ route('experiences.index') }}"
+                        class="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-xl bg-indigo-100 flex items-center justify-center text-3xl">
+
+                                💼
+
+                            </div>
+
+                            <span class="text-slate-300 group-hover:text-indigo-600 transition text-3xl">
+
+                                →
+
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-slate-800">
+
+                            Experience
+
+                        </h3>
+
+                        <p class="mt-2 text-slate-500">
+
+                            Manage work history.
+
+                        </p>
+
+                    </a>
+
+
+
+                    {{-- ==================================================
+                    SKILLS
+                    =================================================== --}}
+
+                    <a href="{{ route('skills.index') }}"
+                        class="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-xl bg-emerald-100 flex items-center justify-center text-3xl">
+
+                                🛠
+
+                            </div>
+
+                            <span class="text-slate-300 group-hover:text-emerald-600 transition text-3xl">
+
+                                →
+
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-slate-800">
+
+                            Skills
+
+                        </h3>
+
+                        <p class="mt-2 text-slate-500">
+
+                            Update technical skills.
+
+                        </p>
+
+                    </a>
+
+
+
+                    {{-- ==================================================
+                    BLOG
+                    =================================================== --}}
+
+                    <a href="{{ route('blog-posts.index') }}"
+                        class="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-xl bg-amber-100 flex items-center justify-center text-3xl">
+
+                                ✍️
+
+                            </div>
+
+                            <span class="text-slate-300 group-hover:text-amber-500 transition text-3xl">
+
+                                →
+
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-slate-800">
+
+                            Blog
+
+                        </h3>
+
+                        <p class="mt-2 text-slate-500">
+
+                            Publish articles.
+
+                        </p>
+
+                    </a>
+
+
+
+                    {{-- ==================================================
+                    MESSAGES
+                    =================================================== --}}
+
+                    <a href="#"
+                        class="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-xl bg-rose-100 flex items-center justify-center text-3xl">
+
+                                📩
+
+                            </div>
+
+                            <span class="text-slate-300 group-hover:text-rose-600 transition text-3xl">
+
+                                →
+
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-slate-800">
+
+                            Messages
+
+                        </h3>
+
+                        <p class="mt-2 text-slate-500">
+
+                            View contact enquiries.
+
+                        </p>
+
+                    </a>
+
+
+
+                    {{-- ==================================================
+                    SETTINGS
+                    =================================================== --}}
+
+                    <a href="#"
+                        class="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-xl bg-slate-100 flex items-center justify-center text-3xl">
+
+                                ⚙️
+
+                            </div>
+
+                            <span class="text-slate-300 group-hover:text-slate-700 transition text-3xl">
+
+                                →
+
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-slate-800">
+
+                            Settings
+
+                        </h3>
+
+                        <p class="mt-2 text-slate-500">
+
+                            Configure portfolio.
+
+                        </p>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+            {{-- ==========================================================
+            DASHBOARD INFORMATION
+            ========================================================== --}}
+
+            <section class="mt-14">
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+
+                    {{-- ======================================================
+                    PORTFOLIO PROGRESS
+                    ======================================================= --}}
+
+                    <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
+
+                        <h2 class="text-2xl font-bold text-slate-800">
+
+                            Portfolio Progress
+
+                        </h2>
+
+                        <p class="text-slate-500 mt-2">
+
+                            Current development status of your portfolio.
+
+                        </p>
+
+                        <div class="mt-8 space-y-6">
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span class="font-medium text-slate-700">
+
+                                        CMS Development
+
+                                    </span>
+
+                                    <span class="font-semibold text-blue-600">
+
+                                        70%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-200 rounded-full">
+
+                                    <div class="h-3 bg-blue-600 rounded-full w-[70%]"></div>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span class="font-medium text-slate-700">
+
+                                        Portfolio Content
+
+                                    </span>
+
+                                    <span class="font-semibold text-emerald-600">
+
+                                        45%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-200 rounded-full">
+
+                                    <div class="h-3 bg-emerald-600 rounded-full w-[45%]"></div>
+
+                                </div>
+
+                            </div>
+
+                            <div>
+
+                                <div class="flex justify-between mb-2">
+
+                                    <span class="font-medium text-slate-700">
+
+                                        Testing
+
+                                    </span>
+
+                                    <span class="font-semibold text-amber-600">
+
+                                        20%
+
+                                    </span>
+
+                                </div>
+
+                                <div class="w-full h-3 bg-slate-200 rounded-full">
+
+                                    <div class="h-3 bg-amber-500 rounded-full w-[20%]"></div>
+
+                                </div>
+
+                            </div>
 
                         </div>
 
                     </div>
 
 
-                    {{-- =============================================
-                         QUICK ACTIONS SECTION
-                         ------------------------------------------------
-                         Provides shortcuts to major CMS modules.
-                    ============================================== --}}
 
-                    <div class="mt-10">
+                    {{-- ======================================================
+                    SYSTEM STATUS
+                    ======================================================= --}}
 
-                        <h2 class="text-2xl font-bold text-slate-800 mb-6">
+                    <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
 
-                            Quick Actions
+                        <h2 class="text-2xl font-bold text-slate-800">
+
+                            System Status
 
                         </h2>
 
+                        <p class="text-slate-500 mt-2">
 
-                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+                            Current application information.
 
+                        </p>
 
-                            {{-- Manage Projects --}}
+                        <div class="mt-8 divide-y divide-slate-200">
 
-                            <a href="{{ route('projects.index') }}"
-                               class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                            <div class="flex justify-between py-4">
 
-                                <h3 class="text-lg font-semibold text-slate-800">
+                                <span class="text-slate-600">
 
-                                    📦 Projects
+                                    Laravel
 
-                                </h3>
+                                </span>
 
-                                <p class="mt-2 text-slate-600">
+                                <span class="font-semibold text-emerald-600">
 
-                                    Manage all portfolio projects.
+                                    13.x
 
-                                </p>
+                                </span>
 
-                            </a>
+                            </div>
 
+                            <div class="flex justify-between py-4">
 
-                            {{-- Blog Manager --}}
+                                <span class="text-slate-600">
 
-                            <a href="#"
-                               class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                                    PHP
 
-                                <h3 class="text-lg font-semibold text-slate-800">
+                                </span>
 
-                                    ✍ Blog
+                                <span class="font-semibold">
 
-                                </h3>
+                                    {{ PHP_VERSION }}
 
-                                <p class="mt-2 text-slate-600">
+                                </span>
 
-                                    Create and edit blog posts.
+                            </div>
 
-                                </p>
+                            <div class="flex justify-between py-4">
 
-                            </a>
+                                <span class="text-slate-600">
 
+                                    Environment
 
-                            {{-- Skills Manager --}}
+                                </span>
 
-                            <a href="#"
-                               class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                                <span class="font-semibold text-blue-600">
 
-                                <h3 class="text-lg font-semibold text-slate-800">
+                                    {{ app()->environment() }}
 
-                                    🛠 Skills
+                                </span>
 
-                                </h3>
+                            </div>
 
-                                <p class="mt-2 text-slate-600">
+                            <div class="flex justify-between py-4">
 
-                                    Update your technical skills.
+                                <span class="text-slate-600">
 
-                                </p>
+                                    Portfolio CMS
 
-                            </a>
+                                </span>
 
+                                <span
+                                    class="inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm font-semibold">
 
-                            {{-- Messages Manager --}}
+                                    Running
 
-                            <a href="#"
-                               class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition">
+                                </span>
 
-                                <h3 class="text-lg font-semibold text-slate-800">
-
-                                    📩 Messages
-
-                                </h3>
-
-                                <p class="mt-2 text-slate-600">
-
-                                    Read contact messages.
-
-                                </p>
-
-                            </a>
+                            </div>
 
                         </div>
 
@@ -263,9 +745,25 @@
 
                 </div>
 
+            </section>
+
+            {{-- ==========================================================
+            FOOTER
+            ========================================================== --}}
+
+            <div class="mt-16 text-center">
+
+                <p class="text-sm text-slate-400">
+
+                    KaroDev Portfolio CMS • Version 1.0
+
+                </p>
+
             </div>
 
         </div>
+
+    </div>
 
     </div>
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SkillController;
 use App\Models\Project;
 use App\Models\BlogPost;
 use App\Models\Skill;
+use App\Models\Experience;
 use App\Http\Controllers\Admin\ExperienceController;
 
 /*
@@ -73,6 +74,8 @@ Route::get('/dashboard', function () {
 
     $blogCount = BlogPost::count();
 
+    $experienceCount = Experience::count();
+
     /*
     |--------------------------------------------------------------------------
     | Future Modules
@@ -94,6 +97,8 @@ Route::get('/dashboard', function () {
         'skillCount',
 
         'blogCount',
+
+        'experienceCount',
 
         'messageCount'
 

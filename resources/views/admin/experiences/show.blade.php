@@ -186,9 +186,9 @@ Displays one Experience record.
 
                                 @else
 
-                                    {{ $experience->end_date
-                                      ? \Carbon\Carbon::parse($experience->end_date)->format('M Y')
-                                      : '-' }}
+                                                            {{ $experience->end_date
+                                    ? \Carbon\Carbon::parse($experience->end_date)->format('M Y')
+                                    : '-' }}
 
                                 @endif
 
@@ -265,7 +265,32 @@ Displays one Experience record.
 
                         <p class="mt-2">
 
-                            {{ $experience->technologies ?: '-' }}
+                            @if ($experience->technologies)
+
+                                <div class="flex flex-wrap gap-2 mt-2">
+
+                                    @foreach (explode(',', $experience->technologies) as $technology)
+
+                                        <span
+                                            class="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
+
+                                            {{ trim($technology) }}
+
+                                        </span>
+
+                                    @endforeach
+
+                                </div>
+
+                            @else
+
+                            <span class="text-slate-500">
+
+                                -
+
+                            </span>
+
+                        @endif
 
                         </p>
 
