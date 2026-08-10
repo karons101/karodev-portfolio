@@ -1,16 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\ProfileController;
+
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\BlogPostController;
 use App\Http\Controllers\Admin\SkillController;
+use App\Http\Controllers\Admin\CertificationController;
+use App\Http\Controllers\Admin\ExperienceController;
 
 use App\Models\Project;
 use App\Models\BlogPost;
 use App\Models\Skill;
 use App\Models\Experience;
-use App\Http\Controllers\Admin\ExperienceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,6 +169,18 @@ Route::middleware(['auth', 'admin'])
         */
 
         Route::resource('experiences', ExperienceController::class);
+
+        /*
+        |--------------------------------------------------------------------------
+        | Certifications CMS
+        |--------------------------------------------------------------------------
+        |
+        | Provides the complete Certification CRUD.
+        |
+        |--------------------------------------------------------------------------
+        */
+
+        Route::resource('certifications', CertificationController::class);
 
     });
 

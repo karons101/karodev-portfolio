@@ -12,6 +12,40 @@
 | • Recent Activity
 | • Portfolio Progress
 | • Responsive Layout
+
+
+FILE:
+resources/views/dashboard.blade.php
+
+MODULE:
+Admin Dashboard
+
+PURPOSE:
+Main control center for the KaroDev Portfolio CMS.
+
+DESCRIPTION:
+This dashboard is the first page an authenticated
+administrator sees after logging in.
+
+It provides:
+
+• Welcome Hero
+• Live Statistics
+• Quick Navigation
+• CMS Shortcuts
+• Future Analytics
+• Future Notifications
+
+DEPENDENCIES
+
+• Auth
+• Project Model
+• Skill Model
+• BlogPost Model
+• ContactMessage Model
+
+AUTHOR
+KaroDev Portfolio CMS
 ========================================================== --}}
 
 <x-app-layout>
