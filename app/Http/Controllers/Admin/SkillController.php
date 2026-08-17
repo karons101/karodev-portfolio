@@ -23,7 +23,7 @@ class SkillController extends Controller
             ->when($request->search, function ($query) use ($request) {
 
                 $query->where('name', 'like', "%{$request->search}%")
-                      ->orWhere('category', 'like', "%{$request->search}%");
+                    ->orWhere('category', 'like', "%{$request->search}%");
 
             })
 
@@ -56,19 +56,21 @@ class SkillController extends Controller
 
     public function store(StoreSkillRequest $request)
     {
-        Skill::create($request->validated());
+        $validated = $request->validated();
+
+        $validated['featured'] = $request->boolean('featured');
+
+        Skill::create($validated);
 
         return redirect()
-
             ->route('skills.index')
-
             ->with('success', 'Skill created successfully.');
     }
-        /*
-    |--------------------------------------------------------------------------
-    | View Skill
-    |--------------------------------------------------------------------------
-    */
+    /*
+|--------------------------------------------------------------------------
+| View Skill
+|--------------------------------------------------------------------------
+*/
 
     public function show(Skill $skill)
     {
@@ -94,12 +96,14 @@ class SkillController extends Controller
 
     public function update(UpdateSkillRequest $request, Skill $skill)
     {
-        $skill->update($request->validated());
+        $validated = $request->validated();
+
+        $validated['featured'] = $request->boolean('featured');
+
+        $skill->update($validated);
 
         return redirect()
-
             ->route('skills.index')
-
             ->with('success', 'Skill updated successfully.');
     }
 
