@@ -47,6 +47,10 @@ class Project extends Model
 
         'featured',
 
+        'published',
+        
+        'sort_order',
+
     ];
 
 }

@@ -2,24 +2,16 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProjectRequest extends FormRequest
 {
-    /* ==========================================================
-       AUTHORIZATION
-
-       Purpose:
-       Determines whether the current user is
-       allowed to update a project.
-
-       For now:
-       Any authenticated admin user may proceed.
-
-       Later:
-       We'll add Roles & Permissions.
-    ========================================================== */
+    /*
+    |--------------------------------------------------------------------------
+    | AUTHORIZATION
+    |--------------------------------------------------------------------------
+    */
 
     public function authorize(): bool
     {
@@ -27,23 +19,21 @@ class UpdateProjectRequest extends FormRequest
     }
 
 
-
-    /* ==========================================================
-       VALIDATION RULES
-
-       Purpose:
-       Validates all incoming project data before
-       it reaches the ProjectController.
-
-       Notes:
-       • Uses the same validation rules as creating
-         a project.
-       • The image becomes optional during editing.
-    ========================================================== */
+    /*
+    |--------------------------------------------------------------------------
+    | VALIDATION RULES
+    |--------------------------------------------------------------------------
+    */
 
     public function rules(): array
     {
         return [
+
+            /*
+            |--------------------------------------------------------------------------
+            | BASIC INFORMATION
+            |--------------------------------------------------------------------------
+            */
 
             'title' => [
                 'required',
@@ -55,6 +45,8 @@ class UpdateProjectRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
+                Rule::unique('projects', 'slug')
+                    ->ignore($this->route('project')),
             ],
 
             'technology' => [
@@ -69,15 +61,31 @@ class UpdateProjectRequest extends FormRequest
                 'max:255',
             ],
 
+
+            /*
+            |--------------------------------------------------------------------------
+            | PROJECT LINKS
+            |--------------------------------------------------------------------------
+            */
+
             'github_url' => [
                 'nullable',
                 'url',
+                'max:2048',
             ],
 
             'live_demo_url' => [
                 'nullable',
                 'url',
+                'max:2048',
             ],
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | PROJECT DESCRIPTION
+            |--------------------------------------------------------------------------
+            */
 
             'short_description' => [
                 'required',
@@ -90,16 +98,41 @@ class UpdateProjectRequest extends FormRequest
                 'string',
             ],
 
+
+            /*
+            |--------------------------------------------------------------------------
+            | PROJECT IMAGE
+            |--------------------------------------------------------------------------
+            */
+
             'image' => [
                 'nullable',
                 'image',
                 'mimes:jpg,jpeg,png,webp',
-                'max:2048',
+                'max:4096',
             ],
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | PORTFOLIO DISPLAY SETTINGS
+            |--------------------------------------------------------------------------
+            */
 
             'featured' => [
                 'nullable',
                 'boolean',
+            ],
+
+            'published' => [
+                'nullable',
+                'boolean',
+            ],
+
+            'sort_order' => [
+                'nullable',
+                'integer',
+                'min:0',
             ],
 
         ];

@@ -249,6 +249,8 @@ class BlogPostController extends Controller
         */
 
         $validated = $request->validated();
+        $validated['featured'] = $request->boolean('featured');
+        $validated['published'] = $request->boolean('published');
 
 
 
