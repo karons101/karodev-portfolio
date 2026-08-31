@@ -14,22 +14,21 @@ Experience CMS:
     • Breeze page header
     • Admin flash messages
     • Existing <x-admin.card> component
-        • Tailwind CSS styling
-        • Responsive layout
+    • Tailwind CSS styling
+    • Responsive layout
 
-        This prevents the Certifications page from becoming
-        a separate unstyled HTML page.
-        ========================================================== --}}
+This prevents the Certifications page from becoming a separate unstyled HTML page.
+========================================================== --}}
 
 
         <x-app-layout>
 
 
-            {{-- ==========================================================
-            PAGE HEADER
-            ----------------------------------------------------------
-            Displays the page title and the primary action button.
-            =========================================================== --}}
+{{-- ==========================================================
+    PAGE HEADER
+    ----------------------------------------------------------
+    Displays the page title and the primary action button.
+=========================================================== --}}
 
             <x-slot name="header">
 
@@ -213,7 +212,7 @@ Experience CMS:
 
                             <h3 class="mt-2 text-3xl font-bold text-green-600">
 
-                                {{ \App\Models\Certification::whereNotNull('certificate_url')->count() }}
+                                {{ \App\Models\Certification::whereNotNull('credential_url')->count() }}
 
                             </h3>
 
@@ -250,7 +249,7 @@ Experience CMS:
 
                             <h3 class="mt-2 text-3xl font-bold text-orange-600">
 
-                                {{ \App\Models\Certification::query()->distinct('issuer')->count('issuer') }}
+                                {{ \App\Models\Certification::query()->distinct('issuing_organization')->count('issuing_organization') }}
 
                             </h3>
 
@@ -494,7 +493,7 @@ Experience CMS:
                                                                                     <div class="font-semibold
                                                                                                                            text-slate-800">
 
-                                                                                        {{ $certification->title }}
+                                                                                        {{ $certification->name }}
 
                                                                                     </div>
 
@@ -525,7 +524,7 @@ Experience CMS:
                                                                             <div class="font-medium
                                                                                                                    text-slate-700">
 
-                                                                                {{ $certification->issuer }}
+                                                                                {{ $certification->issuing_organization }}
 
                                                                             </div>
 
@@ -547,10 +546,10 @@ Experience CMS:
 
                                                                             <span class="text-sm text-slate-600">
 
-                                                                                {{ $certification->issued_at
-                                        ? \Carbon\Carbon::parse($certification->issued_at)->format('M Y')
-                                        : '—'
-                                                                                                            }}
+                                                                                {{ $certification->issue_date
+                                                                                           ? $certification->issue_date->format('M Y')
+                                                                                    : '—'
+                                                                                                                                    }}
 
                                                                             </span>
 
@@ -565,9 +564,9 @@ Experience CMS:
                                                                         <td class="px-6 py-5">
 
 
-                                                                            @if ($certification->certificate_url)
+                                                                            @if ($certification->credential_url)
 
-                                                                                <a href="{{ $certification->certificate_url }}" target="_blank"
+                                                                                <a href="{{ $certification->credential_url }}" target="_blank"
                                                                                     rel="noopener noreferrer" class="inline-flex
                                                                                                                                items-center
                                                                                                                                rounded-lg

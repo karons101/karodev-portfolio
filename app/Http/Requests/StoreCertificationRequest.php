@@ -96,10 +96,11 @@ class StoreCertificationRequest extends FormRequest
             |
             */
 
-            'image' => [
+            'certificate_file' => [
                 'nullable',
-                'string',
-                'max:255',
+                'file',
+                'mimes:pdf,jpeg,jpg,png,webp',
+                'max:5120',
             ],
 
 

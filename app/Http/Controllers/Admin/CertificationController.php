@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Certification;
+use App\Http\Requests\StoreCertificationRequest;
+use App\Http\Requests\UpdateCertificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -126,7 +128,7 @@ class CertificationController extends Controller
     |
     */
 
-    public function store(Request $request)
+    public function store(StoreCertificationRequest $request)
     {
         /*
         |--------------------------------------------------------------------------
@@ -134,140 +136,7 @@ class CertificationController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        $validated = $request->validate([
-
-            /*
-            |--------------------------------------------------------------------------
-            | CERTIFICATION NAME
-            |--------------------------------------------------------------------------
-            */
-
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-            ],
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | ISSUING ORGANIZATION
-            |--------------------------------------------------------------------------
-            */
-
-            'issuing_organization' => [
-                'required',
-                'string',
-                'max:255',
-            ],
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | ISSUE DATE
-            |--------------------------------------------------------------------------
-            */
-
-            'issue_date' => [
-                'required',
-                'date',
-            ],
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | EXPIRATION DATE
-            |--------------------------------------------------------------------------
-            |
-            | Optional because many certifications do not expire.
-            |
-            */
-
-            'expiration_date' => [
-                'nullable',
-                'date',
-                'after_or_equal:issue_date',
-            ],
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | CREDENTIAL ID
-            |--------------------------------------------------------------------------
-            */
-
-            'credential_id' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | CREDENTIAL / VERIFICATION URL
-            |--------------------------------------------------------------------------
-            */
-
-            'credential_url' => [
-                'nullable',
-                'url',
-                'max:2048',
-            ],
-
-
-        /*
-        |------------------------------------------------------------------------
-        | CERTIFICATE FILE
-        |--------------------------------------------------------------------------
-        |
-        | Supported:
-        |
-        | • PDF
-        | • JPEG
-        | • JPG
-        | • PNG
-        | • WebP
-        |
-        | Maximum size:
-        |
-        | 5 MB
-        |
-        */
-
-            'certificate_file' => [
-                'nullable',
-                'file',
-                'mimes:pdf,jpeg,jpg,png,webp',
-                'max:5120',
-            ],
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | FEATURED
-            |--------------------------------------------------------------------------
-            */
-
-            'featured' => [
-                'nullable',
-                'boolean',
-            ],
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | SORT ORDER
-            |--------------------------------------------------------------------------
-            */
-
-            'sort_order' => [
-                'nullable',
-                'integer',
-                'min:0',
-            ],
-
-        ]);
+        $validated = $request->validated();
 
 
         /*
@@ -395,7 +264,7 @@ class CertificationController extends Controller
     */
 
     public function update(
-        Request $request,
+        UpdateCertificationRequest $request,
         Certification $certification
     ) {
 
@@ -405,62 +274,7 @@ class CertificationController extends Controller
         |--------------------------------------------------------------------------
         */
 
-        $validated = $request->validate([
-
-            'name' => [
-                'required',
-                'string',
-                'max:255',
-            ],
-
-            'issuing_organization' => [
-                'required',
-                'string',
-                'max:255',
-            ],
-
-            'issue_date' => [
-                'required',
-                'date',
-            ],
-
-            'expiration_date' => [
-                'nullable',
-                'date',
-                'after_or_equal:issue_date',
-            ],
-
-            'credential_id' => [
-                'nullable',
-                'string',
-                'max:255',
-            ],
-
-            'credential_url' => [
-                'nullable',
-                'url',
-                'max:2048',
-            ],
-
-            'certificate_file' => [
-                'nullable',
-                'file',
-                'mimes:pdf,jpeg,jpg,png,webp',
-                'max:5120',
-            ],
-
-            'featured' => [
-                'nullable',
-                'boolean',
-            ],
-
-            'sort_order' => [
-                'nullable',
-                'integer',
-                'min:0',
-            ],
-
-        ]);
+        $validated = $request->validated();
 
 
         /*
