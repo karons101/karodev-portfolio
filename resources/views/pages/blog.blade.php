@@ -4,104 +4,73 @@
 
 @section('content')
 
-{{-- ==========================================
-     COMPONENT: BLOG SECTION
+    {{-- ==========================================
+    COMPONENT: BLOG SECTION
 
-     Purpose:
-     Displays technical articles, software
-     engineering insights and project
-     case studies.
-========================================== --}}
+    Purpose:
+    Displays technical articles, software
+    engineering insights and project
+    case studies.
+    ========================================== --}}
 
-<section class="blog">
+    <section class="blog">
 
-    <div class="container">
+        <div class="container">
 
-        <span class="section-tag">
-            Technical Blog
-        </span>
+            <span class="section-tag">
+                Technical Blog
+            </span>
 
-        <h2>Sharing Knowledge Through Software Engineering</h2>
+            <h2>Sharing Knowledge Through Software Engineering</h2>
 
-        <p class="section-description">
-            I enjoy documenting my development journey, sharing technical
-            knowledge and explaining how modern software solutions are
-            designed, built and maintained.
-        </p>
-
-        <div class="blog-grid">
+            <p class="section-description">
+                I enjoy documenting my development journey, sharing technical
+                knowledge and explaining how modern software solutions are
+                designed, built and maintained.
+            </p>
 
             {{-- ==========================================
-                 BLOG ARTICLE
-                 Laravel
+            BLOG POSTS
+
+            Renders published blog posts from the
+            database. Each post links to its own
+            article page using its unique slug.
             ========================================== --}}
 
-            <article class="blog-card">
+            <div class="blog-grid">
 
-                <h3>
-                    Building Scalable Laravel Applications
-                </h3>
+                @forelse ($posts as $post)
 
-                <p>
-                    Best practices for creating maintainable Laravel
-                    applications using clean architecture and reusable
-                    components.
-                </p>
+                    {{-- Individual blog post card --}}
+                    <article class="blog-card">
 
-                <a href="#" class="btn-primary">
-                    Read Article
-                </a>
+                        <h3>
+                            {{ $post->title }}
+                        </h3>
 
-            </article>
+                        <p>
+                            {{ $post->excerpt }}
+                        </p>
 
-            {{-- ==========================================
-                 BLOG ARTICLE
-                 PHP
-            ========================================== --}}
+                        <a href="{{ route('blog.post', $post->slug) }}" class="btn-primary">
+                            Read Article
+                        </a>
 
-            <article class="blog-card">
+                    </article>
 
-                <h3>
-                    Writing Better PHP Code
-                </h3>
+                @empty
 
-                <p>
-                    Practical techniques for writing readable,
-                    maintainable and efficient PHP applications.
-                </p>
+                    {{-- Fallback shown when no published posts exist --}}
+                    <p>
+                        No posts yet — check back soon.
+                    </p>
 
-                <a href="#" class="btn-primary">
-                    Read Article
-                </a>
+                @endforelse
 
-            </article>
-
-            {{-- ==========================================
-                 BLOG ARTICLE
-                 Software Engineering
-            ========================================== --}}
-
-            <article class="blog-card">
-
-                <h3>
-                    Lessons Learned While Building Real Projects
-                </h3>
-
-                <p>
-                    Insights, challenges and engineering decisions
-                    from developing real-world software solutions.
-                </p>
-
-                <a href="#" class="btn-primary">
-                    Read Article
-                </a>
-
-            </article>
+            </div>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 @endsection
