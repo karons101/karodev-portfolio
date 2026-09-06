@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\BlogPost;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\User;
 
 class BlogTest extends TestCase
 {
@@ -26,6 +27,7 @@ class BlogTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('Test Published Post');
+        $response->assertSee('Test published post excerpt.');
     }
 
     /** @test */
@@ -119,4 +121,28 @@ class BlogTest extends TestCase
         $response->assertStatus(200);
         $response->assertSee('New Dynamic Post');
     }
+
+    /** @test */
+    public function test_blog_content_is_sanitized_before_storage(): void
+    {
+        $this->actingAs(User::factory()->create());
+
+        $response = $this->post(route('blog-posts.store'), [
+            'title' => 'Sanitization Test',
+            'slug' => 'sanitization-test',
+            'category' => 'Laravel',
+            'excerpt' => 'Testing blog content sanitization.',
+            'content' => '<p>Safe content</p><script>alert("xss")</script>',
+            'published' => true,
+        ]);
+
+        $response->assertRedirect(route('blog-posts.index'));
+
+        $post = BlogPost::where('slug', 'sanitization-test')->first();
+
+        $this->assertNotNull($post);
+        $this->assertStringContainsString('<p>Safe content</p>', $post->content);
+        $this->assertStringNotContainsString('<script>', $post->content);
+    }
+
 }
