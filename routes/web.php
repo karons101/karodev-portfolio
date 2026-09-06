@@ -35,7 +35,37 @@ Route::view('/experience', 'pages.experience')->name('experience');
 
 Route::view('/certifications', 'pages.certifications')->name('certifications');
 
-Route::view('/blog', 'pages.blog')->name('blog');
+// Public blog listing
+Route::get('/blog', function () {
+    $posts = BlogPost::where('published', true)
+        ->latest()
+        ->get([
+            'id',
+            'title',
+            'slug',
+            'category',
+            'featured_image',
+            'excerpt',
+            'featured',
+            'published',
+            'published_at',
+        ]);
+
+    return view('pages.blog', compact('posts'));
+})->name('blog');
+
+// Public individual blog post
+Route::get('/blog/{slug}', function ($slug) {
+    $post = BlogPost::where('slug', $slug)
+        ->where('published', true)
+        ->first();
+
+    if (!$post) {
+        return response()->view('pages.blog-post-not-found', [], 404);
+    }
+
+    return view('pages.blog-post', compact('post'));
+})->name('blog.post');
 
 Route::view('/contact', 'pages.contact')->name('contact');
 
