@@ -31,75 +31,51 @@
 
         <div class="blog-grid">
 
-            {{-- ==========================================
-                 BLOG ARTICLE
-                 Laravel
-            ========================================== --}}
+            {{-- ==========================================================
+                 COMPONENT: DYNAMIC BLOG ARTICLE LIST
 
-            <article class="blog-card">
+                 Purpose:
+                 Renders published blog articles retrieved from the
+                 BlogPost model and supplied by the public /blog route.
 
-                <h3>
-                    Building Scalable Laravel Applications
-                </h3>
+                 Responsibilities:
+                 • Display article titles and excerpts from database data.
+                 • Render one card for each published BlogPost record.
+                 • Avoid hardcoded article content in the public view.
+                 • Provide a clear fallback when no published articles exist.
 
-                <p>
-                    Best practices for creating maintainable Laravel
-                    applications using clean architecture and reusable
-                    components.
+                 Data Source:
+                 $posts — Collection of published BlogPost records.
+
+                 Article navigation is handled by the public
+                 /blog/{slug} route.
+            ========================================================== --}}
+
+            @forelse ($posts as $post)
+
+                <article class="blog-card">
+
+                    <h3>
+                        {{ $post->title }}
+                    </h3>
+
+                    <p>
+                        {{ $post->excerpt }}
+                    </p>
+
+                    <a href="{{ route('blog.post', $post->slug) }}" class="btn-primary">
+                        Read Article
+                    </a>
+
+                </article>
+
+            @empty
+
+                <p class="blog-empty">
+                    No blog articles are currently available.
                 </p>
 
-                <a href="#" class="btn-primary">
-                    Read Article
-                </a>
-
-            </article>
-
-            {{-- ==========================================
-                 BLOG ARTICLE
-                 PHP
-            ========================================== --}}
-
-            <article class="blog-card">
-
-                <h3>
-                    Writing Better PHP Code
-                </h3>
-
-                <p>
-                    Practical techniques for writing readable,
-                    maintainable and efficient PHP applications.
-                </p>
-
-                <a href="#" class="btn-primary">
-                    Read Article
-                </a>
-
-            </article>
-
-            {{-- ==========================================
-                 BLOG ARTICLE
-                 Software Engineering
-            ========================================== --}}
-
-            <article class="blog-card">
-
-                <h3>
-                    Lessons Learned While Building Real Projects
-                </h3>
-
-                <p>
-                    Insights, challenges and engineering decisions
-                    from developing real-world software solutions.
-                </p>
-
-                <a href="#" class="btn-primary">
-                    Read Article
-                </a>
-
-            </article>
-
-        </div>
-
+            @endforelse
     </div>
 
 </section>

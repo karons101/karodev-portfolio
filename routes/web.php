@@ -52,7 +52,36 @@ Route::get('/certifications', function () {
 
 })->name('certifications');
 
-Route::view('/blog', 'pages.blog')->name('blog');
+Route::get('/blog', function () {
+
+    $posts = \App\Models\BlogPost::where('published', true)
+        ->orderByDesc('published_at')
+        ->orderByDesc('id')
+        ->get();
+
+    return view('pages.blog', compact('posts'));
+
+})->name('blog');
+
+/*
+|--------------------------------------------------------------------------
+| PUBLIC BLOG ARTICLE
+|--------------------------------------------------------------------------
+|
+| Displays a single published blog post using its unique slug.
+| Unpublished posts are intentionally excluded from the public site.
+|
+*/
+
+Route::get('/blog/{slug}', function ($slug) {
+
+    $post = \App\Models\BlogPost::where('slug', $slug)
+        ->where('published', true)
+        ->firstOrFail();
+
+    return view('pages.blog-post', compact('post'));
+
+})->name('blog.post');
 
 Route::view('/contact', 'pages.contact')->name('contact');
 
