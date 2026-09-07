@@ -25,7 +25,16 @@ Route::view('/', 'pages.home')->name('home');
 
 Route::view('/about', 'pages.about')->name('about');
 
-Route::view('/projects', 'pages.projects')->name('projects');
+Route::get('/projects', function () {
+
+    $projects = \App\Models\Project::where('published', true)
+        ->orderBy('sort_order')
+        ->orderByDesc('id')
+        ->get();
+
+    return view('pages.projects', compact('projects'));
+
+})->name('projects');
 
 Route::view('/services', 'pages.services')->name('services');
 
