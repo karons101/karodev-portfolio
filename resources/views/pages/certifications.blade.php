@@ -30,72 +30,94 @@
 
         <div class="certifications-grid">
 
-            {{-- ==========================================
-                 CERTIFICATION CARD
-                 Laravel Development
-            ========================================== --}}
+            @forelse ($certifications as $certification)
 
-            <article class="certification-card">
+                {{-- ==========================================
+                     CERTIFICATION CARD
 
-                <h3>Laravel Web Development</h3>
+                     Each card is generated from a
+                     database-backed Certification record.
+                ========================================== --}}
 
-                <h4>Self-Paced Professional Learning</h4>
+                <article class="certification-card">
 
-                <p>
-                    Advanced Laravel application development covering routing,
-                    authentication, Blade, Eloquent ORM, migrations and MVC architecture.
-                </p>
+                    <h3>
+                        {{ $certification->name }}
+                    </h3>
 
-                <a href="#" class="btn-primary">
-                    View Certificate
-                </a>
+                    <h4>
+                        {{ $certification->issuing_organization }}
+                    </h4>
 
-            </article>
+                    <p>
+                        Issued:
+                        {{ $certification->issue_date
+                            ? $certification->issue_date->format('F Y')
+                            : 'Date unavailable'
+                        }}
+                    </p>
 
-            {{-- ==========================================
-                 CERTIFICATION CARD
-                 Full-Stack Development
-            ========================================== --}}
+                    @if ($certification->expiration_date)
 
-            <article class="certification-card">
+                        <p>
+                            Expires:
+                            {{ $certification->expiration_date->format('F Y') }}
+                        </p>
 
-                <h3>Full-Stack Web Development</h3>
+                    @endif
 
-                <h4>Professional Learning</h4>
+                    @if ($certification->credential_id)
 
-                <p>
-                    Modern web application development using PHP, JavaScript,
-                    MySQL, HTML and CSS with responsive design principles.
-                </p>
+                        <p>
+                            Credential ID:
+                            {{ $certification->credential_id }}
+                        </p>
 
-                <a href="#" class="btn-primary">
-                    View Certificate
-                </a>
+                    @endif
 
-            </article>
+                    @if ($certification->credential_url)
 
-            {{-- ==========================================
-                 CERTIFICATION CARD
-                 Git & GitHub
-            ========================================== --}}
+                        <a href="{{ $certification->credential_url }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn-primary">
+                            Verify Credential
+                        </a>
 
-            <article class="certification-card">
+                    @elseif ($certification->certificate_file)
 
-                <h3>Git & GitHub Version Control</h3>
+                        <a href="{{ asset('storage/' . $certification->certificate_file) }}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn-primary">
+                            View Certificate
+                        </a>
 
-                <h4>Professional Learning</h4>
+                    @endif
 
-                <p>
-                    Source control, collaboration workflows,
-                    branching strategies and repository management.
-                </p>
+                </article>
 
-                <a href="#" class="btn-primary">
-                    View Certificate
-                </a>
+            @empty
 
-            </article>
+                {{-- ==========================================
+                     EMPTY STATE
 
+                     Displayed when no certifications exist
+                     in the Certifications CMS.
+                ========================================== --}}
+
+                <div class="certification-card">
+
+                    <h3>No Certifications Yet</h3>
+
+                    <p>
+                        Professional certifications and training
+                        will be added here as they become available.
+                    </p>
+
+                </div>
+
+            @endforelse
         </div>
 
     </div>

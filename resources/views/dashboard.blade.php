@@ -495,6 +495,44 @@ KaroDev Portfolio CMS
                     </a>
 
 
+                    {{-- ==================================================
+                    CERTIFICATIONS
+                    =================================================== --}}
+
+                    <a href="{{ route('certifications.index') }}"
+                        class="group bg-white rounded-2xl border border-slate-200 p-7 shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300">
+
+                        <div class="flex items-center justify-between">
+
+                            <div class="w-14 h-14 rounded-xl bg-violet-100 flex items-center justify-center text-3xl">
+
+                                🏆
+
+                            </div>
+
+                            <span class="text-slate-300 group-hover:text-violet-600 transition text-3xl">
+
+                                →
+
+                            </span>
+
+                        </div>
+
+                        <h3 class="mt-6 text-xl font-bold text-slate-800">
+
+                            Certifications
+
+                        </h3>
+
+                        <p class="mt-2 text-slate-500">
+
+                            Manage professional certifications.
+
+                        </p>
+
+                    </a>
+
+
 
                     {{-- ==================================================
                     MESSAGES

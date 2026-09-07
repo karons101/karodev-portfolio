@@ -33,7 +33,15 @@ Route::view('/skills', 'pages.skills')->name('skills');
 
 Route::view('/experience', 'pages.experience')->name('experience');
 
-Route::view('/certifications', 'pages.certifications')->name('certifications');
+Route::get('/certifications', function () {
+
+    $certifications = \App\Models\Certification::orderBy('sort_order')
+        ->orderByDesc('issue_date')
+        ->get();
+
+    return view('pages.certifications', compact('certifications'));
+
+})->name('certifications');
 
 Route::view('/blog', 'pages.blog')->name('blog');
 
