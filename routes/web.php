@@ -48,7 +48,13 @@ Route::get('/skills', function () {
 
 })->name('skills');
 
-Route::view('/experience', 'pages.experience')->name('experience');
+Route::get('/experience', function () {
+    $experiences = \App\Models\Experience::orderBy('sort_order')
+        ->orderByDesc('id')
+        ->get();
+
+    return view('pages.experience', compact('experiences'));
+})->name('experience');
 
 Route::get('/certifications', function () {
 

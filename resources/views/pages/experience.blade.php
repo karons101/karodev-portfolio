@@ -31,120 +31,99 @@
         <div class="timeline">
 
             {{-- ==========================================
-                 TIMELINE ITEM
-                 Full-Stack Software Developer
+                 DYNAMIC EXPERIENCE TIMELINE
+
+                 Purpose:
+                 Renders professional experience from the
+                 Experience CMS instead of hardcoded entries.
+
+                 Data source:
+                 experiences table via the public route.
+
+                 Display:
+                 - Employment period
+                 - Position and company
+                 - Employment type
+                 - Location
+                 - Work mode
+                 - Description
+                 - Technologies
             ========================================== --}}
 
-            <article class="timeline-item">
+            @forelse ($experiences as $experience)
 
-                <div class="timeline-dot"></div>
+                <article class="timeline-item">
 
-                <div class="timeline-content">
+                    <div class="timeline-dot"></div>
 
-                    <span class="timeline-year">
-                        Present
-                    </span>
+                    <div class="timeline-content">
 
-                    <h3>Full-Stack Software Developer</h3>
+                        <span class="timeline-year">
 
-                    <h4>Independent Software Engineer</h4>
+                            {{ $experience->start_date->format('M Y') }}
 
-                    <p>
-                        Designing and developing scalable web applications
-                        using Laravel, PHP, JavaScript and MySQL while
-                        following modern software engineering principles.
-                    </p>
+                            —
 
-                </div>
+                            @if ($experience->currently_working)
 
-            </article>
+                                Present
 
-            {{-- ==========================================
-                 TIMELINE ITEM
-                 CourierXpress
-            ========================================== --}}
+                            @elseif ($experience->end_date)
 
-            <article class="timeline-item">
+                                {{ $experience->end_date->format('M Y') }}
 
-                <div class="timeline-dot"></div>
+                            @else
 
-                <div class="timeline-content">
+                                End date unavailable
 
-                    <span class="timeline-year">
-                        Current Project
-                    </span>
+                            @endif
 
-                    <h3>CourierXpress</h3>
+                        </span>
 
-                    <h4>Logistics Management Platform</h4>
+                        <h3>
+                            {{ $experience->position }}
+                        </h3>
 
-                    <p>
-                        Developing a comprehensive logistics application
-                        featuring shipment tracking, dispatch management,
-                        customer management and reporting.
-                    </p>
+                        <h4>
+                            {{ $experience->company }}
+                        </h4>
 
-                </div>
+                        <p>
+                            <strong>{{ $experience->employment_type }}</strong>
 
-            </article>
+                            @if ($experience->city || $experience->country)
+                                ·
+                                {{ collect([$experience->city, $experience->country])->filter()->join(', ') }}
+                            @endif
 
-            {{-- ==========================================
-                 TIMELINE ITEM
-                 Yellow Sail
-            ========================================== --}}
+                            ·
+                            {{ $experience->work_mode }}
+                        </p>
 
-            <article class="timeline-item">
+                        <p>
+                            {{ $experience->description }}
+                        </p>
 
-                <div class="timeline-dot"></div>
+                        @if ($experience->technologies)
 
-                <div class="timeline-content">
+                            <p>
+                                <strong>Technologies:</strong>
+                                {{ $experience->technologies }}
+                            </p>
 
-                    <span class="timeline-year">
-                        Current Project
-                    </span>
+                        @endif
 
-                    <h3>Yellow Sail</h3>
+                    </div>
 
-                    <h4>Music & Video Streaming Platform</h4>
+                </article>
 
-                    <p>
-                        Developing a multimedia platform focused on modern
-                        entertainment, responsive design and engaging
-                        user experiences.
-                    </p>
+            @empty
 
-                </div>
+                <p>
+                    No professional experience is currently available.
+                </p>
 
-            </article>
-
-            {{-- ==========================================
-                 TIMELINE ITEM
-                 NovaCare Medical Centre
-            ========================================== --}}
-
-            <article class="timeline-item">
-
-                <div class="timeline-dot"></div>
-
-                <div class="timeline-content">
-
-                    <span class="timeline-year">
-                        Completed
-                    </span>
-
-                    <h3>NovaCare Medical Centre</h3>
-
-                    <h4>Healthcare Website</h4>
-
-                    <p>
-                        Designed and developed a professional healthcare
-                        website with responsive layouts and modern
-                        user interface principles.
-                    </p>
-
-                </div>
-
-            </article>
+            @endforelse
 
         </div>
 

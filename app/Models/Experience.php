@@ -71,4 +71,11 @@ class Experience extends Model
         'sort_order',
 
     ];
+
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+        'currently_working' => 'boolean',
+        'featured' => 'boolean',
+    ];
 }
