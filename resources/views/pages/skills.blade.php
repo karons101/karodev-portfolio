@@ -29,59 +29,43 @@
 
         <div class="skills-grid">
 
-            {{-- ==========================================
-                 COMPONENT: LARAVEL
-            ========================================== --}}
+            {{-- ==========================================================
+                 COMPONENT: DYNAMIC SKILL LIST
 
-            <div class="skill-card">
-                <h3>Laravel</h3>
-                <p>Building scalable and secure web applications using the Laravel framework.</p>
-            </div>
+                 Purpose:
+                 Renders skills retrieved from the Skills CMS.
 
-            {{-- ==========================================
-                 COMPONENT: PHP
-            ========================================== --}}
+                 Data Source:
+                 $skills — Collection supplied by the public /skills route.
 
-            <div class="skill-card">
-                <h3>PHP</h3>
-                <p>Developing robust backend systems and RESTful APIs.</p>
-            </div>
+                 Ordering:
+                 Skills are ordered by the CMS sort_order field.
 
-            {{-- ==========================================
-                 COMPONENT: JAVASCRIPT
-            ========================================== --}}
+                 Empty State:
+                 Displays a fallback message when no skills exist.
+            ========================================================== --}}
 
-            <div class="skill-card">
-                <h3>JavaScript</h3>
-                <p>Creating dynamic, interactive and responsive user interfaces.</p>
-            </div>
+            @forelse ($skills as $skill)
 
-            {{-- ==========================================
-                 COMPONENT: MYSQL
-            ========================================== --}}
+                <div class="skill-card">
 
-            <div class="skill-card">
-                <h3>MySQL</h3>
-                <p>Designing efficient relational databases and optimized queries.</p>
-            </div>
+                    <h3>
+                        {{ $skill->name }}
+                    </h3>
 
-            {{-- ==========================================
-                 COMPONENT: GIT
-            ========================================== --}}
+                    <p>
+                        {{ $skill->category }}
+                    </p>
 
-            <div class="skill-card">
-                <h3>Git & GitHub</h3>
-                <p>Version control, collaboration and professional software workflows.</p>
-            </div>
+                </div>
 
-            {{-- ==========================================
-                 COMPONENT: HTML & CSS
-            ========================================== --}}
+            @empty
 
-            <div class="skill-card">
-                <h3>HTML & CSS</h3>
-                <p>Building responsive, accessible and modern user interfaces.</p>
-            </div>
+                <p class="skills-empty">
+                    No skills are currently available.
+                </p>
+
+            @endforelse
 
         </div>
 

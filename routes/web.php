@@ -38,7 +38,15 @@ Route::get('/projects', function () {
 
 Route::view('/services', 'pages.services')->name('services');
 
-Route::view('/skills', 'pages.skills')->name('skills');
+Route::get('/skills', function () {
+
+    $skills = \App\Models\Skill::orderBy('sort_order')
+        ->orderByDesc('id')
+        ->get();
+
+    return view('pages.skills', compact('skills'));
+
+})->name('skills');
 
 Route::view('/experience', 'pages.experience')->name('experience');
 
