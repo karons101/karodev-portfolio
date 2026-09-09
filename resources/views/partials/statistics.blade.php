@@ -23,7 +23,7 @@
 
                     <span
                         class="counter"
-                        data-target="15">
+                        data-target="7">
 
                         0
 
@@ -73,7 +73,7 @@
 
                     <span
                         class="counter"
-                        data-target="5">
+                        data-target="7">
 
                         0
 
