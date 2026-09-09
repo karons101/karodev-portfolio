@@ -80,6 +80,16 @@
                     Hire Me
                 </a>
 
+                <a href="{{ asset('documents/Oghenekaro-Cletus-Anakpoha-CV.pdf') }}"
+                 target="_blank"
+                 class="btn-secondary">
+
+                 <i class="fa-solid fa-download"></i>
+
+                    Download CV
+
+                </a>
+
             </div>
 
         </div>

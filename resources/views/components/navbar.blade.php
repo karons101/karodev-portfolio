@@ -98,20 +98,6 @@
 
             </ul>
 
-            {{-- ==========================================
-                 DOWNLOAD CV BUTTON
-            ========================================== --}}
-
-            <a href="{{ asset('documents/Oghenekaro-Cletus-Anakpoha-CV.pdf') }}"
-               target="_blank"
-               class="btn-primary nav-cv-btn">
-
-                <i class="fa-solid fa-download"></i>
-
-                Download CV
-
-            </a>
-
         </div>
 
     </div>
