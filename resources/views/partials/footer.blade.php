@@ -57,7 +57,7 @@
 
                  </a>
 
-                <a href="https://x.com/"
+                <a href="https://x.com/@karonstical"
                    target="_blank"
                    data-tooltip="X (Twitter)"
                    aria-label="X">
@@ -66,7 +66,7 @@
 
                 </a>
 
-                <a href="https://facebook.com/"
+                <a href="https://facebook.com/oghenekaro.anakpoha"
                    target="_blank"
                    data-tooltip="Facebook"
                    aria-label="Facebook">
@@ -83,7 +83,7 @@
 
                 </a>
 
-                <a href="https://wa.me/2340000000000"
+                <a href="https://wa.me/2348131154753"
                    target="_blank"
                    data-tooltip="WhatsApp"
                    aria-label="WhatsApp">
