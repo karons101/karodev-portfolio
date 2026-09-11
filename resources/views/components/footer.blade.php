@@ -172,10 +172,10 @@
 
                 <ul>
 
-                    <li><a href="#">Download CV</a></li>
-                    <li><a href="#">Certificates</a></li>
-                    <li><a href="#">Case Studies</a></li>
-                    <li><a href="#">Blog Articles</a></li>
+                    <li><a href="{{ asset('documents/Oghenekaro-Cletus-Anakpoha-CV.pdf') }}">Download CV</a></li>
+                    <li><a href="{{ route('certifications') }}">Certificates</a></li>
+                    <li><a href="{{ route('projects') }}">Case Studies</a></li>
+                    <li><a href="{{ route('blog') }}">Blog Articles</a></li>
 
                 </ul>
 
